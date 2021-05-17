@@ -1,11 +1,6 @@
-# Chapter 1
+# Chapter OTHER
 
 
-## Code sample
-
-````bash
-echo $HOME
-````
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fermentum auctor augue a varius. Morbi et tellus purus. Maecenas nec ligula id nunc feugiat placerat. Suspendisse potenti. Sed lobortis egestas quam. Ut nec nunc mattis, venenatis tortor id, ultricies orci. Fusce efficitur eros a congue lacinia. Nam imperdiet aliquam sapien non cursus. Sed sollicitudin eu mauris ac vestibulum. Phasellus at sem ornare, accumsan tellus sit amet, egestas eros. In hac habitasse platea dictumst. Duis faucibus turpis sit amet lacus cursus cursus ac nec nunc. Nunc ultrices, felis at vehicula consequat, orci augue iaculis ligula, sed fermentum nisl nisl vitae ligula.
 
