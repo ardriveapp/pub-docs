@@ -6,7 +6,7 @@
 
 Unix:
 
-```zash
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
@@ -21,13 +21,15 @@ cargo install mdbook
 ```
 ### Try it
 
-```zsh
-cargo install mdbook
+Make sure that you have Cargo on your path
+
+```bash
+mdbook help
 ```
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk5MzU4MDY3OCwxMTQ3NTExMDYzLDE1MT
-k4ODk4NTFdfQ==
+eyJoaXN0b3J5IjpbLTEzNTI4NDY4MTcsMTE0NzUxMTA2MywxNT
+E5ODg5ODUxXX0=
 -->
