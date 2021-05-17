@@ -27,6 +27,7 @@ Make sure that you have Cargo on your path
 mdbook help
 ```
 Serve files at repo root
+
 ```bash
 mdbook serve
 ```
@@ -37,6 +38,6 @@ mdbook serve
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzEyMjIzOTUxLC0xMjkzNDY2OTMsLTEzNT
-I4NDY4MTcsMTE0NzUxMTA2MywxNTE5ODg5ODUxXX0=
+eyJoaXN0b3J5IjpbLTExNDEzMjA4MzUsLTEyOTM0NjY5MywtMT
+M1Mjg0NjgxNywxMTQ3NTExMDYzLDE1MTk4ODk4NTFdfQ==
 -->
