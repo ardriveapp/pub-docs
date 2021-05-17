@@ -1,13 +1,25 @@
 # Summary
+# GENERAL
+- [Introduction](./what_is_ardrive_core.md)
+- [File System](./what_is_arfs.md)
+  - [Current Version 0.11](arfs0.11.md)
+  - [Proposed Version 0.12](arfs0.12.md)
+# CODE
+- [ArFs](./arfs.md)
+  - [Untitled](./untitled.md)
+- [Arweave](./arweave.md)
+  - [Pricing and Fees](./pricing_and_fees.md)
+  - [Other Utilities](./other_utilities.md)
+  - [Transactions](./transactions.md)
+  - [Wallet](./wallet.md)
+- [Crypto](./crypto.md)
+  - [Untitled](./untitled.md)
+- [GraphQL](./gql.md)
+  - [Untitled](./untitled.md)
+- [Types](./types.md)
+  - [ArFs](./arfs_types.md)
+  - [Client](./client_types.md)
+  - [GQL](./gql_types.md)
+  - [Base](./base_types.md)
+  - [Type Guards](./type_guards.md)
 
-- [Item 1](./chapter_1.md)
-
-- [Item 2](./chapter_2.md)
-
-  - [Title of a sub Chapter](chapter_sub.md)
-
-# Title of Another Part
-
-- [More Chapters](./chapter_other.md)
-
-- [Image sample](./textPlusImages.md)
