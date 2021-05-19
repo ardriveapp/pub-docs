@@ -291,7 +291,27 @@ For example, a Music Sharing App could use the following expanded File Metadata 
 }
 ```
 
-Expanded Metadata Transaction GQL Examples
+#### Expanded Metadata Transaction GQL Examples
 Additionally, the above extended Metadata fields could be added directly as a GQL tag as well, in order to support GraphQL queries. However, it is important to not overload transaction tags for optimal performance.
-Adding Keywords Tag to a Drive
-For example, a File Sync app could add an additional Keywords tag for generalized Drive tagging. This allows for future filtering based on the tag value. Multiple keywords can be added by adding multiple Keywords tags
+
+#### Adding Keywords Tag to a Drive
+For example, a File Sync app could add an additional Keywords tag for generalized Drive tagging. This allows for future filtering based on the tag value. Multiple keywords can be added by adding multiple Keywords tags.
+
+## Additional Client Concerns
+
+### Folder/File Paths
+ArweaveFS does not store folder or file paths along with entities as these paths will need to be updated whenever the parent folder name changes which can require many updates for deeply nested file systems. Instead, folder/file paths are left for the client to generate from the folder/file names.
+
+### Client Syncing
+Drives that have been updated many times can have a long entity timeline which can be a performance bottleneck. To avoid this, clients can cache the drive state locally and sync updates to the file system by only querying for entities in blocks higher than the last time they checked.
+
+### Folder View Queries
+Clients that want to provide users with a quick view of a single folder can simply query for an entity timeline for a particular folder by its id. Clients with multi-owner permissions will additionally have to query for the folder's parent drive entity for permission-based filtering of the timeline.
+
+
+## Future Work
+
+### Collaboration Drives
+Currently, drives can only be written by the owner.  With a multi-user permissioned "Collaboration Drive", a dynamic set of users are able to write to it.  This will take advantage of the entity timeline for filtering of malicious/invalid entities.
+
+This is achievable relatively easily for public drives but is much more complicated for private drives due to the need to share keys asynchronously. An implementation can draw inspiration from the Signal protocol on how to achieve this.
