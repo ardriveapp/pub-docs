@@ -4,9 +4,9 @@
 
     <RouterLink :to="$localePath" class="home-link">
       <img
-        v-if="$site.themeConfig.logo"
+        
         class="logo"
-        :src="$withBase($site.themeConfig.logo)"
+        :src="logo"
         :alt="$siteTitle"
       />
       <span
@@ -30,7 +30,7 @@
       "
     >
       <a class="nav-link-right" href="https://ar-io.zendesk.com/hc/en-us" target="_blank">Support</a>
-      <a class="nav-link-right" href="https://discord.gg/7zUPfN4D6g">Discord</a>
+      <a class="nav-link-right" href="https://discord.com/invite/ya4hf2H">Discord</a>
       <a  href="https://github.com/ardriveapp" target="_blank">
         <svg
           class="github-logo"
@@ -85,6 +85,13 @@ import NavLinks from "@theme/components/NavLinks.vue";
 export default {
   name: "Navbar",
 
+  props: {
+    logo: {
+      type: String,
+      default: '',
+    }
+  },
+
   components: {
     SidebarButton,
     NavLinks,
@@ -101,25 +108,25 @@ export default {
 
   methods: {
     toggleLightMode() {
-      this.isLight = !this.isLight;
-      console.log(this.isLight);
-      $textColor = 'red'
-      return this.isLight;
+      this.$store.commit('toggleLightMode')
+      if (this.$store.state.isLight){
+        console.log('Light mode activated.')
+      }
+      else if (!this.$store.state.isLight){
+        console.log('Light mode deactivated.')
+      }
+    
     },
   },
 
   computed: {
+
     algolia() {
       return (
         this.$themeLocaleConfig.algolia || this.$site.themeConfig.algolia || {}
       );
     },
 
-    themeToggleStyle() {
-      return `
-        $textColor ${this.isLight ? "2px solid red" : "none"};
-      `;
-    },
 
     isAlgoliaSearch() {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName;
@@ -161,7 +168,7 @@ $navbar-horizontal-padding = 1.5rem
 
 .theme-toggle
   // border: $themeToggleStyle
-  color white
+  color: var(--TextColor)
   background-color transparent
   padding-right 2em
   padding-left 1em
@@ -175,7 +182,7 @@ $navbar-horizontal-padding = 1.5rem
   cursor pointer
 
 .github-logo
-  color $textColor
+  color var(--TextColor)
   margin none
   width 2em
   height auto
@@ -195,12 +202,12 @@ $navbar-horizontal-padding = 1.5rem
   .site-name
     font-size 1.3rem
     font-weight 600
-    color $textColor
+    color: var(--TextColor)
     position relative
   .links
     padding-left 1.5rem
     box-sizing border-box
-    background-color $bgColor
+    background-color: var(--BgColor)
     white-space nowrap
     font-size 0.9rem
     position absolute
@@ -213,7 +220,7 @@ $navbar-horizontal-padding = 1.5rem
       vertical-align top
 .nav-link-right
     padding-right 1em
-    color $textColor
+    color: var(--TextColor)
     // border 2px solid blue
 
 @media (max-width: $MQMobile)

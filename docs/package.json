@@ -1,7 +1,7 @@
 {
-  "name": "ardrive-docs",
-  "version": "0.0.2",
-  "description": "Documentation for Ardrive",
+  "name": "whitepaper",
+  "version": "0.0.1",
+  "description": "ar.io Gateway Whitepaper",
   "main": "index.js",
   "authors": {
     "name": "",
@@ -10,16 +10,14 @@
   "repository": "/ardrive-docs",
   "scripts": {
     "dev": "vuepress dev src",
-    "localbuild": "vuepress build src",
-    "build": "vuepress build src && gh-pages -d ../ardrive-docs/ --repo=https://github.com/Bobinstein/ardrive-docs.git --branch=staging --message='Update GitHub Pages'"
+    "build": "vuepress build src"
   },
   "license": "MIT",
   "devDependencies": {
     "gh-pages": "^5.0.0",
     "vuepress": "^1.5.3"
+  },
+  "dependencies": {
+    "vuex": "^4.1.0"
   }
 }
-
-
-
-

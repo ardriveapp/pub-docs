@@ -8,11 +8,22 @@
 .home .hero img
   max-width 450px!important
 
+
+:root {
+  --BgColor: $bgColor;
+  --TextColor: $textColor
+  --fontFamily: $Roboto
+  }
+
+
 // sets background for most items
-html, body, .page, .theme-container, .sidebar, .sidebar-group, nav, .navbar, .nav-dropdown, .search-box, .links, header
-	background: $bgColor
-  // font-family: $roboto
+html, body, .page, .theme-container, .sidebar, .sidebar-group, nav, .navbar, .nav-dropdown, .search-box, .links, header, .prefix
+  background: var(--BgColor) 
+  color: var(--TextColor) !important
+  font-family: var(--fontFamily)
 
-
-
-
+* {
+  font-family: inherit;
+  color: inherit;
+  background-color: inherit;
+}
