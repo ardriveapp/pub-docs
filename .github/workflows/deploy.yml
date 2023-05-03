@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: cd docs && yarn install
       - name: Build
-        run: cd docs && yarn localbuild
+        run: cd docs && yarn build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
