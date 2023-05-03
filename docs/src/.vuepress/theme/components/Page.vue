@@ -5,7 +5,7 @@
     <Content class="theme-default-content" />
     <PageEdit />
 
-    <PageNav v-bind="{ sidebarItems }" />
+    <PageNav v-bind="{ sidebarItems, isLight }" />
 
     <slot name="bottom" />
   </main>

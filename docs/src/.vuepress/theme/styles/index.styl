@@ -12,18 +12,16 @@
 :root {
   --BgColor: $bgColor;
   --TextColor: $textColor
+  --AccentColor: $accentColor
   --fontFamily: $Roboto
+  --LineColor: $accentColor
+  --LineThickness: 1px
+  --PrefixColor: $textColor
   }
 
 
 // sets background for most items
-html, body, .page, .theme-container, .sidebar, .sidebar-group, nav, .navbar, .nav-dropdown, .search-box, .links, header, .prefix
+html, body, .page, .theme-container, .sidebar, .sidebar-group, .sidebar-heading, nav, .navbar, .nav-dropdown, .search-box, .links, header, .next, .prev, .prefix
   background: var(--BgColor) 
   color: var(--TextColor) !important
   font-family: var(--fontFamily)
-
-* {
-  font-family: inherit;
-  color: inherit;
-  background-color: inherit;
-}

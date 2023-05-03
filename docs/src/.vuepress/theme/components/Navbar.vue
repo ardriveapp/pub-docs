@@ -34,8 +34,7 @@
       <a  href="https://github.com/ardriveapp" target="_blank">
         <svg
           class="github-logo"
-          width="current"
-          height="current"
+          length="current"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -50,8 +49,7 @@
       <svg
         @click="toggleLightMode"
         class="theme-toggle"
-        width="current"
-        height="current"
+        length="current"
         viewBox="0 0 24 24"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"

@@ -27,30 +27,37 @@ export default {
 
 <style lang="stylus">
 .sidebar
-  border-right none
+  border-right 1px solid #fe0230
+  color: var(--TextColor)
   ul
     padding 0
     margin 0
     list-style-type none
+    color: var(--TextColor)
   a
     display inline-block
   .nav-links
     display none
     border-bottom 1px solid $borderColor
     padding 0.5rem 0 0.75rem 0
+    color: var(--TextColor)
     a
       font-weight 600
+      color: var(--TextColor)
     .nav-item, .repo-link
       display block
       line-height 1.25rem
       font-size 1.1em
       padding 0.5rem 0 0.5rem 1.5rem
+      color: var(--TextColor)
   & > .sidebar-links
     padding 1.5rem 0
+    color: var(--TextColor)
     & > li > a.sidebar-link
       font-size 1.1em
       line-height 1.7
       font-weight bold
+      color: var(--TextColor)
     & > li:not(:first-child)
       margin-top .75rem
 
@@ -58,6 +65,7 @@ export default {
   .sidebar
     .nav-links
       display block
+      color var(--TextColor)
       .dropdown-wrapper .nav-dropdown .dropdown-item a.router-link-active::after
         top calc(1rem - 2px)
     & > .sidebar-links

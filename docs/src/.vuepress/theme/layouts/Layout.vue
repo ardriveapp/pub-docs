@@ -24,7 +24,7 @@
 
     <Home v-if="$page.frontmatter.home" />
 
-    <Page v-else :sidebar-items="sidebarItems">
+    <Page v-else :sidebar-items="sidebarItems" :isLight="isLight">
       <template #top>
         <slot name="page-top" />
       </template>
@@ -132,8 +132,10 @@ export default {
     updateTheme() {
       const bgColor = this.isLight ? "#f8d9c9" : "#171717";
       const textColor = this.isLight ? "black" : "white";
+      const accentColor = this.isLight ? "#fe0230" : "#fe0230";
       document.documentElement.style.setProperty("--BgColor", bgColor);
       document.documentElement.style.setProperty("--TextColor", textColor);
+      document.documentElement.style.setProperty("--AccentColor", accentColor);
     },
 
     toggleSidebar(to) {
