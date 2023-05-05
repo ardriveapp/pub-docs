@@ -25,6 +25,6 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ardrive-docs
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: pub-docs
           publish_branch: gh-pages
