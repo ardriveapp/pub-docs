@@ -67,9 +67,7 @@ export default {
   computed: {
     logoPath() {
       const basePath = this.$site.base;
-      return this.$store.state.isLight
-        ? basePath + "/images/Ardrive-Logo.png"
-        : basePath + "/images/ArDrive-Logo.png";
+      return basePath + "/images/Ardrive-Logo.png"
     },
     isLight() {
       return this.$store.state.isLight;
