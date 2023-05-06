@@ -86,8 +86,8 @@ export default {
   props: {
     logo: {
       type: String,
-      default: '',
-    }
+      default: "",
+    },
   },
 
   components: {
