@@ -1,7 +1,7 @@
 module.exports = [
   {
-    title: "About",
-    path: "/about",
+    title: "Price Calculator",
+    path: "/docs/price-calculator",
   },
   {
     title: "CLI",
@@ -32,9 +32,5 @@ module.exports = [
   {
     title: "Core SDK",
     path: "/docs/core-sdk",
-  },
-  {
-    title: "Price Calculator",
-    path: "/docs/price-calculator",
   },
 ];
