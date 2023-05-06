@@ -33,4 +33,8 @@ module.exports = [
     title: "Core SDK",
     path: "/docs/core-sdk",
   },
+  {
+    title: "ArFS",
+    path: "/docs/arfs/overview",
+  },
 ];
