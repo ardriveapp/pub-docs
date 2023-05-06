@@ -1,5 +1,6 @@
 ---
 homepage: true
+permalink: /docs/cli/
 ---
 
 # CLI
