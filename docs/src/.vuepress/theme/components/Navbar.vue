@@ -6,7 +6,7 @@
       <img
         
         class="logo"
-        :src="logo"
+        :src="$site.themeConfig.logo"
         :alt="$siteTitle"
       />
       <span
@@ -83,12 +83,12 @@ import NavLinks from "@theme/components/NavLinks.vue";
 export default {
   name: "Navbar",
 
-  props: {
-    logo: {
-      type: String,
-      default: "",
-    },
-  },
+  // props: {
+  //   logo: {
+  //     type: String,
+  //     default: "",
+  //   },
+  // },
 
   components: {
     SidebarButton,

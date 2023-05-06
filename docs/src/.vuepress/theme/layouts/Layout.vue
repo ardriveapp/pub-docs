@@ -8,7 +8,6 @@
     <Navbar
       v-if="shouldShowNavbar"
       @toggle-sidebar="toggleSidebar"
-      :logo="logoPath"
     />
 
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
@@ -65,11 +64,11 @@ export default {
   },
 
   computed: {
-    logoPath() {
-      const basePath = this.$site.base;
-      // return basePath + "/images/ArDrive-Logo.png"
-      return "/images/ArDrive-Logo.png"
-    },
+    // logoPath() {
+    //   const basePath = this.$site.base;
+    //   // return basePath + "/images/ArDrive-Logo.png"
+    //   return "/images/ArDrive-Logo.png"
+    // },
     isLight() {
       return this.$store.state.isLight;
     },
