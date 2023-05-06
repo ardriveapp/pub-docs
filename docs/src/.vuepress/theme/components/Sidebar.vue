@@ -60,6 +60,7 @@ export default {
       color: var(--TextColor)
     & > li:not(:first-child)
       margin-top .75rem
+      color: var(--TextColor)
 
 @media (max-width: $MQMobile)
   .sidebar
