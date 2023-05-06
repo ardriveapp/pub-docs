@@ -1,13 +1,13 @@
 {
-  "name": "whitepaper",
+  "name": "ardrive",
   "version": "0.0.1",
-  "description": "ar.io Gateway Whitepaper",
+  "description": "ardrive documentation",
   "main": "index.js",
   "authors": {
     "name": "",
     "email": ""
   },
-  "repository": "/ardrive-docs",
+  "repository": "/pub-docs/",
   "scripts": {
     "dev": "vuepress dev src",
     "build": "vuepress build src"
