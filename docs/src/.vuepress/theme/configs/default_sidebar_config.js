@@ -49,6 +49,10 @@ module.exports = [
         title: "Entity Types",
         path: "/docs/arfs/entity-types"
       },
+      {
+        title: "Content Types",
+        path: "/docs/arfs/content-types"
+      },
     ]
   },
 ];

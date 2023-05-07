@@ -85,3 +85,15 @@ Content-Type: "<file mime-type | application/octet-stream>""
 ```
 
 <div class='caption'>File Data Transaction Example</div>
+
+## Schema Diagrams
+
+The following diagrams show complete examples of Drive, Folder, and File entity Schemas.
+
+### Public Drive
+<img class='amazingdiagram' :src='$withBase("/images/public-drive-schema.png")' style="width: 75%">
+<div class='caption'>Public Drive Schema</div>
+
+### Private Drive
+<img class='amazingdiagram' :src='$withBase("/images/private-drive-schema.png")' style="width: 75%">
+<div class='caption'>Private Drive Schema</div>

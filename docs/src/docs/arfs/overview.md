@@ -6,8 +6,6 @@ permalink: /docs/arfs/
 
 ArFS (Arweave File System) is a protocol built on top of the Arweave blockchain, designed to provide a decentralized and permanent file system that allows users to store, organize, and manage files and metadata. ArFS brings the benefits of decentralization, immutability, and censorship resistance provided by the Arweave blockchain to a familiar file system experience.
 
-## Overview
-
 ArFS is designed to enable users to store, organize, and manage files and metadata in a hierarchical structure similar to traditional file systems, with the added advantages of decentralization and immutability provided by the Arweave blockchain.
 
 ## Key Features
