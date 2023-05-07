@@ -35,6 +35,20 @@ module.exports = [
   },
   {
     title: "ArFS",
-    path: "/docs/arfs/overview",
+    initialOpenGroupIndex: -1,
+    children: [
+      {
+        title: 'Overview',
+        path: '/docs/arfs/overview',
+      },
+      {
+        title: 'Data Model',
+        path: "/docs/arfs/data-model"
+      },
+      {
+        title: "Entity Types",
+        path: "/docs/arfs/entity-types"
+      },
+    ]
   },
 ];
