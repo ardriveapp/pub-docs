@@ -53,6 +53,10 @@ module.exports = [
         title: "Content Types",
         path: "/docs/arfs/content-types"
       },
+      {
+        title: "Privacy",
+        path: "/docs/arfs/privacy"
+      },
     ]
   },
 ];
