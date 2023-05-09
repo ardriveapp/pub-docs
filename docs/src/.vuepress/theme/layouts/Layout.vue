@@ -131,9 +131,11 @@ export default {
       const bgColor = this.isLight ? "#f8d9c9" : "#171717";
       const textColor = this.isLight ? "black" : "white";
       const accentColor = this.isLight ? "#fe0230" : "#fe0230";
+      const LineColor = this.isLight ? "#f1f1f1" : "#555";
       document.documentElement.style.setProperty("--BgColor", bgColor);
       document.documentElement.style.setProperty("--TextColor", textColor);
       document.documentElement.style.setProperty("--AccentColor", accentColor);
+      document.documentElement.style.setProperty("--LineColor", LineColor)
     },
 
     toggleSidebar(to) {
