@@ -5,10 +5,7 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"
   >
-    <Navbar
-      v-if="shouldShowNavbar"
-      @toggle-sidebar="toggleSidebar"
-    />
+    <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar" />
 
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
@@ -128,14 +125,18 @@ export default {
 
   methods: {
     updateTheme() {
-      const bgColor = this.isLight ? "#f8d9c9" : "#171717";
+      const bgColor = this.isLight ? "#fafafa" : "#0a0b09";
+      const bgColor2 = this.isLight ? "#F1EFF0" : "#0a0b09";
+      const searchColor = this.isLight ? "#ddd" : "#2e2e2e";
       const textColor = this.isLight ? "black" : "white";
       const accentColor = this.isLight ? "#fe0230" : "#fe0230";
-      const LineColor = this.isLight ? "#f1f1f1" : "#555";
-      document.documentElement.style.setProperty("--BgColor", bgColor);
+      const LineColor = this.isLight ? "#ddd" : "#555";
+      document.documentElement.style.setProperty("--BgColor1", bgColor);
+      document.documentElement.style.setProperty("--BgColor2", bgColor2);
+      document.documentElement.style.setProperty("--SearchColor", searchColor);
       document.documentElement.style.setProperty("--TextColor", textColor);
       document.documentElement.style.setProperty("--AccentColor", accentColor);
-      document.documentElement.style.setProperty("--LineColor", LineColor)
+      document.documentElement.style.setProperty("--LineColor", LineColor);
     },
 
     toggleSidebar(to) {

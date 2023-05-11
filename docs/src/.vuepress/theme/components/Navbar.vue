@@ -3,12 +3,7 @@
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')" />
 
     <RouterLink :to="$localePath" class="home-link">
-      <img
-        
-        class="logo"
-        :src="$site.themeConfig.logo"
-        :alt="$siteTitle"
-      />
+      <img class="logo" :src="$site.themeConfig.logo" :alt="$siteTitle" />
       <span
         v-if="$siteTitle"
         ref="siteName"
@@ -29,9 +24,28 @@
           : {}
       "
     >
-      <a class="nav-link-right" href="https://ar-io.zendesk.com/hc/en-us" target="_blank">Support</a>
-      <a class="nav-link-right" href="https://discord.com/invite/ya4hf2H">Discord</a>
-      <a  href="https://github.com/ardriveapp" target="_blank">
+      <a
+        class="nav-link-right"
+        href="https://ar-io.zendesk.com/hc/en-us"
+        target="_blank"
+        >Support</a
+      >
+      <a class="nav-link-right" href="https://discord.com/invite/ya4hf2H">
+        <svg
+        class="discord-logo"
+          length="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            fill="currentColor"
+            clip-rule="evenodd"
+            d="M15.932 11.4C15.932 12.132 15.392 12.732 14.708 12.732C14.036 12.732 13.484 12.132 13.484 11.4C13.484 10.668 14.024 10.068 14.708 10.068C15.392 10.068 15.932 10.668 15.932 11.4ZM10.328 10.068C9.644 10.068 9.104 10.668 9.104 11.4C9.104 12.132 9.656 12.732 10.328 12.732C11.012 12.732 11.552 12.132 11.552 11.4C11.564 10.668 11.012 10.068 10.328 10.068ZM23 2.472V24C19.9768 21.3284 20.9437 22.2127 17.432 18.948L18.068 21.168H4.46C3.104 21.168 2 20.064 2 18.696V2.472C2 1.104 3.104 0 4.46 0H20.54C21.896 0 23 1.104 23 2.472ZM19.58 13.848C19.58 9.984 17.852 6.852 17.852 6.852C16.124 5.556 14.48 5.592 14.48 5.592L14.312 5.784C16.352 6.408 17.3 7.308 17.3 7.308C14.4495 5.7457 11.1011 5.74542 8.336 6.96C7.892 7.164 7.628 7.308 7.628 7.308C7.628 7.308 8.624 6.36 10.784 5.736L10.664 5.592C10.664 5.592 9.02 5.556 7.292 6.852C7.292 6.852 5.564 9.984 5.564 13.848C5.564 13.848 6.572 15.588 9.224 15.672C9.224 15.672 9.668 15.132 10.028 14.676C8.504 14.22 7.928 13.26 7.928 13.26C8.10453 13.3836 8.39563 13.5437 8.42 13.56C10.4455 14.6943 13.3226 15.0659 15.908 13.98C16.328 13.824 16.796 13.596 17.288 13.272C17.288 13.272 16.688 14.256 15.116 14.7C15.476 15.156 15.908 15.672 15.908 15.672C18.56 15.588 19.58 13.848 19.58 13.848Z"
+          />
+        </svg>
+      </a>
+      <a href="https://github.com/ardriveapp" target="_blank">
         <svg
           class="github-logo"
           length="current"
@@ -43,9 +57,8 @@
             fill="currentColor"
             clip-rule="evenodd"
             d="M10 0C15.523 0 20 4.59 20 10.253C20 14.782 17.138 18.624 13.167 19.981C12.66 20.082 12.48 19.762 12.48 19.489C12.48 19.151 12.492 18.047 12.492 16.675C12.492 15.719 12.172 15.095 11.813 14.777C14.04 14.523 16.38 13.656 16.38 9.718C16.38 8.598 15.992 7.684 15.35 6.966C15.454 6.707 15.797 5.664 15.252 4.252C15.252 4.252 14.414 3.977 12.505 5.303C11.706 5.076 10.85 4.962 10 4.958C9.15 4.962 8.295 5.076 7.497 5.303C5.586 3.977 4.746 4.252 4.746 4.252C4.203 5.664 4.546 6.707 4.649 6.966C4.01 7.684 3.619 8.598 3.619 9.718C3.619 13.646 5.954 14.526 8.175 14.785C7.889 15.041 7.63 15.493 7.54 16.156C6.97 16.418 5.522 16.871 4.63 15.304C4.63 15.304 4.101 14.319 3.097 14.247C3.097 14.247 2.122 14.234 3.029 14.87C3.029 14.87 3.684 15.185 4.139 16.37C4.139 16.37 4.726 18.2 7.508 17.58C7.513 18.437 7.522 19.245 7.522 19.489C7.522 19.76 7.338 20.077 6.839 19.982C2.865 18.627 0 14.783 0 10.253C0 4.59 4.478 0 10 0"
-          />
-        </svg></a>
-
+          /></svg>
+    </a>
       <svg
         @click="toggleLightMode"
         class="theme-toggle"
@@ -76,7 +89,7 @@
 
 <script>
 import AlgoliaSearchBox from "@AlgoliaSearchBox";
-import SearchBox from "@SearchBox";
+import SearchBox from "@theme/components/SearchBox.vue";
 import SidebarButton from "@theme/components/SidebarButton.vue";
 import NavLinks from "@theme/components/NavLinks.vue";
 
@@ -106,25 +119,21 @@ export default {
 
   methods: {
     toggleLightMode() {
-      this.$store.commit('toggleLightMode')
-      if (this.$store.state.isLight){
-        console.log('Light mode activated.')
+      this.$store.commit("toggleLightMode");
+      if (this.$store.state.isLight) {
+        console.log("Light mode activated.");
+      } else if (!this.$store.state.isLight) {
+        console.log("Light mode deactivated.");
       }
-      else if (!this.$store.state.isLight){
-        console.log('Light mode deactivated.')
-      }
-    
     },
   },
 
   computed: {
-
     algolia() {
       return (
         this.$themeLocaleConfig.algolia || this.$site.themeConfig.algolia || {}
       );
     },
-
 
     isAlgoliaSearch() {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName;
@@ -187,6 +196,12 @@ $navbar-horizontal-padding = 1.5rem
   // border 2px solid red
   padding none
 
+.discord-logo
+  color var(--TextColor)
+  width 2em
+  height auto
+  padding none
+
 .navbar
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
@@ -205,7 +220,7 @@ $navbar-horizontal-padding = 1.5rem
   .links
     padding-left 1.5rem
     box-sizing border-box
-    background-color: var(--BgColor)
+    background-color: var(--BgColor2)
     white-space nowrap
     font-size 0.9rem
     position absolute

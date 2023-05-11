@@ -10,7 +10,8 @@
 
 
 :root {
-  --BgColor: $bgColor;
+  --BgColor1: $bgColor;
+  --BgColor2: $bgColor;
   --TextColor: $textColor
   --AccentColor: $accentColor
   --fontFamily: $Roboto
@@ -21,20 +22,25 @@
 
 
 // sets background for most items
-html, body, .page, .theme-container, .sidebar, .sidebar-group, .sidebar-heading, nav, .navbar, .nav-dropdown, .search-box, .links, header, .next, .prev, .prefix
-  background: var(--BgColor) 
+html, body, .page, .theme-container, .links, header, .next, .prev, .prefix
+  background: var(--BgColor1) 
   color: var(--TextColor) !important
   font-family: var(--fontFamily)
 
-.search-box
-  input, .suggestions
-    background: #d3d3d3 !important
-    color: black !important
-  ul
-    background: #d3d3d3 !important
-    color: black !important
-    li, a
-        color: black !important
+.sidebar, .sidebar-group, .sidebar-heading, nav, .navbar, .nav-dropdown, .search-box
+  background: var(--BgColor2) 
+  color: var(--TextColor) !important
+  font-family: var(--fontFamily)
+
+// .search-box
+//   input, .suggestions
+//     background: #d3d3d3 !important
+//     color: black !important
+//   ul
+//     background: #d3d3d3 !important
+//     color: black !important
+//     li, a
+//         color: black !important
 
 
 .amazingdiagram
