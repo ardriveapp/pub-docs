@@ -213,7 +213,7 @@ export default {
     height: 2rem
     color lighten($textColor, 25%)
     display inline-block
-    border 1px solid $accentColor
+    border 1px solid transparent
     border-radius 2rem
     font-size 0.9rem
     line-height 2rem

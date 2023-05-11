@@ -32,7 +32,7 @@
       >
       <a class="nav-link-right" href="https://discord.com/invite/ya4hf2H">
         <svg
-        class="discord-logo"
+        class="discord-logo icon"
           length="24"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -47,9 +47,9 @@
       </a>
       <a href="https://github.com/ardriveapp" target="_blank">
         <svg
-          class="github-logo"
+          class="github-logo icon"
           length="current"
-          viewBox="0 0 20 20"
+          viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -61,7 +61,7 @@
     </a>
       <svg
         @click="toggleLightMode"
-        class="theme-toggle"
+        class="theme-toggle icon"
         length="current"
         viewBox="0 0 24 24"
         fill="currentColor"
@@ -171,6 +171,10 @@ function css(el, property) {
 <style lang="stylus">
 $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem
+
+.icon
+  height 24px
+  width 24px
 
 
 .theme-toggle
