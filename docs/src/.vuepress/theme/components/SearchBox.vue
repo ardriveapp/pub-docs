@@ -226,7 +226,7 @@ export default {
       cursor auto
       border-color $accentColor
   .suggestions
-    background #fff
+    background var(--SearchColor)
     width 20rem
     position absolute
     top 2 rem
@@ -243,14 +243,14 @@ export default {
     cursor pointer
     a
       white-space normal
-      color lighten($textColor, 35%)
+      color var(--TextColor)
       .page-title
         font-weight 600
       .header
         font-size 0.9em
         margin-left 0.25em
     &.focused
-      background-color #f3f4f5
+      background-color var(--SearchColor)
       a
         color $accentColor
 
