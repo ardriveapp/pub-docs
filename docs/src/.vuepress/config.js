@@ -37,7 +37,7 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    searchPlaceholder:"Search",
+    searchPlaceholder:"\u{1F50D} Search",
     repo: "",
     editLinks: false,
     docsDir: "",
