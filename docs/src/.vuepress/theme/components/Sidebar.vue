@@ -27,7 +27,7 @@ export default {
 
 <style lang="stylus">
 .sidebar
-  border-right 1px solid $borderColor
+  border-right 1px solid var(--BorderColor)
   color: var(--TextColor)
   ul
     padding 0

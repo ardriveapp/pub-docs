@@ -173,42 +173,33 @@ $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem
 
 .icon
-  height 24px
-  width 24px
+  height 30px
+  width 30px
+  padding-right 0.25em
+  padding-left 0.25em
 
 
 .theme-toggle
-  // border: $themeToggleStyle
   color: var(--TextColor)
   background-color transparent
-  padding-right 2em
-  padding-left 1em
-  // margin-top 5px
   display inline-block
   overflow hidden
-  // text-indent -9999px
   white-space nowrap
-  width 2em
-  height auto
   cursor pointer
+  padding-right .5em
 
 .github-logo
   color var(--TextColor)
   margin none
-  width 2em
-  height auto
-  // border 2px solid red
-  padding none
+
 
 .discord-logo
   color var(--TextColor)
-  width 2em
-  height auto
-  padding none
 
 .navbar
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
+  border-bottom 1px solid var(--BorderColor)
   a, span, img
     display inline-block
   .logo
@@ -231,14 +222,12 @@ $navbar-horizontal-padding = 1.5rem
     right $navbar-horizontal-padding
     top $navbar-vertical-padding
     display flex
-    // border 2px solid green
     .search-box
       flex: 0 0 auto
       vertical-align top
 .nav-link-right
     padding-right 1em
     color: var(--TextColor)
-    // border 2px solid blue
 
 @media (max-width: $MQMobile)
   .navbar
