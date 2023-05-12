@@ -85,10 +85,11 @@ export default {
 .sidebar-group
   .sidebar-group
     padding-left 0.5em
+    color var(--TextColor)
   &:not(.collapsable)
     .sidebar-heading:not(.clickable)
       cursor auto
-      color inherit
+      color var(--TextColor)
   // refine styles of nested sidebar groups
   &.is-sub-group
     padding-left 0
@@ -97,6 +98,7 @@ export default {
       line-height 1.4
       font-weight normal
       padding-left 2rem
+      color var(--TextColor)
       &:not(.clickable)
         opacity 0.5
     & > .sidebar-group-items
@@ -109,19 +111,21 @@ export default {
       border-left none
 
 .sidebar-heading
-  color var("--TextColor")
+  color var(--TextColor)
   transition color .15s ease
   cursor pointer
   font-size 1.1em
   font-weight bold
-  // text-transform uppercase
+  // border 4px solid pink
   padding 0.35rem 1.5rem 0.35rem 1.25rem
   width 100%
   box-sizing border-box
   margin 0
   border-left 0.25rem solid transparent
-  &.open, &:hover
-    color inherit
+  &.open
+    color var(--TextColor)
+  &:hover
+    color var(--AccentColor)
   .arrow
     position relative
     top -0.12em
@@ -138,4 +142,5 @@ export default {
   transition height .1s ease-out
   font-size 0.95em
   overflow hidden
+  color var(--TextColor)
 </style>

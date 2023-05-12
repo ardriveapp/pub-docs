@@ -124,10 +124,12 @@ a.sidebar-link
     border-left-color var(--AccentColor)
   .sidebar-group &
     padding-left 2rem
+    color var(--TextColor)
   .sidebar-sub-headers &
     padding-top 0.25rem
     padding-bottom 0.25rem
     border-left none
+    color var(--TextColor)
     &.active
       font-weight 500
 </style>
