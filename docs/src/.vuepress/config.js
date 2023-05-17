@@ -45,9 +45,9 @@ module.exports = {
     lastUpdated: false,
     //logo path will need to be adjusted for deployment
     logo: "/pub-docs/images/ArDrive-Logo.png",
-    nav: nav_config,
+    // nav: nav_config,
     sidebar: {
-      "/docs/cli/": CLI_sidebar_config,
+      // "/docs/cli/": CLI_sidebar_config,
       "/": default_sidebar_config,
     },
   },

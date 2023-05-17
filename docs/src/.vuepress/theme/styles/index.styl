@@ -19,30 +19,21 @@
   --LineThickness: 1px
   --PrefixColor: $textColor
   --BorderColor: $borderColor
+  --InLineCodeBG: $bgColor
+  --InLineCodeText: $textColor
   }
 
 
 // sets background for most items
 html, body, .page, .theme-container, .links, header, .next, .prev, .prefix
   background: var(--BgColor1) 
-  color: var(--TextColor) !important
+  color: var(--TextColor)
   font-family: var(--fontFamily)
 
 .sidebar, .sidebar-group, .sidebar-heading, nav, .navbar, .nav-dropdown, .search-box
   background: var(--BgColor2) 
-  color: var(--TextColor) !important
+  color: var(--TextColor)
   font-family: var(--fontFamily)
-
-// .search-box
-//   input, .suggestions
-//     background: #d3d3d3 !important
-//     color: black !important
-//   ul
-//     background: #d3d3d3 !important
-//     color: black !important
-//     li, a
-//         color: black !important
-
 
 .amazingdiagram
    width: 40%
@@ -71,8 +62,11 @@ html, body, .page, .theme-container, .links, header, .next, .prev, .prefix
   font-size: .66em
 
 code:not(pre code)
-  background: #d3d3d3 !important
-  color: var(--AccentColor) !important
+  background: var(--InLineCodeBG) !important
+  color: var(--InLineCodeText) !important
 
 h2
   border-bottom: 4px solid var(--LineColor)
+
+.subHeaderGroupTitle
+      color var(--TextColor) !important

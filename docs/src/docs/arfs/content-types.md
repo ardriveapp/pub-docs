@@ -20,7 +20,7 @@ All private drive, folder, and file entity transactions must have the following 
 Content-Type: '<application/octet-stream>'
 ```
 
-<mark style="background: #d3d3d3; font-size: 200%">Ardrive-Core includes methods to determine a file's content type</mark>
+<mark style="background: #d3d3d3; font-size: 200%">ArDrive-Core includes methods to determine a file's content type</mark>
 
 
 ## Other Tags

@@ -10,10 +10,10 @@ To properly create a new drive, two new entities need to be created: a new Drive
 
 * The user must specify a `name` of the drive which is stored within the Drive Entity's metadata JSON.
 * ArDrive generates a new unique uuidv4 for the drive entity's `Drive-Id`.
-* Ardrive also generates a new unique uuidv4 for the drive entity's `rootFolderId`, which will refer to the `Folder-Id` of the new folder entity that will be created.
+* ArDrive also generates a new unique uuidv4 for the drive entity's `rootFolderId`, which will refer to the `Folder-Id` of the new folder entity that will be created.
     * This `rootFolderId` is stored within the Drive Entity's metadata JSON.
 * Drive Entity Metadata transactions must have `Entity-Type: "drive"`.
-* Ardrive will that the current local system time as seconds since Unix epoch for the Drive Entity's `Unix-Time`.
+* ArDrive will that the current local system time as seconds since Unix epoch for the Drive Entity's `Unix-Time`.
 * The Drive Entity's `Drive-Privacy` must also be set to `public` or `private` in order for its subfolders and files to have the correct security settings.
 * If the drive is private:
     * Its `Cipher` tag must be filled out with the correct encryption algorithm (currently `AES256-GCM`).

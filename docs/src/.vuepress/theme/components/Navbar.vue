@@ -25,10 +25,10 @@
       "
     >
       <a
-        class="nav-link-right"
+        class="nav-link-right question"
         href="https://ar-io.zendesk.com/hc/en-us"
         target="_blank"
-        >Support</a
+        >&#x2753;</a
       >
       <a class="nav-link-right" href="https://discord.com/invite/ya4hf2H">
         <svg
@@ -172,6 +172,8 @@ function css(el, property) {
 $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem
 
+.question
+  font-size 1.5rem
 .icon
   height 30px
   width 30px
@@ -191,10 +193,12 @@ $navbar-horizontal-padding = 1.5rem
 .github-logo
   color var(--TextColor)
   margin none
+  // padding-right .5rem
 
 
 .discord-logo
   color var(--TextColor)
+  padding-right .5rem
 
 .navbar
   padding $navbar-vertical-padding $navbar-horizontal-padding
@@ -226,7 +230,7 @@ $navbar-horizontal-padding = 1.5rem
       flex: 0 0 auto
       vertical-align top
 .nav-link-right
-    padding-right 1em
+    // padding-right 1em
     color: var(--TextColor)
 
 @media (max-width: $MQMobile)

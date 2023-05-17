@@ -132,13 +132,17 @@ export default {
       const accentColor = this.isLight ? "#fe0230" : "#fe0230";
       const LineColor = this.isLight ? "#ddd" : "#555";
       const BorderColor = this.isLight ? "#d1d1d1" : "#555";
+      const CodeColor = this.isLight ? accentColor : accentColor;
+      const CodeBG = this.isLight ? "#eaeaea" : "#222";
       document.documentElement.style.setProperty("--BgColor1", bgColor);
       document.documentElement.style.setProperty("--BgColor2", bgColor2);
       document.documentElement.style.setProperty("--SearchColor", searchColor);
       document.documentElement.style.setProperty("--TextColor", textColor);
       document.documentElement.style.setProperty("--AccentColor", accentColor);
       document.documentElement.style.setProperty("--LineColor", LineColor);
-      document.documentElement.style.setProperty("--BorderColor", BorderColor)
+      document.documentElement.style.setProperty("--BorderColor", BorderColor);
+      document.documentElement.style.setProperty("--InLineCodeText", CodeColor);
+      document.documentElement.style.setProperty("--InLineCodeBG", CodeBG)
     },
 
     toggleSidebar(to) {

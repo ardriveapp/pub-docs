@@ -1,5 +1,6 @@
 {
   "name": "ardrive",
+  "homepage": ".",
   "version": "0.0.1",
   "description": "ardrive documentation",
   "main": "index.js",

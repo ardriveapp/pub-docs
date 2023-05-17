@@ -621,15 +621,68 @@ By default, the `upload-file` command will use the upsert behavior if existing e
 
 Expect the behaviors from the following table for each of these resolution settings:
 
-| Source Type | Conflict at Dest | `skip` | `replace` | `upsert` (default) |
-| ----------- | ---------------- | ------ | --------- | ------------------ |
-| File        | None             | Insert | Insert    | Insert             |
-| File        | Matching File    | Skip   | Update    | Skip               |
-| File        | Different File   | Skip   | Update    | Update             |
-| File        | Folder           | Skip   | Fail      | Fail               |
-| Folder      | None             | Insert | Insert    | Insert             |
-| Folder      | File             | Skip   | Fail      | Fail               |
-| Folder      | Folder           | Re-use | Re-use    | Re-use             |
+<div style="text-align: center">
+    <table class="inline-table">
+        <tr>
+            <th>Source Type</th>
+            <th>Conflict at Dest</th>
+            <th>`skip`</th>
+            <th>`replace`</th>
+            <th>`upsert` (default)</th>
+        </tr>
+        <tr>
+            <td>File</td>
+            <td>None</td>
+            <td>Insert</td>
+            <td>Insert</td>
+            <td>Insert</td>
+        </tr>
+        <tr>
+            <td>File</td>
+            <td>Matching File</td>
+            <td>Skip</td>
+            <td>Update</td>
+            <td>Skip</td>
+        </tr>
+        <tr>
+            <td>File</td>
+            <td>Different File</td>
+            <td>Skip</td>
+            <td>Update</td>
+            <td>Update</td>
+        </tr>
+        <tr>
+            <td>File</td>
+            <td>Folder</td>
+            <td>Skip</td>
+            <td>Fail</td>
+            <td>Fail</td>
+        </tr>
+        <tr>
+            <td>Folder</td>
+            <td>None</td>
+            <td>Insert</td>
+            <td>Insert</td>
+            <td>Insert</td>
+        </tr>
+        <tr>
+            <td>Folder</td>
+            <td>File</td>
+            <td>Skip</td>
+            <td>Fail</td>
+            <td>Fail</td>
+        </tr>
+        <tr>
+            <td>Folder</td>
+            <td>Folder</td>
+            <td>Re-use</td>
+            <td>Re-use</td>
+            <td>Re-use</td>
+        </tr>
+    </table>
+</div>
+
+
 
 The default upsert behavior will check the destination folder for a file with a conflicting name. If no conflicts are found, it will insert (upload) the file.
 

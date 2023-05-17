@@ -19,7 +19,7 @@
       :to="item.path"
       @click.native="$emit('toggle')"
     >
-      <span>{{ item.title }}</span>
+      <span class="subHeaderGroupTitle">{{ item.title }}</span>
       <span
         v-if="collapsable"
         class="arrow"
@@ -33,7 +33,7 @@
       :class="{ open }"
       @click="$emit('toggle')"
     >
-      <span>{{ item.title }}</span>
+      <span class="subHeaderGroupTitle">{{ item.title }}</span>
       <span
         v-if="collapsable"
         class="arrow"
@@ -124,6 +124,8 @@ export default {
   border-left 0.25rem solid transparent
   &.open
     color var(--TextColor)
+    .subHeaderGroupTitle
+      color var(--TextColor) !important
   &:hover
     color var(--AccentColor)
   .arrow
@@ -137,10 +139,13 @@ export default {
       border-left-color var(--AccentColor)
     &:hover
       color var(--AccentColor)
+    .subHeaderGroupTitle
+      color var(--TextColor) !important
 
 .sidebar-group-items
   transition height .1s ease-out
   font-size 0.95em
   overflow hidden
   color var(--TextColor)
+
 </style>

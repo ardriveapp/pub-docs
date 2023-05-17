@@ -1,11 +1,9 @@
 module.exports = [
-  {
-    title: "Price Calculator",
-    path: "/docs/price-calculator",
-  },
+  
   {
     title: "CLI",
     initialOpenGroupIndex: -1,
+    collapsable: true,
     children: [
       {
         title: "Intro",
@@ -101,5 +99,9 @@ module.exports = [
         ],
       },
     ],
+  },
+  {
+    title: "Price Calculator",
+    path: "/docs/price-calculator",
   },
 ];
