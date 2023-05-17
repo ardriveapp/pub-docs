@@ -1,6 +1,7 @@
 ---
 sidebarDepth: 1
 ---
+
 # Using the CLI
 
 ## CLI Help
@@ -682,8 +683,6 @@ Expect the behaviors from the following table for each of these resolution setti
     </table>
 </div>
 
-
-
 The default upsert behavior will check the destination folder for a file with a conflicting name. If no conflicts are found, it will insert (upload) the file.
 
 In the case that there is a FILE to FILE name conflict found, it will only update it if necessary. To determine if an update is necessary, upsert will compare the last modified dates of conflicting file and the file being uploaded. When they are matching, the upload will be skipped. Otherwise the file will be updated as a new revision.
@@ -722,10 +721,10 @@ The ArDrive CLI currently uses two different methods for uploading transactions 
 
 D2N bundled transactions come with several benefits and implications:
 
--   Bundling saves AR and enhances ArFS reliability by sending associated ArFS transactions up as one atomic bundle.
--   Bundled transactions are treated as a single data transaction by the Arweave network, but can be presented as separate transactions by the Arweave Gateway once they have been "unbundled".
--   Un-bundling can take anywhere from a few minutes up to an hour. During that time, the files in the bundle will neither appear in list- commands nor be downloadable. Similarly, they will not appear in the web app after syncs until un-bundling is complete. **This can negatively affect the accuracy of upsert operations**, so it's best to wait before retrying bulk uploads.
--   Bundling reliability on the gateway side degrades once bundles reach either 500 data items (or ~250 files) or 500 MiB, so the CLI will create and upload multiple bundles as necessary, or will send files that are simply too large for reliable bundling as unbundled txs.
+- Bundling saves AR and enhances ArFS reliability by sending associated ArFS transactions up as one atomic bundle.
+- Bundled transactions are treated as a single data transaction by the Arweave network, but can be presented as separate transactions by the Arweave Gateway once they have been "unbundled".
+- Un-bundling can take anywhere from a few minutes up to an hour. During that time, the files in the bundle will neither appear in list- commands nor be downloadable. Similarly, they will not appear in the web app after syncs until un-bundling is complete. **This can negatively affect the accuracy of upsert operations**, so it's best to wait before retrying bulk uploads.
+- Bundling reliability on the gateway side degrades once bundles reach either 500 data items (or ~250 files) or 500 MiB, so the CLI will create and upload multiple bundles as necessary, or will send files that are simply too large for reliable bundling as unbundled txs.
 
 ### Uploading a Non-Bundled Transaction (NOT RECOMMENDED)<a id="no-bundle"></a>
 
@@ -774,8 +773,8 @@ If your system encounters an error while posting the transaction, you can retry 
 
 Using the CLI, when the transaction post has succeeded but the chunk upload step fails, the data transaction's ID could be lost. There are a few options to recover this ID. If the failed transaction is the most recent one sent from a wallet, the transaction ID can be recovered with the `ardrive last-tx -w /path/to/wallet` command AFTER the transaction's headers have been mined (It can take 5-10 minutes for the tx-id to become available with the last-tx approach). Other options for finding the partially uploaded transaction's ID include:
 
--   Using an Arweave gateway GQL http endpoint to search for transactions that belong to the wallet. See this [Arweave GQL Guide][gql-guide] for more info.
--   Browse the recent transactions associated with the wallet via a block explorer tool like [ViewBlock][viewblock].
+- Using an Arweave gateway GQL http endpoint to search for transactions that belong to the wallet. See this [Arweave GQL Guide][gql-guide] for more info.
+- Browse the recent transactions associated with the wallet via a block explorer tool like [ViewBlock][viewblock].
 
 In order to re-seed the chunks for an unbundled ArFS data transaction, a user must have the data transaction ID, the original file data, and either a destination folder ID or a valid file ID for the file. Supply that information to the `retry-tx` command like so:
 
@@ -839,19 +838,19 @@ ardrive create-manifest -w /path/to/wallet -f "6c312b3e-4778-4a18-8243-f2b346f5e
 
 ```json
 {
-    "manifest": "arweave/paths",
-    "version": "0.1.0",
-    "index": {
-        "path": "index.html"
+  "manifest": "arweave/paths",
+  "version": "0.1.0",
+  "index": {
+    "path": "index.html"
+  },
+  "paths": {
+    "hello_world.txt": {
+      "id": "Y7GFF8r9y0MEU_oi1aZeD87vrmai97JdRQ2L0cbGJ68"
     },
-    "paths": {
-        "hello_world.txt": {
-            "id": "Y7GFF8r9y0MEU_oi1aZeD87vrmai97JdRQ2L0cbGJ68"
-        },
-        "index.html": {
-            "id": "pELonjVebHyBsdxVymvxbGTmHD96v9PuuUXj8GUHGoY"
-        }
+    "index.html": {
+      "id": "pELonjVebHyBsdxVymvxbGTmHD96v9PuuUXj8GUHGoY"
     }
+  }
 }
 ```
 
@@ -979,12 +978,12 @@ type CustomMetaDataGqlTags = Record<string, string | string[]>;
 type CustomMetaDataJsonFields = Record<string, JsonSerializable>;
 
 export type JsonSerializable =
-    | string
-    | number
-    | boolean
-    | null
-    | { [member: string]: JsonSerializable }
-    | JsonSerializable[];
+  | string
+  | number
+  | boolean
+  | null
+  | { [member: string]: JsonSerializable }
+  | JsonSerializable[];
 ```
 
 e.g:
@@ -1001,9 +1000,9 @@ When these tags are added to the MetaData Transaction's Data JSON they can be re
 
 To add this custom metadata to your file metadata transactions, CLI users can pass custom metadata these parameters:
 
--   `--metadata-file path/to/json/schema`
--   `--metadata-json '{"key": "val", "key-2": true, "key-3": 420, "key-4": ["more", 1337]}'`
--   `--metadata-gql-tags "Tag-Name" "Tag Val"`
+- `--metadata-file path/to/json/schema`
+- `--metadata-json '{"key": "val", "key-2": true, "key-3": 420, "key-4": ["more", 1337]}'`
+- `--metadata-gql-tags "Tag-Name" "Tag Val"`
 
 The `--metadata-file` will accept a file path to JSON file containing custom metadata:
 
@@ -1015,12 +1014,12 @@ This JSON schema object must contain instructions on where to put this metadata 
 
 ```json
 {
-    "metaDataJson": {
-        "Tag-Name": ["Value-1", "Value-2"]
-    },
-    "metaDataGqlTags": {
-        "GQL Tag Name": "Tag Value"
-    }
+  "metaDataJson": {
+    "Tag-Name": ["Value-1", "Value-2"]
+  },
+  "metaDataGqlTags": {
+    "GQL Tag Name": "Tag Value"
+  }
 }
 ```
 
@@ -1082,14 +1081,14 @@ done
 
 Block time on Arweave is typically between 2-3 minutes in duration, so transactions can be mined within that time frame when [network congestion](#dealing-with-network-congestion) is low. Transactions, in the general case, proceed through the following set of states:
 
--   Pending: the transaction is waiting the "mempool" to be mined
--   Confirming: the transaction was mined on an Arweave Node, but has not yet been confirmed by at least 15 total nodes on the network
--   Confirmed: the transaction was mined on an Arweave Node and confirmed by at least 15 total nodes on the network
--   Not Found: the transaction is not available for any of the following reasons:
-    -   Insufficient reward to join the mempool
-    -   Insufficient reward to be mined within 50 blocks during a period of network congestion
-    -   Transaction is transitioning between states
-    -   Transaction ID is invalid
+- Pending: the transaction is waiting the "mempool" to be mined
+- Confirming: the transaction was mined on an Arweave Node, but has not yet been confirmed by at least 15 total nodes on the network
+- Confirmed: the transaction was mined on an Arweave Node and confirmed by at least 15 total nodes on the network
+- Not Found: the transaction is not available for any of the following reasons:
+  - Insufficient reward to join the mempool
+  - Insufficient reward to be mined within 50 blocks during a period of network congestion
+  - Transaction is transitioning between states
+  - Transaction ID is invalid
 
 Monitor any Arweave transaction's status via its transaction ID by performing:
 

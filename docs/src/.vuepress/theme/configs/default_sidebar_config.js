@@ -1,5 +1,8 @@
 module.exports = [
-  
+  {
+    title: "Core SDK",
+    path: "/docs/core-sdk",
+  },
   {
     title: "CLI",
     initialOpenGroupIndex: -1,
@@ -26,10 +29,6 @@ module.exports = [
         path: "/docs/cli/getting-help",
       },
     ],
-  },
-  {
-    title: "Core SDK",
-    path: "/docs/core-sdk",
   },
   {
     title: "ArFS",
