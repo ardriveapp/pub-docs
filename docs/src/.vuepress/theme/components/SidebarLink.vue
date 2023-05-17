@@ -105,6 +105,7 @@ function renderExternal (h, to, text) {
 .sidebar .sidebar-sub-headers
   padding-left 1rem
   font-size 0.95em
+  color var(--TextColor)
 
 a.sidebar-link
   font-size 1em
@@ -121,7 +122,7 @@ a.sidebar-link
   &.active
     font-weight 600
     color var(--AccentColor)
-    border-left-color var(--AccentColor)
+    // border-left-color var(--AccentColor)
   .sidebar-group &
     padding-left 2rem
     color var(--TextColor)

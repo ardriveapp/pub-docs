@@ -93,6 +93,7 @@ export default {
   // refine styles of nested sidebar groups
   &.is-sub-group
     padding-left 0
+    color var(--TextColor)
     & > .sidebar-heading
       font-size 0.95em
       line-height 1.4
@@ -100,19 +101,23 @@ export default {
       padding-left 2rem
       color var(--TextColor)
       &:not(.clickable)
-        opacity 0.5
+        // opacity 0.5
+        color var(--TextColor)
     & > .sidebar-group-items
       padding-left 1rem
+      color var(--TextColor)
       & > li > .sidebar-link
         font-size: 0.95em;
         border-left none
+        color var(--TextColor)
   &.depth-2
     & > .sidebar-heading
       border-left none
+      color var(--TextColor)
 
 .sidebar-heading
   color var(--TextColor)
-  transition color .15s ease
+  // transition color .15s ease
   cursor pointer
   font-size 1.1em
   font-weight bold
