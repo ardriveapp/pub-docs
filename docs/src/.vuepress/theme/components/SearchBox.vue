@@ -211,7 +211,7 @@ export default {
     cursor text
     width 10rem
     height: 2rem
-    color lighten($textColor, 25%)
+    color var(--TextColor)
     display inline-block
     border 1px solid transparent
     border-radius 2rem

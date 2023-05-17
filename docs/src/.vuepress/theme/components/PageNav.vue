@@ -143,42 +143,38 @@ function flatten(items, res) {
     padding-top 1rem
 
 .spacer
-  flext-grow 1
+  flex-grow 1
 
-// .nav-link
-//   display flex
-//   align-items center
-//   justify-content space-between
-//   width 35%
-//   padding 0.75rem
-//   border 1px solid var(--AccentColor)
-//   border-radius .5rem
-//   text-decoration none
-//   color inherit
 
 .prev
+    display inline-flex
     align-items center
     justify-content space-between
     width 35%
     padding 0.75rem
-    border 1px solid var(--AccentColor)
     border-radius .5rem
     text-decoration none
     color inherit
+    margin auto
+    &:hover
+      border 1px solid var(--AccentColor)
   .pointer
     margin-right 1rem
     display flex
     
 
 .next
+  display inline-flex
   align-items center
   justify-content space-between
   width 35%
   padding 0.75rem
-  border 1px solid var(--AccentColor)
   border-radius .5rem
   text-decoration none
   color inherit
+  margin auto
+  &:hover
+    border 1px solid var(--AccentColor)
   .pointer
     margin-left 1rem
     display flex
