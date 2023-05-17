@@ -128,7 +128,7 @@ export default {
       const bgColor = this.isLight ? "#fafafa" : "#0a0b09";
       const bgColor2 = this.isLight ? "#F1EFF0" : "#0a0b09";
       const searchColor = this.isLight ? "#ddd" : "#2e2e2e";
-      const textColor = this.isLight ? "black" : "white";
+      const textColor = this.isLight ? "#111" : "white";
       const accentColor = this.isLight ? "#fe0230" : "#fe0230";
       const LineColor = this.isLight ? "#ddd" : "#555";
       const BorderColor = this.isLight ? "#d1d1d1" : "#555";

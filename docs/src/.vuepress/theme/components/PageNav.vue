@@ -48,12 +48,12 @@ export default {
 
     prevStyle() {
     return this.isLight
-      ? { backgroundColor: `#f2f2f2` }
+      ? { backgroundColor: `#f1eff0` }
       : { backgroundColor: `#808080` };
   },
   nextStyle() {
     return this.isLight
-      ? { backgroundColor: `#f2f2f2` }
+      ? { backgroundColor: `#f1eff0` }
       : { backgroundColor: `#808080` };
   },
 
