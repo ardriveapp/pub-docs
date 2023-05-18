@@ -43,6 +43,7 @@ module.exports = {
     docsDir: "",
     editLinkText: "",
     lastUpdated: false,
+    initialOpenGroupIndex: -1,
     //logo path will need to be adjusted for deployment
     logo: "/pub-docs/images/ArDrive-Logo.png",
     // nav: nav_config,

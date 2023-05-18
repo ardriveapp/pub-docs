@@ -100,7 +100,12 @@ module.exports = [
     ],
   },
   {
-    title: "Price Calculator",
-    path: "/docs/price-calculator",
+    title: "Misc.",
+    children: [
+      {
+        title: "Price Calculator",
+        path: "/docs/price-calculator",
+      },
+    ],
   },
 ];
