@@ -9,7 +9,7 @@ module.exports = [
     collapsable: true,
     children: [
       {
-        title: "Intro",
+        title: "Overview",
         path: "/docs/cli/intro",
       },
       {
