@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: "Core SDK",
+    title: "Core-js",
     path: "/docs/core-sdk",
   },
   {

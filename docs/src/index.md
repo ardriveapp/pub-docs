@@ -2,7 +2,7 @@
 homepage: true
 ---
 
-# About Ardrive
+# About ArDrive
 
 ArDrive offers never-ending storage of your most valuable files. Pay once and save your memories forever.
 
