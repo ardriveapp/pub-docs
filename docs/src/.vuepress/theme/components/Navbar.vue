@@ -14,6 +14,7 @@
     </RouterLink>
 
     <NavLinks class="can-hide" />
+
     <div
       class="links"
       :style="
@@ -33,8 +34,8 @@
       <a class="nav-link-right" href="https://discord.com/invite/ya4hf2H">
         <svg
           class="discord-logo icon"
-          length="24"
-          viewBox="0 0 24 24"
+          length="current"
+          viewBox="0 0 27 24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -45,7 +46,7 @@
           />
         </svg>
       </a>
-      <a href="https://github.com/ardriveapp" target="_blank">
+      <a href="https://github.com/ardriveapp" target="_blank" class="nav-link-right">
         <svg
           class="github-logo icon"
           length="current"
@@ -62,7 +63,7 @@
       </a>
       <svg
         @click="toggleLightMode"
-        class="theme-toggle icon"
+        class="theme-toggle icon nav-link-right"
         length="current"
         viewBox="0 0 24 24"
         fill="currentColor"
@@ -96,13 +97,6 @@ import NavLinks from "@theme/components/NavLinks.vue";
 
 export default {
   name: "Navbar",
-
-  // props: {
-  //   logo: {
-  //     type: String,
-  //     default: "",
-  //   },
-  // },
 
   components: {
     SidebarButton,
@@ -174,12 +168,16 @@ $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem
 
 .question
-  font-size 1.5rem
+  font-size 1.35rem
+  // margin-top 0rem !important
+  
+
 .icon
   height 30px
-  width 30px
+  width 24px
   padding-right 0.25em
   padding-left 0.25em
+  // padding-top 4px
 
 
 .theme-toggle
@@ -189,17 +187,20 @@ $navbar-horizontal-padding = 1.5rem
   overflow hidden
   white-space nowrap
   cursor pointer
-  padding-right .5em
+  padding-right .5rem
+  padding-top .05rem
+  height 30px !important
 
 .github-logo
   color var(--TextColor)
   margin none
-  // padding-right .5rem
+  padding-top 2.5px
 
 
 .discord-logo
   color var(--TextColor)
   padding-right .5rem
+  padding-top 2.5px
 
 .navbar
   padding $navbar-vertical-padding $navbar-horizontal-padding
@@ -233,6 +234,7 @@ $navbar-horizontal-padding = 1.5rem
 .nav-link-right
     // padding-right 1em
     color: var(--TextColor)
+    padding-bottom 0px !important
 
 @media (max-width: $MQMobile)
   .navbar
