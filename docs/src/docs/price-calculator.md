@@ -1,6 +1,12 @@
 
 # ArDrive Price Calculator
 
+## Overview
+
+The [ArDrive Price Calculator website](https://ardrive.io/pricing/) is open source, and its code can be viewed [here](https://github.com/ardriveapp/price-calculator)
+
+This website is intended to calculate the cost, in a wide variety of denominations and cryptocurrencies, of uploading data to Arweave. You can spin up your own version by cloning the code from Github and following these steps.
+
 ## Developer Setup
 
 Follow these steps to get the developer environment up and running:
