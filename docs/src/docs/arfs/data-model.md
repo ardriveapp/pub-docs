@@ -4,6 +4,14 @@ Because of Arweave's permanent and immutable nature, traditional file structure 
 
 This model uses a bottom-up reference method. Each file contains metadata that refers to the parent folder, and each folder contains metadata that refers to its parent drive. This allows a client to construct the state of a drive or folder that has the look and feel of a traditional file system.
 
+- Drive Entities contain folders and files
+
+- Folder Entities contain other folders or files
+
+- File Entities contain both the file data and metadata
+
+- Snapshot entities contain a state rollups of all files and folder metadata within a drive
+
 ## Entity relationships
 
 The following diagram shows the high level relationships between drive, folder, and file entities, and their associated data.
