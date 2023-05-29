@@ -1,16 +1,14 @@
 const { description } = require("../../package");
 const default_sidebar_config = require("./theme/configs/default_sidebar_config");
 const CLI_sidebar_config = require("./theme/configs/CLI_sidebar_config");
-const nav_config = require('./theme/configs/Nav_Config')
-
+const nav_config = require("./theme/configs/Nav_Config");
 
 module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
   title: "ArDrive Docs",
-  base: '/',
-
+  base: "/",
 
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
@@ -23,13 +21,27 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/config/#head
    */
   head: [
+    [
+      "meta",
+      {
+        property: "og:image",
+        content: "https://docs.ardrive.io/images/card-image.png",
+      },
+    ],
     ["meta", { name: "theme-color", content: "#3eaf7c" }],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
     [
       "meta",
       { name: "apple-mobile-web-app-status-bar-style", content: "black" },
     ],
-    ["script", { src: "https://plausible.io/js/script.js", defer: true, "data-domain": "docs.ardrive.io" }]
+    [
+      "script",
+      {
+        src: "https://plausible.io/js/script.js",
+        defer: true,
+        "data-domain": "docs.ardrive.io",
+      },
+    ],
   ],
 
   /**
@@ -38,7 +50,7 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    searchPlaceholder:"Search",
+    searchPlaceholder: "Search",
     repo: "",
     editLinks: false,
     docsDir: "",
@@ -53,9 +65,6 @@ module.exports = {
       "/": default_sidebar_config,
     },
   },
-
-  
-  
 
   /**
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
