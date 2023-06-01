@@ -1,5 +1,5 @@
 <template>
-  <div class="search-box">
+  <div class="search-box" @click="openModal">
     <input
       ref="input"
       aria-label="Search"
@@ -8,33 +8,8 @@
       :placeholder="searchPlaceholder"
       autocomplete="off"
       spellcheck="false"
-      @input="query = $event.target.value"
-      @focus="focused = true"
-      @blur="focused = false"
-      @keyup.enter="go(focusIndex)"
-      @keyup.up="onUp"
-      @keyup.down="onDown"
+      readonly
     />
-    <ul
-      v-if="showSuggestions"
-      class="suggestions"
-      :class="{ 'align-right': alignRight }"
-      @mouseleave="unfocus"
-    >
-      <li
-        v-for="(s, i) in suggestions"
-        :key="i"
-        class="suggestion"
-        :class="{ focused: i === focusIndex }"
-        @mousedown="go(i)"
-        @mouseenter="focus(i)"
-      >
-        <a :href="s.path" @click.prevent>
-          <span class="page-title">{{ s.title || s.path }}</span>
-          <span v-if="s.header" class="header">&gt; {{ s.header.title }}</span>
-        </a>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -124,6 +99,11 @@ export default {
   },
 
   methods: {
+
+    openModal() {
+      this.$emit('open-search-modal');
+    },
+
     getPageLocalePath(page) {
       for (const localePath in this.$site.locales || {}) {
         if (localePath !== "/" && page.path.indexOf(localePath) === 0) {
