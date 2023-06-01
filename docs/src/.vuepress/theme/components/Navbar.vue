@@ -183,10 +183,10 @@ $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem
 
 .question
-  width 22px
+  width 20px
   height auto
-  padding-right .5em
-  padding-top .35em
+  padding-right .55em
+  padding-top .25em
   // margin-top 0rem !important
 
 
@@ -217,10 +217,11 @@ $navbar-horizontal-padding = 1.5rem
 
 .discord-logo
   color var(--TextColor)
-  padding-right .5rem
+  padding-right .425rem
   padding-top 2.5px
 
 .navbar
+  // margin-top 50px !important
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
   border-bottom 1px solid var(--BorderColor)
