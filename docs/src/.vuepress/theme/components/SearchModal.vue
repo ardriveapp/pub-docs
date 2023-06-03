@@ -10,14 +10,14 @@
         autocomplete="off"
         spellcheck="false"
         @input="query = $event.target.value"
-        @focus="focused = true"
-        @blur="focused = false"
+        @focus="onInputFocus"
+        @blur="onInputBlur"
         @keydown.up.prevent="onUp"
         @keydown.down.prevent="onDown"
         @keydown.enter.prevent="go(focusIndex)"
       />
       <ul
-        v-if="showSuggestions"
+        
         class="suggestions"
         :class="{ 'align-right': alignRight }"
         @mouseleave="unfocus"
@@ -122,6 +122,7 @@ export default {
   mounted() {
     this.placeholder = this.$site.themeConfig.searchPlaceholder || "";
     document.addEventListener("keydown", this.onHotkey);
+    this.$refs.input.focus();
   },
 
   beforeDestroy() {
@@ -129,6 +130,16 @@ export default {
   },
 
   methods: {
+    onInputFocus() {
+      this.focused = true;
+    },
+
+    onInputBlur() {
+      // Delay the blur event to allow clicking on suggestions
+      setTimeout(() => {
+        this.focused = false;
+      }, 200);
+    },
     openModal() {
       this.$emit("open-search-modal");
     },
@@ -239,10 +250,13 @@ export default {
 .search-modal-content ul
   list-style-type none
   padding 0
+  min-width 80%
 
 .search-modal-content li
   padding 10px
   border-bottom 1px solid #ddd
+  &.focused, .focused:focus
+    background-color orange
 
 .search-modal-content li:last-child
   border-bottom none
