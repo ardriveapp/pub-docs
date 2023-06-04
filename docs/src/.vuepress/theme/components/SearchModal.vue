@@ -1,6 +1,6 @@
 <template>
-  <div class="search-modal">
-    <div class="search-modal-content">
+  <div class="search-modal" ref="modalOuter">
+    <div class="search-modal-content" ref="modalProper">
       <input
         ref="input"
         aria-label="Search"
@@ -17,7 +17,6 @@
         @keydown.enter.prevent="go(focusIndex)"
       />
       <ul
-        
         class="suggestions"
         :class="{ 'align-right': alignRight }"
         @mouseleave="unfocus"
@@ -123,13 +122,23 @@ export default {
     this.placeholder = this.$site.themeConfig.searchPlaceholder || "";
     document.addEventListener("keydown", this.onHotkey);
     this.$refs.input.focus();
+    document.addEventListener("click", this.handleDocumentClick);
   },
 
   beforeDestroy() {
     document.removeEventListener("keydown", this.onHotkey);
+    document.removeEventListener("click", this.handleDocumentClick);
   },
 
   methods: {
+    handleDocumentClick(event) {
+      const modalOuter = this.$refs.modalOuter
+      const modalProper = this.$refs.modalProper;
+      if ( modalOuter.contains(event.target) && !modalProper.contains(event.target)) {
+        this.$store.commit('closeSearchModal');
+      }
+    },
+
     onInputFocus() {
       this.focused = true;
     },
@@ -156,7 +165,7 @@ export default {
     isSearchable(page) {
       let searchPaths = SEARCH_PATHS;
 
-      // all paths searchables
+      // all paths searchable
       if (searchPaths === null) {
         return true;
       }
@@ -215,7 +224,7 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .search-modal
   position fixed
   top 0
@@ -229,44 +238,57 @@ export default {
   background-color rgba(0, 0, 0, 0.5)
 
 .search-modal-content
+  position relative
   width 60vw
   height 60vh
-  background-color white
+  background-color var(--BgColor1) !important
+  color var(--TextColor)
   border-radius 10px
   box-shadow 0 2px 10px rgba(0, 0, 0, 0.1)
   padding 20px
-  overflow auto
+  overflow hidden
   display flex
   flex-direction column
   align-items center
+  border 2px solid var(--AccentColor)
 
 .search-modal-content input
   width 100%
   padding 10px
   border-radius 5px
-  border 1px solid #ddd
-  margin-bottom 20px
+  margin-bottom 20px 
+  border 2px solid var(--BorderColor) !important
+  &:focus, &:active, &:hover
+    border 2px solid var(--AccentColor) !important
 
 .search-modal-content ul
+  background-color var(--BgColor1)
   list-style-type none
   padding 0
   min-width 80%
 
 .search-modal-content li
   padding 10px
-  border-bottom 1px solid #ddd
+  border-bottom 1px solid #555
+  color var(--TextColor) !important
+  a
+    color var(--TextColor)
   &.focused, .focused:focus
-    background-color orange
+    background-color var(--LineColor)
+    border 1px solid var(--AccentColor) !important
 
 .search-modal-content li:last-child
   border-bottom none
 
 .search-modal-content button
+  position absolute
+  bottom 20px
+  right 20px
   align-self flex-end
   margin-top 20px
   padding 10px 20px
-  background-color #3eaf7c
-  color white
+  background-color var(--LineColor)
+  color var(--TextColor)
   border none
   border-radius 5px
   cursor pointer

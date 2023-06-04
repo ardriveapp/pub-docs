@@ -10,7 +10,7 @@ export default new Vuex.Store({
   },
   mutations: {
     openSearchModal(state) {
-      state.isSearchModalOpen = !state.isSearchModalOpen;
+      state.isSearchModalOpen = true;
     },
     closeSearchModal(state) {
       state.isSearchModalOpen = false;

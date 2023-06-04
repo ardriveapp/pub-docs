@@ -100,6 +100,7 @@
           $site.themeConfig.search !== false &&
           $page.frontmatter.search !== false
         "
+        ref="modalOpener"
       />
     </div>
   </header>

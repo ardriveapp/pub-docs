@@ -133,7 +133,6 @@ export default {
 
   methods: {
     openSearchModal() {
-      console.log(this.isSearchModalOpen)
     this.$store.commit('openSearchModal');
   },
   closeSearchModal() {
