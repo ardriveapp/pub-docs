@@ -53,14 +53,20 @@ export default {
   & > .sidebar-links
     padding 1.5rem 0
     color: var(--TextColor)
+    &:hover
+      color var(--AccentColor) !important
     & > li > a.sidebar-link
       font-size 1.1em
       line-height 1.7
       font-weight bold
       color: var(--TextColor)
+      &:hover
+        color var(--AccentColor) !important
     & > li:not(:first-child)
       margin-top .75rem
       color: var(--TextColor)
+      &:hover
+        color var(--AccentColor) !important
 
 @media (max-width: $MQMobile)
   .sidebar

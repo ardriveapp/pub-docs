@@ -200,11 +200,11 @@ export default {
     padding 0 0.5rem 0 2rem
     outline none
     transition all .2s ease
-    background var(--SearchColor) url(/search-dependencies/search.svg) 0.6rem 0.5rem no-repeat 
+    background var(--SearchColor) url(./search-dependencies/search.svg) 0.6rem 0.5rem no-repeat 
     background-size 1rem
-    &:focus
+    &:focus, &:hover
       cursor auto
-      border-color $accentColor
+      border-color var(--AccentColor)
   .suggestions
     background var(--SearchColor)
     width 20rem

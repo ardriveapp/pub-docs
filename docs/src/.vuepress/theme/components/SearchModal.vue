@@ -121,6 +121,7 @@ export default {
   mounted() {
     this.placeholder = this.$site.themeConfig.searchPlaceholder || "";
     document.addEventListener("keydown", this.onHotkey);
+    document.addEventListener("keydown", this.onEscapeKey);
     this.$refs.input.focus();
     document.addEventListener("click", this.handleDocumentClick);
   },
@@ -128,14 +129,24 @@ export default {
   beforeDestroy() {
     document.removeEventListener("keydown", this.onHotkey);
     document.removeEventListener("click", this.handleDocumentClick);
+    document.removeEventListener("keydown", this.onEscapeKey);
   },
 
   methods: {
+    onEscapeKey(event) {
+      if (event.key === "Escape" || event.keyCode === 27) {
+        this.$emit("close-modal");
+      }
+    },
+
     handleDocumentClick(event) {
-      const modalOuter = this.$refs.modalOuter
+      const modalOuter = this.$refs.modalOuter;
       const modalProper = this.$refs.modalProper;
-      if ( modalOuter.contains(event.target) && !modalProper.contains(event.target)) {
-        this.$store.commit('closeSearchModal');
+      if (
+        modalOuter.contains(event.target) &&
+        !modalProper.contains(event.target)
+      ) {
+        this.$store.commit("closeSearchModal");
       }
     },
 
@@ -225,6 +236,12 @@ export default {
 </script>
 
 <style lang="stylus">
+input:focus
+  outline-offset none
+  border 2px solid var(--AccentColor) !important
+  outline none
+
+
 .search-modal
   position fixed
   top 0
@@ -246,19 +263,20 @@ export default {
   border-radius 10px
   box-shadow 0 2px 10px rgba(0, 0, 0, 0.1)
   padding 20px
-  overflow hidden
+  overflow-x hidden
   display flex
   flex-direction column
   align-items center
-  border 2px solid var(--AccentColor)
+  border 2px solid var(--BorderColor)
 
 .search-modal-content input
-  width 100%
+  width 80%
   padding 10px
   border-radius 5px
-  margin-bottom 20px 
-  border 2px solid var(--BorderColor) !important
-  &:focus, &:active, &:hover
+  margin-bottom 20px
+  margin-top 1rem
+  border 2px solid var(--BorderColor)
+  &:focus, &:active, &:hover, &:select, .focused
     border 2px solid var(--AccentColor) !important
 
 .search-modal-content ul
@@ -269,21 +287,22 @@ export default {
 
 .search-modal-content li
   padding 10px
-  border-bottom 1px solid #555
+  border-bottom 1px solid var(--BorderColor)
   color var(--TextColor) !important
   a
     color var(--TextColor)
   &.focused, .focused:focus
     background-color var(--LineColor)
     border 1px solid var(--AccentColor) !important
+    cursor pointer
 
 .search-modal-content li:last-child
   border-bottom none
 
 .search-modal-content button
-  position absolute
+  position sticky
   bottom 20px
-  right 20px
+  right 5px
   align-self flex-end
   margin-top 20px
   padding 10px 20px
@@ -292,4 +311,6 @@ export default {
   border none
   border-radius 5px
   cursor pointer
+  &:hover
+    background-color var(--AccentColor)
 </style>
