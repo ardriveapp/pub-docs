@@ -82,6 +82,9 @@ export default {
 </script>
 
 <style lang="stylus">
+span
+  &:hover
+    color var(--AccentColor) !important
 .sidebar-group
   .sidebar-group
     padding-left 0.5em
@@ -130,7 +133,7 @@ export default {
   &.open
     color var(--TextColor)
     .subHeaderGroupTitle
-      color var(--TextColor) !important
+      color var(--TextColor)
   &:hover
     color var(--AccentColor)
   .arrow
@@ -146,6 +149,9 @@ export default {
       color var(--AccentColor)
     .subHeaderGroupTitle
       color var(--TextColor) !important
+  span
+    &:hover
+      color var(--AccentColor) !important
 
 .sidebar-group-items
   transition height .1s ease-out

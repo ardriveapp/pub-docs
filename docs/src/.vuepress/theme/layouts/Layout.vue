@@ -5,7 +5,13 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"
   >
-    <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar" />
+    <Navbar
+      v-if="shouldShowNavbar"
+      @toggle-sidebar="toggleSidebar"
+      @open-search-modal="openSearchModal"
+    />
+
+    <SearchModal v-if="this.isSearchModalOpen" @close-modal="closeSearchModal" />
 
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
@@ -37,6 +43,7 @@ import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
 import Sidebar from "@theme/components/Sidebar.vue";
 import { resolveSidebarItems } from "../util";
+import SearchModal from "../components/SearchModal.vue";
 
 export default {
   name: "Layout",
@@ -46,6 +53,7 @@ export default {
     Page,
     Sidebar,
     Navbar,
+    SearchModal,
   },
 
   watch: {
@@ -57,15 +65,15 @@ export default {
   data() {
     return {
       isSidebarOpen: false,
+      showSearchModal: false,
     };
   },
 
   computed: {
-    // logoPath() {
-    //   const basePath = this.$site.base;
-    //   // return basePath + "/images/ArDrive-Logo.png"
-    //   return "/images/ArDrive-Logo.png"
-    // },
+    isSearchModalOpen() {
+      return this.$store.state.isSearchModalOpen;
+    },
+
     isLight() {
       return this.$store.state.isLight;
     },
@@ -124,6 +132,14 @@ export default {
   },
 
   methods: {
+    openSearchModal() {
+    this.$store.commit('openSearchModal');
+  },
+  closeSearchModal() {
+    console.log("close modal")
+    this.$store.commit('closeSearchModal');
+  },
+
     updateTheme() {
       const bgColor = this.isLight ? "#fafafa" : "#0a0b09";
       const bgColor2 = this.isLight ? "#F1EFF0" : "#0a0b09";
@@ -142,7 +158,7 @@ export default {
       document.documentElement.style.setProperty("--LineColor", LineColor);
       document.documentElement.style.setProperty("--BorderColor", BorderColor);
       document.documentElement.style.setProperty("--InLineCodeText", CodeColor);
-      document.documentElement.style.setProperty("--InLineCodeBG", CodeBG)
+      document.documentElement.style.setProperty("--InLineCodeBG", CodeBG);
     },
 
     toggleSidebar(to) {

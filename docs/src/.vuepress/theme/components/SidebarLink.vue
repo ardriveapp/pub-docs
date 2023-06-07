@@ -106,6 +106,8 @@ function renderExternal (h, to, text) {
   padding-left 1rem
   font-size 0.95em
   color var(--TextColor)
+  &:hover
+    color var(--AccentColor) !important
 
 a.sidebar-link
   font-size 1em
@@ -118,7 +120,7 @@ a.sidebar-link
   width: 100%
   box-sizing: border-box
   &:hover
-    color var(--AccentColor)
+    color var(--AccentColor) !important
   &.active
     font-weight 600
     color var(--AccentColor)
@@ -133,4 +135,6 @@ a.sidebar-link
     color var(--TextColor)
     &.active
       font-weight 500
+    &:hover
+      color var(--AccentColor) !important
 </style>
