@@ -3,6 +3,7 @@ const default_sidebar_config = require("./theme/configs/default_sidebar_config")
 const CLI_sidebar_config = require("./theme/configs/CLI_sidebar_config");
 const nav_config = require("./theme/configs/Nav_Config");
 
+
 module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
@@ -29,12 +30,14 @@ module.exports = {
         content: "https://docs.ardrive.io/images/card-image.png",
       },
     ],
+
     ["meta", { name: "theme-color", content: "#3eaf7c" }],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
     [
       "meta",
       { name: "apple-mobile-web-app-status-bar-style", content: "black" },
     ],
+
     [
       "script",
       {
@@ -66,6 +69,7 @@ module.exports = {
       "/": default_sidebar_config,
     },
   },
+
 
   /**
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/

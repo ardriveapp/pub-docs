@@ -205,6 +205,7 @@ export default {
     &:focus, &:hover
       cursor auto
       border-color var(--AccentColor)
+
   .suggestions
     background var(--SearchColor)
     width 20rem

@@ -96,6 +96,7 @@
 
       <SearchBox
         @open-search-modal="$emit('open-search-modal')"
+
         v-else-if="
           $site.themeConfig.search !== false &&
           $page.frontmatter.search !== false
