@@ -55,6 +55,7 @@ export default {
     color: var(--TextColor)
     &:hover
       color var(--AccentColor) !important
+
     & > li > a.sidebar-link
       font-size 1.1em
       line-height 1.7
