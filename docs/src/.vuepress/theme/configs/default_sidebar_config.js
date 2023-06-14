@@ -47,6 +47,10 @@ module.exports = [
         path: "/docs/arfs/entity-types",
       },
       {
+        title: "Schema Diagrams",
+        path: "/docs/arfs/schema-diagrams"
+      },
+      {
         title: "Content Types",
         path: "/docs/arfs/content-types",
       },
@@ -94,6 +98,10 @@ module.exports = [
           {
             title: "Read",
             path: "/docs/arfs/usage/read/read-operations",
+          },
+          {
+            title: "Extending Schemas",
+            path: "/docs/arfs/usage/extending-schemas"
           },
         ],
       },

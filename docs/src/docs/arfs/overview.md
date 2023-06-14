@@ -46,7 +46,7 @@ To start using ArFS, you'll need to familiarize yourself with the Arweave ecosys
 
 ## ArFS Version History
 
-<div>
+<div style='text-align:center'>
     <table class='inline-table'>
         <tr>
             <th>Version</th>
