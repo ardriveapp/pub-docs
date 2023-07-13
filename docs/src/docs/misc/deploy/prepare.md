@@ -1,6 +1,6 @@
 ---
-prev: none
-permalink: /docs/misc/deploy
+# prev: none
+permalink: /docs/misc/deploy/
 ---
 
 # Preparing Your dApp

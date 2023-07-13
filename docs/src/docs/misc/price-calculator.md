@@ -1,7 +1,8 @@
 ---
-prev: none
-next: none
+# prev: none
+# next: none
 ---
+
 # ArDrive Price Calculator
 
 ## Overview
