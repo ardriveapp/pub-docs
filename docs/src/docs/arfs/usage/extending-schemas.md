@@ -1,3 +1,7 @@
+---
+next: none
+---
+
 ## Extending Schemas
 
 Web app and clients can extend the ArFS Schema as needed by adding additional tags into the File and Folder MetaData Transaction JSON. This gives Developers additional flexibility to support specific application needs, without breaking the overall data model or impacting privacy.

@@ -112,7 +112,28 @@ module.exports = [
     children: [
       {
         title: "Price Calculator",
-        path: "/docs/price-calculator",
+        path: "/docs/misc/price-calculator",
+      },
+      {
+        title: "How to Deploy a dApp",
+        children: [
+          {
+            title: "Preparing your dApp",
+            path: "/docs/misc/deploy/prepare"
+          },
+          {
+            title: "Hash Routing",
+            path: "/docs/misc/deploy/routing",
+          },
+          {
+            title: "Relative File Paths",
+            path: "/docs/misc/deploy/paths"
+          },
+          {
+            title: "How to Deploy",
+            path: "/docs/misc/deploy/deploy"
+          },
+        ]
       },
     ],
   },
