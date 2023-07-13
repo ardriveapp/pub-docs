@@ -1,5 +1,5 @@
 ---
-# next: none
+next: false
 ---
 
 ## Extending Schemas

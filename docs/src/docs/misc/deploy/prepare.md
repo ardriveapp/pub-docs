@@ -1,5 +1,5 @@
 ---
-# prev: none
+prev: false
 permalink: /docs/misc/deploy/
 ---
 
