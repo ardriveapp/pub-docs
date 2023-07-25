@@ -133,6 +133,10 @@ module.exports = [
             title: "How to Deploy",
             path: "/docs/misc/deploy/deploy"
           },
+          {
+            title: "Examples",
+            path: "/docs/misc/deploy/examples"
+          }
         ]
       },
     ],
