@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Payment API | ArDrive Docs</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <script src="https://plausible.io/js/script.js" defer="true" data-domain="docs.ardrive.io"></script>
+    <meta name="description" content="ArDrive documentation">
+    <meta property="og:image" content="https://docs.ardrive.io/images/card-image.png">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="preload" href="/assets/css/0.styles.13b94402.css" as="style"><link rel="preload" href="/assets/js/app.4f6acec4.js" as="script"><link rel="preload" href="/assets/js/2.85f7ef49.js" as="script"><link rel="preload" href="/assets/js/36.9e51a12d.js" as="script"><link rel="prefetch" href="/assets/js/10.330e4ea0.js"><link rel="prefetch" href="/assets/js/11.80f15a80.js"><link rel="prefetch" href="/assets/js/12.87a9b38a.js"><link rel="prefetch" href="/assets/js/13.060b9d35.js"><link rel="prefetch" href="/assets/js/14.fd05e347.js"><link rel="prefetch" href="/assets/js/15.db096559.js"><link rel="prefetch" href="/assets/js/16.d279fa22.js"><link rel="prefetch" href="/assets/js/17.7740bf0c.js"><link rel="prefetch" href="/assets/js/18.2299197d.js"><link rel="prefetch" href="/assets/js/19.0a458b86.js"><link rel="prefetch" href="/assets/js/20.71afe113.js"><link rel="prefetch" href="/assets/js/21.699e8671.js"><link rel="prefetch" href="/assets/js/22.c2ecc73d.js"><link rel="prefetch" href="/assets/js/23.5d08d49e.js"><link rel="prefetch" href="/assets/js/24.e44bd129.js"><link rel="prefetch" href="/assets/js/25.2aeebfbd.js"><link rel="prefetch" href="/assets/js/26.62aee52c.js"><link rel="prefetch" href="/assets/js/27.02251231.js"><link rel="prefetch" href="/assets/js/28.c4274023.js"><link rel="prefetch" href="/assets/js/29.d7450a84.js"><link rel="prefetch" href="/assets/js/3.14a9f786.js"><link rel="prefetch" href="/assets/js/30.e18bcd95.js"><link rel="prefetch" href="/assets/js/31.e7ba423f.js"><link rel="prefetch" href="/assets/js/32.19ad2198.js"><link rel="prefetch" href="/assets/js/33.fca37d1f.js"><link rel="prefetch" href="/assets/js/34.3f6b03d2.js"><link rel="prefetch" href="/assets/js/35.5c62359b.js"><link rel="prefetch" href="/assets/js/37.470f5f4b.js"><link rel="prefetch" href="/assets/js/38.37d0bd4a.js"><link rel="prefetch" href="/assets/js/39.491f2733.js"><link rel="prefetch" href="/assets/js/4.23dd356f.js"><link rel="prefetch" href="/assets/js/5.34ee9ed4.js"><link rel="prefetch" href="/assets/js/6.814b795a.js"><link rel="prefetch" href="/assets/js/7.ff3eba38.js"><link rel="prefetch" href="/assets/js/8.f1fd17d7.js"><link rel="prefetch" href="/assets/js/9.947e7969.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.13b94402.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/images/ArDrive-Logo.png" alt="ArDrive Docs" class="logo"> <span class="site-name can-hide">ArDrive Docs</span></a> <!----> <div class="links"><a href="https://ar-io.zendesk.com/hc/en-us" target="_blank" class="nav-link-right question"><svg version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" fill="currentColor" clip-rule="evenodd" d="m600 0c-159.13 0-311.74 63.215-424.27 175.73-112.52 112.52-175.73 265.14-175.73 424.27s63.215 311.74 175.73 424.27c112.52 112.52 265.14 175.73 424.27 175.73s311.74-63.215 424.27-175.73c112.52-112.52 175.73-265.14 175.73-424.27s-63.215-311.74-175.73-424.27c-112.52-112.52-265.14-175.73-424.27-175.73zm-19.32 900c-20.816-0.15625-40.738-8.5039-55.445-23.238-14.711-14.73-23.027-34.664-23.156-55.48-0.81641-20.906 7.125-41.207 21.906-56.012 14.781-14.805 35.07-22.773 55.977-21.988 27.996-0.12891 53.934 14.688 68.039 38.867 14.109 24.18 14.246 54.051 0.36328 78.359-13.887 24.309-39.688 39.363-67.684 39.492zm134.76-358.32c-8.1602 9.6016-16.801 18.84-25.559 27.961h-0.003906c-16.664 16-29.879 35.242-38.836 56.539-8.957 21.293-13.465 44.199-13.242 67.301v6.3594h-112.8c-2.9844-27.332 0.085938-54.988 9-81 11.16-32.355 28.57-62.199 51.238-87.84 13.609-14.656 24.863-31.336 33.363-49.441 16.32-37.078-4.4414-69-45-72.84-32.477-3.3867-65.199 3.4492-93.602 19.562-11.281-29.281-22.441-57.84-33-86.762-0.1875-3.8516 1.6289-7.5273 4.8008-9.7188 21.98-9.6484 44.645-17.668 67.801-24 44.621-11.066 91.352-10.324 135.6 2.1602 60 18.121 92.398 61.441 96.602 124.2 2.9414 39.285-10.18 78.082-36.359 107.52z"></path></svg></a> <a href="https://discord.com/invite/ya4hf2H" class="nav-link-right"><svg length="current" viewBox="0 0 27 24" xmlns="http://www.w3.org/2000/svg" class="discord-logo icon"><path fill-rule="evenodd" fill="currentColor" clip-rule="evenodd" d="M15.932 11.4C15.932 12.132 15.392 12.732 14.708 12.732C14.036 12.732 13.484 12.132 13.484 11.4C13.484 10.668 14.024 10.068 14.708 10.068C15.392 10.068 15.932 10.668 15.932 11.4ZM10.328 10.068C9.644 10.068 9.104 10.668 9.104 11.4C9.104 12.132 9.656 12.732 10.328 12.732C11.012 12.732 11.552 12.132 11.552 11.4C11.564 10.668 11.012 10.068 10.328 10.068ZM23 2.472V24C19.9768 21.3284 20.9437 22.2127 17.432 18.948L18.068 21.168H4.46C3.104 21.168 2 20.064 2 18.696V2.472C2 1.104 3.104 0 4.46 0H20.54C21.896 0 23 1.104 23 2.472ZM19.58 13.848C19.58 9.984 17.852 6.852 17.852 6.852C16.124 5.556 14.48 5.592 14.48 5.592L14.312 5.784C16.352 6.408 17.3 7.308 17.3 7.308C14.4495 5.7457 11.1011 5.74542 8.336 6.96C7.892 7.164 7.628 7.308 7.628 7.308C7.628 7.308 8.624 6.36 10.784 5.736L10.664 5.592C10.664 5.592 9.02 5.556 7.292 6.852C7.292 6.852 5.564 9.984 5.564 13.848C5.564 13.848 6.572 15.588 9.224 15.672C9.224 15.672 9.668 15.132 10.028 14.676C8.504 14.22 7.928 13.26 7.928 13.26C8.10453 13.3836 8.39563 13.5437 8.42 13.56C10.4455 14.6943 13.3226 15.0659 15.908 13.98C16.328 13.824 16.796 13.596 17.288 13.272C17.288 13.272 16.688 14.256 15.116 14.7C15.476 15.156 15.908 15.672 15.908 15.672C18.56 15.588 19.58 13.848 19.58 13.848Z"></path></svg></a> <a href="https://github.com/ardriveapp" target="_blank" class="nav-link-right"><svg length="current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="github-logo icon"><path fill-rule="evenodd" fill="currentColor" clip-rule="evenodd" d="M10 0C15.523 0 20 4.59 20 10.253C20 14.782 17.138 18.624 13.167 19.981C12.66 20.082 12.48 19.762 12.48 19.489C12.48 19.151 12.492 18.047 12.492 16.675C12.492 15.719 12.172 15.095 11.813 14.777C14.04 14.523 16.38 13.656 16.38 9.718C16.38 8.598 15.992 7.684 15.35 6.966C15.454 6.707 15.797 5.664 15.252 4.252C15.252 4.252 14.414 3.977 12.505 5.303C11.706 5.076 10.85 4.962 10 4.958C9.15 4.962 8.295 5.076 7.497 5.303C5.586 3.977 4.746 4.252 4.746 4.252C4.203 5.664 4.546 6.707 4.649 6.966C4.01 7.684 3.619 8.598 3.619 9.718C3.619 13.646 5.954 14.526 8.175 14.785C7.889 15.041 7.63 15.493 7.54 16.156C6.97 16.418 5.522 16.871 4.63 15.304C4.63 15.304 4.101 14.319 3.097 14.247C3.097 14.247 2.122 14.234 3.029 14.87C3.029 14.87 3.684 15.185 4.139 16.37C4.139 16.37 4.726 18.2 7.508 17.58C7.513 18.437 7.522 19.245 7.522 19.489C7.522 19.76 7.338 20.077 6.839 19.982C2.865 18.627 0 14.783 0 10.253C0 4.59 4.478 0 10 0"></path></svg></a> <svg length="current" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="theme-toggle icon nav-link-right"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 6C12.5523 6 13 5.55228 13 5V3C13 2.44771 12.5523 2 12 2C11.4477 2 11 2.44771 11 3V5C11 5.55229 11.4477 6 12 6ZM21 11H19C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13H21C21.5523 13 22 12.5523 22 12C22 11.4477 21.5523 11 21 11ZM5 11C5.55228 11 6 11.4477 6 12C6 12.5523 5.55228 13 5 13H3C2.44771 13 2 12.5523 2 12C2 11.4477 2.44771 11 3 11H5ZM6.21828 4.99995C5.81235 4.61611 5.17212 4.63402 4.78828 5.03995C4.40444 5.44588 4.42235 6.08611 4.82828 6.46995L6.26828 7.85995C6.46353 8.04848 6.72703 8.14955 6.99828 8.13995C7.27047 8.13891 7.53047 8.02696 7.71828 7.82995C8.106 7.43991 8.106 6.80999 7.71828 6.41995L6.21828 4.99995ZM17.6916 7.85877C17.5062 8.03745 17.259 8.13774 17.0016 8.13877C16.7504 8.12219 16.5147 8.01149 16.3416 7.82877C15.9538 7.43873 15.9538 6.80881 16.3416 6.41877L17.7816 4.99877C18.1729 4.68338 18.7375 4.7074 19.1006 5.0549C19.4996 5.43676 19.5134 6.06977 19.1316 6.46877L17.6916 7.85877ZM12 18C11.4477 18 11 18.4477 11 19V21C11 21.5523 11.4477 22 12 22C12.5523 22 13 21.5523 13 21V19C13 18.4477 12.5523 18 12 18ZM16.315 16.165C16.6988 15.7674 17.3324 15.7562 17.73 16.14L19.19 17.56L19.1958 17.5658C19.5847 17.9579 19.5821 18.5911 19.19 18.98C19.0005 19.1733 18.7407 19.2816 18.47 19.28C18.2125 19.279 17.9654 19.1787 17.78 19L16.34 17.58C15.9424 17.1962 15.9312 16.5626 16.315 16.165ZM6.27001 16.1413L4.83001 17.5313C4.43789 17.9203 4.43529 18.5534 4.82421 18.9455L4.83001 18.9513C5.01951 19.1447 5.27929 19.2529 5.55001 19.2513C5.79652 19.2534 6.03513 19.1644 6.22001 19.0013L7.66001 17.6113C8.05765 17.2275 8.06885 16.594 7.68501 16.1963C7.30117 15.7987 6.66766 15.7875 6.27001 16.1713V16.1413ZM8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12Z" fill="currentColor"></path></svg> <div class="search-box"><input aria-label="Search" placeholder="Search" autocomplete="off" spellcheck="false" readonly="readonly" value=""></div></div></header> <!----> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/docs/core-sdk.html" class="sidebar-link">Core-js</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span class="subHeaderGroupTitle">CLI</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span class="subHeaderGroupTitle">ArFS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span class="subHeaderGroupTitle">Turbo</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/turbo/what-is-turbo.html" class="sidebar-link">What is Turbo?</a></li><li><a href="/docs/turbo/api/payment.html" aria-current="page" class="active sidebar-link">Payment API</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/turbo/api/payment.html#overview" class="sidebar-link">Overview</a></li><li class="sidebar-sub-header"><a href="/docs/turbo/api/payment.html#endpoints" class="sidebar-link">Endpoints</a></li></ul></li><li><a href="/docs/turbo/api/upload.html" class="sidebar-link">Upload API</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span class="subHeaderGroupTitle">Misc.</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="payment-api"><a href="#payment-api" class="header-anchor">#</a> Payment API</h1> <h2 id="overview"><a href="#overview" class="header-anchor">#</a> Overview</h2> <p>ArDrive offers several API endpoints to help manage and determine costs associated with converting currencies into Turbo credits. The below endpoints offer access to useful information that can help stay in control when uploading data to Arweave using Turbo. &quot;winc&quot; refers to &quot;winston credits&quot;, the smallest denomination of a Turbo credit.</p> <h2 id="endpoints"><a href="#endpoints" class="header-anchor">#</a> Endpoints</h2> <p>The host url for all below endpoints is:</p> <p><code>https://payment.ardrive.io/v1</code></p> <p>All of these endpoints use GET requests</p> <h3 id="get-amount-of-credits-for-byte-count"><a href="#get-amount-of-credits-for-byte-count" class="header-anchor">#</a> Get Amount of Credits for Byte Count</h3> <p>Returns the current amount of winc it will cost to upload a provided byte count worth of data.</p> <p><code>/price/bytes/{byteCount}</code></p> <h4 id="parameters"><a href="#parameters" class="header-anchor">#</a> Parameters</h4> <p><code>byteCount</code>*: integer - (path)</p> <h4 id="example"><a href="#example" class="header-anchor">#</a> Example</h4> <div class="language- extra-class"><pre class="language-text"><code>https://payment.ardrive.io/v1/price/bytes/5242880
+</code></pre></div><details><summary>Response Body (JSON)</summary> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;winc&quot;: &quot;1676650364&quot;,
+  &quot;adjustments&quot;: [
+    {
+      &quot;name&quot;: &quot;FWD Research July 2023 Subsidy&quot;,
+      &quot;description&quot;: &quot;A 60% discount for uploads over 500KiB&quot;,
+      &quot;operator&quot;: &quot;multiply&quot;,
+      &quot;value&quot;: 0.6,
+      &quot;adjustmentAmount&quot;: &quot;-2514975546&quot;
+    }
+  ]
+}
+</code></pre></div></details> <h3 id="get-winc-for-payment-type-and-amount"><a href="#get-winc-for-payment-type-and-amount" class="header-anchor">#</a> Get winc for Payment Type and Amount</h3> <p>Returns the current amount of winc Turbo will quote for a given payment type and amount.</p> <p><code>/price/{type}/{amount}</code></p> <h4 id="parameters-2"><a href="#parameters-2" class="header-anchor">#</a> Parameters</h4> <p><code>type</code>*: string - must match a supported currency, such as &quot;usd&quot; - (path)</p> <p><code>amount</code>*: integer - (path)</p> <h4 id="example-2"><a href="#example-2" class="header-anchor">#</a> Example</h4> <div class="language- extra-class"><pre class="language-text"><code>https://payment.ardrive.io/v1/price/usd/1000
+</code></pre></div><details><summary>Response Body (JSON)</summary> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;winc&quot;: &quot;1365248226950&quot;
+}
+</code></pre></div></details> <h3 id="get-current-balance-of-winc"><a href="#get-current-balance-of-winc" class="header-anchor">#</a> Get Current Balance of winc</h3> <p>use a signed request of a previously obtained JWT to get the signing wallet's current service balance in winc.</p> <p><code>/balance</code></p> <h4 id="parameters-3"><a href="#parameters-3" class="header-anchor">#</a> Parameters</h4> <p><code>x-signature</code>*: string - (header)</p> <p><code>x-nonce</code>*: string - (header)</p> <p><code>x-public-key</code>*: string - (header)</p> <h3 id="get-quote-for-credits"><a href="#get-quote-for-credits" class="header-anchor">#</a> Get Quote for Credits</h3> <p>Gets a quote and payment session for a given payment method, destination address, currency type, and payment amount</p> <p><code>/top-up/{method}/{address}/{currency}/{amount}</code></p> <h4 id="parameters-4"><a href="#parameters-4" class="header-anchor">#</a> Parameters</h4> <p><code>method</code>*: string - payment-intent | checkout-session - (path)</p> <p><code>address</code>*: string - public address of wallet - (path)</p> <p><code>currency</code>*: string - must match supported currency, such as usd - (path)</p> <p><code>amount</code>*: integer - amount of the currency to convert to winc, usd has a minimum transaction amount of 1000 ($10.00) - (path)</p> <h4 id="example-3"><a href="#example-3" class="header-anchor">#</a> Example</h4> <div class="language- extra-class"><pre class="language-text"><code>https://payment.ardrive.io/v1/top-up/checkout-session/cF0H0SKdnaDTqWKY9iJKBktTpdEWgb3GnlndE7ABv0Q/usd/1000
+</code></pre></div><details><summary><b>Response Body (JSON)</b></summary> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;topUpQuote&quot;: {
+    &quot;topUpQuoteId&quot;: &quot;54f57b67-4fcf-47fb-85e6-85d4a8c96f25&quot;,
+    &quot;destinationAddressType&quot;: &quot;arweave&quot;,
+    &quot;paymentAmount&quot;: 1000,
+    &quot;winstonCreditAmount&quot;: &quot;1360424028269&quot;,
+    &quot;destinationAddress&quot;: &quot;cF0H0SKdnaDTqWKY9iJKBktTpdEWgb3GnlndE7ABv0Q&quot;,
+    &quot;currencyType&quot;: &quot;usd&quot;,
+    &quot;quoteExpirationDate&quot;: &quot;2023-07-27T01:56:26.436Z&quot;,
+    &quot;paymentProvider&quot;: &quot;stripe&quot;
+  },
+  &quot;paymentSession&quot;: {
+    &quot;id&quot;: &quot;cs_live_a1p47UpvijHGe7sI8AI1kScZdd5qKzdyaHUWRaeuFVvVvDHXeuck68Pf51&quot;,
+    &quot;object&quot;: &quot;checkout.session&quot;,
+    &quot;after_expiration&quot;: null,
+    &quot;allow_promotion_codes&quot;: null,
+    &quot;amount_subtotal&quot;: 1000,
+    &quot;amount_total&quot;: 1000,
+    &quot;automatic_tax&quot;: {
+      &quot;enabled&quot;: false,
+      &quot;status&quot;: null
+    },
+    &quot;billing_address_collection&quot;: null,
+    &quot;cancel_url&quot;: &quot;https://app.ardrive.io&quot;,
+    &quot;client_reference_id&quot;: null,
+    &quot;consent&quot;: null,
+    &quot;consent_collection&quot;: null,
+    &quot;created&quot;: 1690422686,
+    &quot;currency&quot;: &quot;usd&quot;,
+    &quot;currency_conversion&quot;: null,
+    &quot;custom_fields&quot;: [],
+    &quot;custom_text&quot;: {
+      &quot;shipping_address&quot;: null,
+      &quot;submit&quot;: null
+    },
+    &quot;customer&quot;: null,
+    &quot;customer_creation&quot;: &quot;if_required&quot;,
+    &quot;customer_details&quot;: null,
+    &quot;customer_email&quot;: null,
+    &quot;expires_at&quot;: 1690509086,
+    &quot;invoice&quot;: null,
+    &quot;invoice_creation&quot;: {
+      &quot;enabled&quot;: false,
+      &quot;invoice_data&quot;: {
+        &quot;account_tax_ids&quot;: null,
+        &quot;custom_fields&quot;: null,
+        &quot;description&quot;: null,
+        &quot;footer&quot;: null,
+        &quot;metadata&quot;: {},
+        &quot;rendering_options&quot;: null
+      }
+    },
+    &quot;livemode&quot;: true,
+    &quot;locale&quot;: null,
+    &quot;metadata&quot;: {},
+    &quot;mode&quot;: &quot;payment&quot;,
+    &quot;payment_intent&quot;: null,
+    &quot;payment_link&quot;: null,
+    &quot;payment_method_collection&quot;: &quot;always&quot;,
+    &quot;payment_method_options&quot;: {},
+    &quot;payment_method_types&quot;: [
+      &quot;card&quot;
+    ],
+    &quot;payment_status&quot;: &quot;unpaid&quot;,
+    &quot;phone_number_collection&quot;: {
+      &quot;enabled&quot;: false
+    },
+    &quot;recovered_from&quot;: null,
+    &quot;setup_intent&quot;: null,
+    &quot;shipping_address_collection&quot;: null,
+    &quot;shipping_cost&quot;: null,
+    &quot;shipping_details&quot;: null,
+    &quot;shipping_options&quot;: [],
+    &quot;status&quot;: &quot;open&quot;,
+    &quot;submit_type&quot;: null,
+    &quot;subscription&quot;: null,
+    &quot;success_url&quot;: &quot;https://app.ardrive.io&quot;,
+    &quot;total_details&quot;: {
+      &quot;amount_discount&quot;: 0,
+      &quot;amount_shipping&quot;: 0,
+      &quot;amount_tax&quot;: 0
+    },
+    &quot;url&quot;: &quot;https://checkout.stripe.com/c/pay/cs_live_a1p47UpvijHGe7sI8AI1kScZdd5qKzdyaHUWRaeuFVvVvDHXeuck68Pf51#fidkdWxOYHwnPyd1blppbHNgWjA0T1BEcXJGPWR1VUpSbkFJSFR0S0M8dlV1Y2tgS1ZVa3JdPVxfPXw0Q0tBaTNzPDFtX0xyf2JDVlxpNzJnUkAxSmp2PUZJdHBwa1B2ck53TmZkQW1BSjNoNTU3XG88RGBObycpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl&quot;
+  }
+}
+</code></pre></div></details> <h3 id="get-supported-currencies"><a href="#get-supported-currencies" class="header-anchor">#</a> Get Supported Currencies</h3> <p>Returns a list of currency types supported by Turbo</p> <p><code>/currencies</code></p> <h4 id="parameters-5"><a href="#parameters-5" class="header-anchor">#</a> Parameters</h4> <p>None</p> <h4 id="example-4"><a href="#example-4" class="header-anchor">#</a> Example</h4> <div class="language- extra-class"><pre class="language-text"><code>https://payment.ardrive.io/v1/currencies
+</code></pre></div><details><summary><b>Response Body (JSON)</b></summary> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;supportedCurrencies&quot;: [
+    &quot;aud&quot;,
+    &quot;brl&quot;,
+    &quot;cad&quot;,
+    &quot;eur&quot;,
+    &quot;gbp&quot;,
+    &quot;hkd&quot;,
+    &quot;inr&quot;,
+    &quot;jpy&quot;,
+    &quot;sgd&quot;,
+    &quot;usd&quot;
+  ],
+  &quot;limits&quot;: {
+    &quot;aud&quot;: {
+      &quot;maximumPaymentAmount&quot;: 1500000,
+      &quot;minimumPaymentAmount&quot;: 1500,
+      &quot;suggestedPaymentAmounts&quot;: [
+        2500,
+        7500,
+        15000
+      ],
+      &quot;zeroDecimalCurrency&quot;: false
+    },
+    &quot;brl&quot;: {
+      &quot;maximumPaymentAmount&quot;: 5000000,
+      &quot;minimumPaymentAmount&quot;: 5000,
+      &quot;suggestedPaymentAmounts&quot;: [
+        12500,
+        25000,
+        50000
+      ],
+      &quot;zeroDecimalCurrency&quot;: false
+    },
+    &quot;cad&quot;: {
+      &quot;maximumPaymentAmount&quot;: 1300000,
+      &quot;minimumPaymentAmount&quot;: 1400,
+      &quot;suggestedPaymentAmounts&quot;: [
+        2500,
+        5000,
+        10000
+      ],
+      &quot;zeroDecimalCurrency&quot;: false
+    },
+    &quot;eur&quot;: {
+      &quot;maximumPaymentAmount&quot;: 1000000,
+      &quot;minimumPaymentAmount&quot;: 1000,
+      &quot;suggestedPaymentAmounts&quot;: [
+        2500,
+        5000,
+        10000
+      ],
+      &quot;zeroDecimalCurrency&quot;: false
+    },
+    &quot;gbp&quot;: {
+      &quot;maximumPaymentAmount&quot;: 770000,
+      &quot;minimumPaymentAmount&quot;: 780,
+      &quot;suggestedPaymentAmounts&quot;: [
+        2000,
+        4000,
+        8000
+      ],
+      &quot;zeroDecimalCurrency&quot;: false
+    },
+    &quot;hkd&quot;: {
+      &quot;maximumPaymentAmount&quot;: 7800000,
+      &quot;minimumPaymentAmount&quot;: 7900,
+      &quot;suggestedPaymentAmounts&quot;: [
+        20000,
+        40000,
+        80000
+      ],
+      &quot;zeroDecimalCurrency&quot;: false
+    },
+    &quot;inr&quot;: {
+      &quot;maximumPaymentAmount&quot;: 90000000,
+      &quot;minimumPaymentAmount&quot;: 83000,
+      &quot;suggestedPaymentAmounts&quot;: [
+        200000,
+        400000,
+        800000
+      ],
+      &quot;zeroDecimalCurrency&quot;: false
+    },
+    &quot;jpy&quot;: {
+      &quot;maximumPaymentAmount&quot;: 1500000,
+      &quot;minimumPaymentAmount&quot;: 1500,
+      &quot;suggestedPaymentAmounts&quot;: [
+        3500,
+        6500,
+        15000
+      ],
+      &quot;zeroDecimalCurrency&quot;: true
+    },
+    &quot;sgd&quot;: {
+      &quot;maximumPaymentAmount&quot;: 1300000,
+      &quot;minimumPaymentAmount&quot;: 1500,
+      &quot;suggestedPaymentAmounts&quot;: [
+        2500,
+        7500,
+        15000
+      ],
+      &quot;zeroDecimalCurrency&quot;: false
+    },
+    &quot;usd&quot;: {
+      &quot;maximumPaymentAmount&quot;: 1000000,
+      &quot;minimumPaymentAmount&quot;: 1000,
+      &quot;suggestedPaymentAmounts&quot;: [
+        2500,
+        5000,
+        10000
+      ],
+      &quot;zeroDecimalCurrency&quot;: false
+    }
+  }
+}
+</code></pre></div></details> <h3 id="get-supported-countries"><a href="#get-supported-countries" class="header-anchor">#</a> Get Supported Countries</h3> <p>Returns a list of countries where Turbo is available</p> <p><code>/countries</code></p> <h4 id="parameters-6"><a href="#parameters-6" class="header-anchor">#</a> Parameters</h4> <p>None</p> <h4 id="example-5"><a href="#example-5" class="header-anchor">#</a> Example</h4> <div class="language- extra-class"><pre class="language-text"><code>https://payment.ardrive.io/v1/countries
+</code></pre></div><details><summary><b>Response Body (JSON)</b></summary> <div class="language- extra-class"><pre class="language-text"><code>[
+  &quot;United States&quot;,
+  &quot;United Kingdom&quot;,
+  &quot;Afghanistan&quot;,
+  &quot;Albania&quot;,
+  &quot;Algeria&quot;,
+  &quot;Andorra&quot;,
+  &quot;Angola&quot;,
+  &quot;Antigua and Barbuda&quot;,
+  &quot;Argentina&quot;,
+  &quot;Armenia&quot;,
+  &quot;Australia&quot;,
+  &quot;Austria&quot;,
+  &quot;Azerbaijan&quot;,
+  &quot;Bahamas&quot;,
+  &quot;Bahrain&quot;,
+  &quot;Bangladesh&quot;,
+  &quot;Barbados&quot;,
+  &quot;Belarus&quot;,
+  &quot;Belgium&quot;,
+  &quot;Belize&quot;,
+  &quot;Benin&quot;,
+  &quot;Bhutan&quot;,
+  &quot;Bolivia&quot;,
+  &quot;Bosnia and Herzegovina&quot;,
+  &quot;Botswana&quot;,
+  &quot;Brazil&quot;,
+  &quot;Brunei&quot;,
+  &quot;Bulgaria&quot;,
+  &quot;Burkina Faso&quot;,
+  &quot;Burundi&quot;,
+  &quot;Cabo Verde&quot;,
+  &quot;Cambodia&quot;,
+  &quot;Cameroon&quot;,
+  &quot;Canada&quot;,
+  &quot;Central African Republic&quot;,
+  &quot;Chad&quot;,
+  &quot;Chile&quot;,
+  &quot;China&quot;,
+  &quot;Colombia&quot;,
+  &quot;Comoros&quot;,
+  &quot;Congo&quot;,
+  &quot;Costa Rica&quot;,
+  &quot;Cote d'Ivoire&quot;,
+  &quot;Croatia&quot;,
+  &quot;Cyprus&quot;,
+  &quot;Czech Republic&quot;,
+  &quot;Democratic Republic of the Congo&quot;,
+  &quot;Denmark&quot;,
+  &quot;Djibouti&quot;,
+  &quot;Dominica&quot;,
+  &quot;Dominican Republic&quot;,
+  &quot;East Timor&quot;,
+  &quot;Ecuador&quot;,
+  &quot;Egypt&quot;,
+  &quot;El Salvador&quot;,
+  &quot;Equatorial Guinea&quot;,
+  &quot;Eritrea&quot;,
+  &quot;Estonia&quot;,
+  &quot;Eswatini&quot;,
+  &quot;Ethiopia&quot;,
+  &quot;Fiji&quot;,
+  &quot;Finland&quot;,
+  &quot;France&quot;,
+  &quot;Gabon&quot;,
+  &quot;Gambia&quot;,
+  &quot;Georgia&quot;,
+  &quot;Germany&quot;,
+  &quot;Ghana&quot;,
+  &quot;Greece&quot;,
+  &quot;Grenada&quot;,
+  &quot;Guatemala&quot;,
+  &quot;Guinea&quot;,
+  &quot;Guinea-Bissau&quot;,
+  &quot;Guyana&quot;,
+  &quot;Haiti&quot;,
+  &quot;Honduras&quot;,
+  &quot;Hungary&quot;,
+  &quot;Iceland&quot;,
+  &quot;India&quot;,
+  &quot;Indonesia&quot;,
+  &quot;Iraq&quot;,
+  &quot;Ireland&quot;,
+  &quot;Israel&quot;,
+  &quot;Italy&quot;,
+  &quot;Jamaica&quot;,
+  &quot;Japan&quot;,
+  &quot;Jordan&quot;,
+  &quot;Kazakhstan&quot;,
+  &quot;Kenya&quot;,
+  &quot;Kiribati&quot;,
+  &quot;Kuwait&quot;,
+  &quot;Kyrgyzstan&quot;,
+  &quot;Laos&quot;,
+  &quot;Latvia&quot;,
+  &quot;Lebanon&quot;,
+  &quot;Lesotho&quot;,
+  &quot;Liberia&quot;,
+  &quot;Libya&quot;,
+  &quot;Liechtenstein&quot;,
+  &quot;Lithuania&quot;,
+  &quot;Luxembourg&quot;,
+  &quot;Madagascar&quot;,
+  &quot;Malawi&quot;,
+  &quot;Malaysia&quot;,
+  &quot;Maldives&quot;,
+  &quot;Mali&quot;,
+  &quot;Malta&quot;,
+  &quot;Marshall Islands&quot;,
+  &quot;Mauritania&quot;,
+  &quot;Mauritius&quot;,
+  &quot;Mexico&quot;,
+  &quot;Micronesia&quot;,
+  &quot;Moldova&quot;,
+  &quot;Monaco&quot;,
+  &quot;Mongolia&quot;,
+  &quot;Montenegro&quot;,
+  &quot;Morocco&quot;,
+  &quot;Mozambique&quot;,
+  &quot;Myanmar&quot;,
+  &quot;Namibia&quot;,
+  &quot;Nauru&quot;,
+  &quot;Nepal&quot;,
+  &quot;Netherlands&quot;,
+  &quot;New Zealand&quot;,
+  &quot;Nicaragua&quot;,
+  &quot;Niger&quot;,
+  &quot;Nigeria&quot;,
+  &quot;North Macedonia&quot;,
+  &quot;Norway&quot;,
+  &quot;Oman&quot;,
+  &quot;Pakistan&quot;,
+  &quot;Palau&quot;,
+  &quot;Palestine&quot;,
+  &quot;Panama&quot;,
+  &quot;Papua New Guinea&quot;,
+  &quot;Paraguay&quot;,
+  &quot;Peru&quot;,
+  &quot;Philippines&quot;,
+  &quot;Poland&quot;,
+  &quot;Portugal&quot;,
+  &quot;Qatar&quot;,
+  &quot;Romania&quot;,
+  &quot;Russia&quot;,
+  &quot;Rwanda&quot;,
+  &quot;Saint Kitts and Nevis&quot;,
+  &quot;Saint Lucia&quot;,
+  &quot;Saint Vincent and the Grenadines&quot;,
+  &quot;Samoa&quot;,
+  &quot;San Marino&quot;,
+  &quot;Sao Tome and Principe&quot;,
+  &quot;Saudi Arabia&quot;,
+  &quot;Senegal&quot;,
+  &quot;Serbia&quot;,
+  &quot;Seychelles&quot;,
+  &quot;Sierra Leone&quot;,
+  &quot;Singapore&quot;,
+  &quot;Slovakia&quot;,
+  &quot;Slovenia&quot;,
+  &quot;Solomon Islands&quot;,
+  &quot;Somalia&quot;,
+  &quot;South Africa&quot;,
+  &quot;South Korea&quot;,
+  &quot;South Sudan&quot;,
+  &quot;Spain&quot;,
+  &quot;Sri Lanka&quot;,
+  &quot;Sudan&quot;,
+  &quot;Suriname&quot;,
+  &quot;Sweden&quot;,
+  &quot;Switzerland&quot;,
+  &quot;Taiwan&quot;,
+  &quot;Tajikistan&quot;,
+  &quot;Tanzania&quot;,
+  &quot;Thailand&quot;,
+  &quot;Togo&quot;,
+  &quot;Tonga&quot;,
+  &quot;Trinidad and Tobago&quot;,
+  &quot;Tunisia&quot;,
+  &quot;Turkey&quot;,
+  &quot;Turkmenistan&quot;,
+  &quot;Tuvalu&quot;,
+  &quot;Uganda&quot;,
+  &quot;Ukraine&quot;,
+  &quot;United Arab Emirates&quot;,
+  &quot;Uruguay&quot;,
+  &quot;Uzbekistan&quot;,
+  &quot;Vanuatu&quot;,
+  &quot;Vatican City&quot;,
+  &quot;Venezuela&quot;,
+  &quot;Vietnam&quot;,
+  &quot;Yemen&quot;,
+  &quot;Zambia&quot;,
+  &quot;Zimbabwe&quot;
+]
+</code></pre></div></details> <h3 id="get-conversion-rates"><a href="#get-conversion-rates" class="header-anchor">#</a> Get Conversion Rates</h3> <p>Returns supported fiat conversion rates for 1GB of storage based on current market prices</p> <p><code>/rates</code></p> <h4 id="parameters-7"><a href="#parameters-7" class="header-anchor">#</a> Parameters</h4> <p>None</p> <h4 id="example-6"><a href="#example-6" class="header-anchor">#</a> Example</h4> <div class="language- extra-class"><pre class="language-text"><code>https://payment.ardrive.io/v1/rates
+</code></pre></div><details><summary><b>Response Body (JSON)</b></summary> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;winc&quot;: &quot;343168912867&quot;,
+  &quot;fiat&quot;: {
+    &quot;aud&quot;: 3.52873729722864,
+    &quot;brl&quot;: 11.34598786477272,
+    &quot;cad&quot;: 3.15729126594135,
+    &quot;eur&quot;: 2.1569195680425,
+    &quot;gbp&quot;: 1.8487882011791101,
+    &quot;hkd&quot;: 18.66938404981161,
+    &quot;inr&quot;: 196.24591287088242,
+    &quot;jpy&quot;: 334.744630809484,
+    &quot;sgd&quot;: 3.16995419882613,
+    &quot;usd&quot;: 2.39329431522465
+  },
+  &quot;adjustments&quot;: [
+    {
+      &quot;name&quot;: &quot;FWD Research July 2023 Subsidy&quot;,
+      &quot;description&quot;: &quot;A 60% discount for uploads over 500KiB&quot;,
+      &quot;operator&quot;: &quot;multiply&quot;,
+      &quot;value&quot;: 0.6,
+      &quot;adjustmentAmount&quot;: &quot;-514753369299&quot;
+    }
+  ]
+}
+</code></pre></div></details> <p>* required</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><div class="inner"><a href="/docs/turbo/what-is-turbo.html" class="nav-link prev" style="background-color:#555;"><i class="pointer last">←</i> <span>What is Turbo?</span></a> <div class="spacer"></div> <a href="/docs/turbo/api/upload.html" class="nav-link next" style="background-color:#555;"><span>Upload API</span> <i class="pointer forward">→</i></a></div></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.4f6acec4.js" defer></script><script src="/assets/js/2.85f7ef49.js" defer></script><script src="/assets/js/36.9e51a12d.js" defer></script>
+  </body>
+</html>
