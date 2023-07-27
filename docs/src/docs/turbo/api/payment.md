@@ -4,6 +4,8 @@
 
 ArDrive offers several API endpoints to help manage and determine costs associated with converting currencies into Turbo credits. The below endpoints offer access to useful information that can help stay in control when uploading data to Arweave using Turbo. "winc" refers to "winston credits", the smallest denomination of a Turbo credit.
 
+**Note**: This service is still evolving and the information provided below may be out of date. You can view the most up to date information about the available endpoints [here](https://payment.ardrive.io/api-docs), or view the raw json for that documentation [here](https://payment.ardrive.io/openapi.json).
+
 ## Endpoints
 
 The host url for all below endpoints is:

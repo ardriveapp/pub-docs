@@ -8,6 +8,8 @@ next: false
 
 The Turbo Upload Service supports payment for signed data-items to upload.ardrive.io using Turbo Credits. An API endpoint has been created to facilitate the payments. A signed data-item can be posted to upload.ardrive.io using the below schema.
 
+**Note**: This service is still evolving and the information provided below may be out of date. You can view the most up to date information about the available endpoints [here](https://upload.ardrive.io/api-docs), or view the raw json for that documentation [here](https://upload.ardrive.io/openapi.json).
+
 
 ## Endpoint
 
