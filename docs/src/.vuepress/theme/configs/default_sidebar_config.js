@@ -108,6 +108,23 @@ module.exports = [
     ],
   },
   {
+    title: "Turbo",
+    children: [
+      {
+        title: "What is Turbo?",
+        path: "/docs/turbo/what-is-turbo"
+      },
+      {
+        title: "Payment API",
+        path: "/docs/turbo/api/payment"
+      },
+      {
+        title: "Upload API",
+        path: "/docs/turbo/api/upload"
+      }
+    ]
+  },
+  {
     title: "Misc.",
     children: [
       {
