@@ -50,9 +50,9 @@ npm update -g ardrive-cli
 
 ## Build and Run from Source<a id="build-from-source"></a>
 
-### Install Yarn 2<a id="yarn2"></a>
+### Install Yarn 3<a id="yarn3"></a>
 
-Both the ArDrive CLI and ArDrive Core JS use Yarn 2 to manage dependencies and initiate workflows, so follow the [yarn installation instructions][yarn-install] in order to get the latest version. In most cases:
+Both the ArDrive CLI and ArDrive Core JS use Yarn 3 to manage dependencies and initiate workflows, so follow the [yarn installation instructions][yarn-install] in order to get the latest version. In most cases:
 
 ```shell
 # Brew (OSX):

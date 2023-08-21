@@ -92,6 +92,16 @@ ardrive <my-command> <other-options> --dry-run
 
 This can be very useful for gathering price estimations or to confirm that you've copy-pasted your entity IDs correctly before committing to an upload.
 
+### Uploading to Turbo (BETA) <a id="upload-to-turbo"></a>
+
+Users can optionally choose to send each ArFS entities created to [ArDrive Turbo][ardrive-turbo] using the `--turbo` flag. Instead of using AR from an Arweave wallet, you can use Turbo Credits or take advantage of free/discounted upload promotions.
+
+```shell
+ardrive <my-command> <other-options> --turbo
+```
+
+This flag will skip any balance check on the CLI side. Turbo will check a user's balance and accept/reject a data item at the time of upload. The `--turbo` flag by default will send your files to `upload.ardrive.io` to be bundled. To change the Turbo destination, users can use the `--turbo-url` flag.
+
 ## Working With Drives
 
 ### Understanding Drive Hierarchies
@@ -1248,3 +1258,4 @@ The cache can be manually cleared safely at any time that any integrating app is
 [viewblock]: https://viewblock.io/arweave/
 [tx_anchors]: https://docs.arweave.org/developers/server/http-api#field-definitions
 [gql-guide]: https://gql-guide.vercel.app/#owners
+[ardrive-turbo]: https://ardrive.io/turbo/
