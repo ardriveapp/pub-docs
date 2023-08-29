@@ -16,7 +16,8 @@
   "license": "MIT",
   "devDependencies": {
     "gh-pages": "^5.0.0",
-    "vuepress": "^1.5.3"
+    "vuepress": "^1.5.3",
+    "vuepress-plugin-code-copy": "^1.0.6"
   },
   "dependencies": {
     "vuex": "^4.1.0"
