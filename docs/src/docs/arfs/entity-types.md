@@ -23,7 +23,7 @@ A drive is the highest level logical grouping of folders and files. All folders 
 When creating a Drive, a corresponding folder must be created as well. This will act as the root folder of the drive. This separation of drive and folder entity enables features such as folder view queries, renaming, and linking.
 
 ```
-ArFS: "0.11"
+ArFS: "0.13"
 Cipher?: "AES256-GCM"
 Cipher-IV?: "<12 byte initialization vector as Base64>"
 Content-Type: "<application/json | application/octet-stream>"
@@ -46,7 +46,7 @@ Data JSON {
 A folder is a logical grouping of other folders and files. Folder entity metadata transactions without a parent folder id are considered the Drive Root Folder of their corresponding Drives. All other Folder entities must have a parent folder id. Since folders do not have underlying data, there is no Folder data transaction required.
 
 ```
-ArFS: "0.11"
+ArFS: "0.13"
 Cipher?: "AES256-GCM"
 Cipher-IV?: "<12 byte initialization vector as Base64>"
 Content-Type: "<application/json | application/octet-stream>"
@@ -69,10 +69,10 @@ A File contains uploaded data, like a photo, document, or movie.
 
 In the Arweave File System, a single file is broken into 2 parts - its metadata and its data.
 
-A File entity metadata transaction does not include the actual File data. Instead, the File data must be uploaded as a separate transaction, called the File Data Transaction. The File metadata transaction JSON contains a reference to the File Data Transaction id so that it can retrieve the actual data. This separation allows for file metadata to be updated without requiring the file itself to be reuploaded. It also ensures that private files can have their Metadata Transaction JSON encrypted as well, ensuring that no one without authorization can see either the file or its metadata.
+A File entity metadata transaction does not include the actual File data. Instead, the File data must be uploaded as a separate transaction, called the File Data Transaction. The File JSON metadata transaction contains a reference to the File Data Transaction ID so that it can retrieve the actual data. This separation allows for file metadata to be updated without requiring the file itself to be reuploaded. It also ensures that private files can have their JSON Metadata Transaction encrypted as well, ensuring that no one without authorization can see either the file or its metadata.
 
 ```
-ArFS: "0.11"
+ArFS: "0.13"
 Cipher?: "AES256-GCM"
 Cipher-IV?: "<12 byte initialization vector as Base64>"
 Content-Type: "<application/json | application/octet-stream>"
@@ -87,22 +87,46 @@ Data JSON {
     "size": <computed file size - int>,
     "lastModifiedDate": <timestamp for OS reported time of file's last modified date represented as milliseconds since unix epoch - int>
     "dataTxId": "<transaction id of stored data>",
-    "dataContentType": "<the mime type of the data associated with this file entity>"
+    "dataContentType": "<the mime type of the data associated with this file entity>",
+    "pinnedDataOwner": "<the address of the original owner of the data where the file is pointing to>" # Optional
 }
 ```
 
-<div class='caption'>File Metadata Transaction Example</div>
+<div class='caption'> Pin Files </div>
+
+Since the version v0.13, ArFS suports Pins. Pins are files whose data may be any transaction uploaded to Arweave, that may or may not be owned by the wallet that created the pin.
+
+When a new File Pin is created, the only created transaction is the Metadata Transaction. The `dataTxId` field will point it to any transaction in Arweave, and the optional `pinnedDataOwner` field is gonna hold the address of the wallet that owns the original copy of the data transaction.
+
+<div class='caption'>File Data Transaction Example</div>
 
 The File Data Transaction contains limited information about the file, such as the information required to decrypt it, or the Content-Type (mime-type) needed to view in the browser.
 
 ```
 Cipher?: "AES256-GCM"
-Cipher-IV?: "<12 byte initialization vector as Base64>""
-Content-Type: "<file mime-type | application/octet-stream>""
- { File data }
+Cipher-IV?: "<12 byte initialization vector as Base64>"
+Content-Type: "<file mime-type | application/octet-stream>"
+ { File Data - Encrypted if private }
 ```
 
-<div class='caption'>File Data Transaction Example</div>
+<div class='caption'>File Metadata Transaction Example</div>
+
+The the File Metadata Transaction contains the GQL Tags necessary to identify the file within a drive and folder.
+
+Its data contains the JSON metadata for the file. This includes the file name, size, last modified date, data transaction id, and data content type.
+
+```
+ArFS: "0.13"
+Cipher?: "AES256-GCM"
+Cipher-IV?: "<12 byte initialization vector as Base64>"
+Content-Type: "<application/json | application/octet-stream>"
+Drive-Id: "<drive uuid>"
+Entity-Type: "file"
+File-Id: "<uuid>"
+Parent-Folder-Id: "<parent folder uuid>"
+Unix-Time: "<seconds since unix epoch>"
+ { File JSON Metadata - Encrypted if private }
+```
 
 ## Snapshot
 
@@ -119,7 +143,7 @@ This optional method offers convenience and resource efficiency when building th
 Snapshot entities require the following tags. These are queried by ArFS clients to find drive snapshots, organize them together with any other transactions not included within them, and build the latest state of the drive.
 
 ```
-ArFS: "0.12"
+ArFS: "0.13"
 Drive-Id: "<drive uuid that this snapshot is associated with>"
 Entity-Type: "snapshot"
 Snapshot-Id: "<uuid of this snapshot entity>"
@@ -130,6 +154,7 @@ Data-Start: "<the first block in which transaction data was found in this snapsh
 Data-End: "<the last block in which transaction was found in this snapshot, eg 1001671"
 Unix-Time: "<seconds since unix epoch>"
 ```
+
 <div class='caption'>Snapshot Transaction GQL tags example</div>
 
 ### Snapshot Entity Data
@@ -200,7 +225,22 @@ For private drives, the `dataJson` object contains the JSON-string-escaped encry
   ]
 }
 ```
+
 <div class='caption'>Snapshot Transaction JSON data example</div>
 
+
+## Schema Diagrams
+
+The following diagrams show complete examples of Drive, Folder, and File entity Schemas.
+
+### Public Drive
+
+<img class='amazingdiagram' :src='$withBase("/images/public-drive-schema.png")' style="width: 75%">
+<div class='caption'>Public Drive Schema</div>
+
+### Private Drive
+
+<img class='amazingdiagram' :src='$withBase("/images/private-drive-schema.png")' style="width: 75%">
+<div class='caption'>Private Drive Schema</div>
 
 
