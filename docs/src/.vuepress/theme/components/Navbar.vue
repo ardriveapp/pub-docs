@@ -42,6 +42,19 @@
           />
         </svg>
       </a>
+        ><svg
+          version="1.1"
+          viewBox="0 0 1200 1200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            fill="currentColor"
+            clip-rule="evenodd"
+            d="m600 0c-159.13 0-311.74 63.215-424.27 175.73-112.52 112.52-175.73 265.14-175.73 424.27s63.215 311.74 175.73 424.27c112.52 112.52 265.14 175.73 424.27 175.73s311.74-63.215 424.27-175.73c112.52-112.52 175.73-265.14 175.73-424.27s-63.215-311.74-175.73-424.27c-112.52-112.52-265.14-175.73-424.27-175.73zm-19.32 900c-20.816-0.15625-40.738-8.5039-55.445-23.238-14.711-14.73-23.027-34.664-23.156-55.48-0.81641-20.906 7.125-41.207 21.906-56.012 14.781-14.805 35.07-22.773 55.977-21.988 27.996-0.12891 53.934 14.688 68.039 38.867 14.109 24.18 14.246 54.051 0.36328 78.359-13.887 24.309-39.688 39.363-67.684 39.492zm134.76-358.32c-8.1602 9.6016-16.801 18.84-25.559 27.961h-0.003906c-16.664 16-29.879 35.242-38.836 56.539-8.957 21.293-13.465 44.199-13.242 67.301v6.3594h-112.8c-2.9844-27.332 0.085938-54.988 9-81 11.16-32.355 28.57-62.199 51.238-87.84 13.609-14.656 24.863-31.336 33.363-49.441 16.32-37.078-4.4414-69-45-72.84-32.477-3.3867-65.199 3.4492-93.602 19.562-11.281-29.281-22.441-57.84-33-86.762-0.1875-3.8516 1.6289-7.5273 4.8008-9.7188 21.98-9.6484 44.645-17.668 67.801-24 44.621-11.066 91.352-10.324 135.6 2.1602 60 18.121 92.398 61.441 96.602 124.2 2.9414 39.285-10.18 78.082-36.359 107.52z"
+          />
+        </svg>
+      </a>
       <a class="nav-link-right" href="https://discord.com/invite/ya4hf2H">
         <svg
           class="discord-logo icon"
@@ -57,6 +70,11 @@
           />
         </svg>
       </a>
+      <a
+        href="https://github.com/ardriveapp"
+        target="_blank"
+        class="nav-link-right"
+      >
       <a
         href="https://github.com/ardriveapp"
         target="_blank"
@@ -97,10 +115,13 @@
       <SearchBox
         @open-search-modal="$emit('open-search-modal')"
 
+        @open-search-modal="$emit('open-search-modal')"
+
         v-else-if="
           $site.themeConfig.search !== false &&
           $page.frontmatter.search !== false
         "
+        ref="modalOpener"
         ref="modalOpener"
       />
     </div>
@@ -190,7 +211,12 @@ $navbar-horizontal-padding = 1.5rem
   height auto
   padding-right .55em
   padding-top .25em
+  width 20px
+  height auto
+  padding-right .55em
+  padding-top .25em
   // margin-top 0rem !important
+
 
 
 .icon
@@ -221,9 +247,11 @@ $navbar-horizontal-padding = 1.5rem
 .discord-logo
   color var(--TextColor)
   padding-right .425rem
+  padding-right .425rem
   padding-top 2.5px
 
 .navbar
+  // margin-top 50px !important
   // margin-top 50px !important
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
