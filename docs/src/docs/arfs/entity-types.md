@@ -1,5 +1,21 @@
 # Entity Types
 
+## Overview
+
+Arweave transactions are composed of transaction headers and data payloads. 
+
+ArFS entities, therefore, have their data split between being stored as tags on their transaction header and encoded as JSON and stored as the data of a transaction. In the case of private entities, JSON data and file data payloads are always encrypted according to the protocol processes defined below.
+
+- Drive entities require a single metadata transaction, with standard Drive tags and encoded JSON with secondary metadata.
+
+- Folder entities require a single metadata transaction, with standard Folder tags and an encoded JSON with secondary metadata.
+
+- File entities require a metadata transaction, with standard File tags and an encoded Data JSON with secondary metadata relating to the file.
+
+- File entities also require a second data transaction, which includes a limited set of File tags and the actual file data itself.
+
+- Snapshot entities require a single transaction. which contains a Data JSON with all of the Drive’s rolled up ArFS metadata and standard Snapshot GQL tags that identify the Snapshot.
+
 ## Drive
 
 A drive is the highest level logical grouping of folders and files. All folders and files must be part of a drive, and reference the Drive ID of that drive.
@@ -49,7 +65,9 @@ Data JSON {
 
 ## File
 
-A File contains uploaded data, like a photo, document, or movie. In the Arweave File System, a single file is broken into 2 parts: its metadata and its data.
+A File contains uploaded data, like a photo, document, or movie. 
+
+In the Arweave File System, a single file is broken into 2 parts - its metadata and its data.
 
 A File entity metadata transaction does not include the actual File data. Instead, the File data must be uploaded as a separate transaction, called the File Data Transaction. The File JSON metadata transaction contains a reference to the File Data Transaction ID so that it can retrieve the actual data. This separation allows for file metadata to be updated without requiring the file itself to be reuploaded. It also ensures that private files can have their JSON Metadata Transaction encrypted as well, ensuring that no one without authorization can see either the file or its metadata.
 
@@ -114,11 +132,13 @@ Unix-Time: "<seconds since unix epoch>"
 
 ArFS applications generate the latest state of a drive by querying for all ArFS transactions made relating to a user's particular `Drive-Id`. This includes both paged queries for indexed ArFS data via GQL, as well as the ArFS JSON metadata entries for each ArFS transaction.
 
-For small drives (< 1000 files), a few thousand requests for very small volumes of data can be achieved relatively quickly and reliably. For larger drives, however, this results in long sync times to pull every piece of ArFS metadata when the local database cache is empty. This can also potentially trigger rate-limiting related ArWeave Gateway delays.
+For small drives (less than 1000 files), a few thousand requests for very small volumes of data can be achieved relatively quickly and reliably. For larger drives, however, this results in long sync times to pull every piece of ArFS metadata when the local database cache is empty. This can also potentially trigger rate-limiting related ArWeave Gateway delays.
 
 Once a drive state has been completely, and accurately generated, in can be rolled up into a single snapshot and uploaded as an Arweave transaction. ArFS clients can use GQL to find and retrieve this snapshot in order to rapidly reconstitute the total state of the drive, or a large portion of it. They can then query individual transactions performed after the snapshot.
 
 This optional method offers convenience and resource efficiency when building the drive state, at the cost of paying for uploading the snapshot data. Using this method means a client will only have to iterate through a few snapshots instead of every transaction performed on the drive.
+
+### Snapshot Entity Tags
 
 Snapshot entities require the following tags. These are queried by ArFS clients to find drive snapshots, organize them together with any other transactions not included within them, and build the latest state of the drive.
 
@@ -136,6 +156,8 @@ Unix-Time: "<seconds since unix epoch>"
 ```
 
 <div class='caption'>Snapshot Transaction GQL tags example</div>
+
+### Snapshot Entity Data
 
 A JSON data object must also be uploaded with every ArFS Snapshot entity. THis data contains all ArFS Drive, Folder, and File metadata changes within the associated drive, as well as any previous Snapshots. The Snapshot Data contains an array `txSnapshots`. Each item includes both the GQL and ArFS metadata details of each transaction made for the associated drive, within the snapshot's start and end period.
 
@@ -206,6 +228,7 @@ For private drives, the `dataJson` object contains the JSON-string-escaped encry
 
 <div class='caption'>Snapshot Transaction JSON data example</div>
 
+
 ## Schema Diagrams
 
 The following diagrams show complete examples of Drive, Folder, and File entity Schemas.
@@ -220,4 +243,4 @@ The following diagrams show complete examples of Drive, Folder, and File entity 
 <img class='amazingdiagram' :src='$withBase("/images/private-drive-schema.png")' style="width: 75%">
 <div class='caption'>Private Drive Schema</div>
 
-Arweave GQL Tag Byte Limit is restricted to `2048`. There is no determined limit on Data JSON custom metadata, though more data results in a higher upload cost.
+

@@ -4,9 +4,11 @@ permalink: /docs/arfs/
 
 # ArFS Protocol: A Decentralized File System on Arweave
 
-ArFS (Arweave File System) is a protocol built on top of the Arweave blockchain, designed to provide a decentralized and permanent file system that allows users to store, organize, and manage files and metadata. ArFS brings the benefits of decentralization, immutability, and censorship resistance provided by the Arweave blockchain to a familiar file system experience.
+Arweave File System, or “ArFS” is a data modeling, storage, and retrieval protocol designed to emulate common file system operations and to provide aspects of mutability to your data hierarchy on [Arweave](https://ardrive.io/what-is-arweave/)'s otherwise permanent, immutable data storage blockweave.
 
-ArFS is designed to enable users to store, organize, and manage files and metadata in a hierarchical structure similar to traditional file systems, with the added advantages of decentralization and immutability provided by the Arweave blockchain.
+Due to Arweave's permanent, immutable and public nature traditional file system operations such as permissions, file/folder renaming and moving, and file updates cannot be done by simply updating the on-chain data model.  
+
+ArFS works around this by implementing a privacy and encryption pattern and defining an append-only transaction data model using tags within [Arweave Transaction headers](https://docs.arweave.org/developers/server/http-api#transaction-format).
 
 ## Key Features
 
@@ -41,6 +43,37 @@ ArFS is designed to be interoperable with other decentralized applications and s
 ## Getting Started
 
 To start using ArFS, you'll need to familiarize yourself with the Arweave ecosystem, acquire AR tokens to cover storage costs, and choose a compatible client or library to interact with the ArFS protocol.
+
+## ArFS Version History
+
+<div style='text-align:center'>
+    <table class='inline-table'>
+        <tr>
+            <th>Version</th>
+            <th>Date</th>
+            <th>Release Notes</th>
+        </tr>
+        <tr>
+            <td>0.10</td>
+            <td>August 2020</td>
+            <td>The brief, beta version that was in use during initial testing of ArDrive across Web (Dart) and legacy CLI (Typescript).</td>
+        </tr>
+        <tr>
+            <td>0.11</td>
+            <td>September 2020</td>
+            <td>Includes all of the major functionality supporting file systems on Arweave including new drives, folders, files, renames, moves and privacy.</td>
+        </tr>
+        <tr>
+            <td>0.12</td>
+            <td>December 2022</td>
+            <td>Added Snapshot entities to support quick synchronization of drive state.</td>
+        </tr>
+    </table>
+</div>
+        
+
+
+
 
 ## Resources
 

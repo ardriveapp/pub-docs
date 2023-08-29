@@ -47,6 +47,10 @@ module.exports = [
         path: "/docs/arfs/entity-types",
       },
       {
+        title: "Schema Diagrams",
+        path: "/docs/arfs/schema-diagrams"
+      },
+      {
         title: "Content Types",
         path: "/docs/arfs/content-types",
       },
@@ -95,16 +99,62 @@ module.exports = [
             title: "Read",
             path: "/docs/arfs/usage/read/read-operations",
           },
+          {
+            title: "Extending Schemas",
+            path: "/docs/arfs/usage/extending-schemas"
+          },
         ],
       },
     ],
+  },
+  {
+    title: "Turbo",
+    children: [
+      {
+        title: "What is Turbo?",
+        path: "/docs/turbo/what-is-turbo"
+      },
+      {
+        title: "Payment API",
+        path: "/docs/turbo/api/payment"
+      },
+      {
+        title: "Upload API",
+        path: "/docs/turbo/api/upload"
+      }
+    ]
   },
   {
     title: "Misc.",
     children: [
       {
         title: "Price Calculator",
-        path: "/docs/price-calculator",
+        path: "/docs/misc/price-calculator",
+      },
+      {
+        title: "How to Deploy a dApp",
+        children: [
+          {
+            title: "Preparing your dApp",
+            path: "/docs/misc/deploy/prepare"
+          },
+          {
+            title: "Hash Routing",
+            path: "/docs/misc/deploy/routing",
+          },
+          {
+            title: "Relative File Paths",
+            path: "/docs/misc/deploy/paths"
+          },
+          {
+            title: "How to Deploy",
+            path: "/docs/misc/deploy/deploy"
+          },
+          {
+            title: "Examples",
+            path: "/docs/misc/deploy/examples"
+          }
+        ]
       },
     ],
   },
