@@ -67,6 +67,10 @@ Data JSON {
 
 A File contains uploaded data, like a photo, document, or movie. 
 
+
+In the Arweave File System, a single file is broken into 2 parts - its metadata and its data.
+
+
 In the Arweave File System, a single file is broken into 2 parts - its metadata and its data.
 
 A File entity metadata transaction does not include the actual File data. Instead, the File data must be uploaded as a separate transaction, called the File Data Transaction. The File JSON metadata transaction contains a reference to the File Data Transaction ID so that it can retrieve the actual data. This separation allows for file metadata to be updated without requiring the file itself to be reuploaded. It also ensures that private files can have their JSON Metadata Transaction encrypted as well, ensuring that no one without authorization can see either the file or its metadata.
@@ -227,6 +231,7 @@ For private drives, the `dataJson` object contains the JSON-string-escaped encry
 ```
 
 <div class='caption'>Snapshot Transaction JSON data example</div>
+
 
 
 ## Schema Diagrams

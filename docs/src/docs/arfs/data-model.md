@@ -20,6 +20,15 @@ These defined entities allow the state of the drive to be constructed by a clien
 
 - Folder Entities contain other folders or files
 
+- File Entities contain both the file data and metadata
+
+- Snapshot entities contain a state rollups of all files and folder metadata within a drive
+
+
+- Drive Entities contain folders and files
+
+- Folder Entities contain other folders or files
+
 - File Entities are composed by both the file data and metadata
 
 - Snapshot entities contain a state rollups of all entities' (such as drive, folder, file and snapshot) metadata within a drive
