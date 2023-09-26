@@ -109,6 +109,7 @@ module.exports = [
   },
   {
     title: "Turbo",
+    sidebarDepth: 2,
     children: [
       {
         title: "What is Turbo?",
@@ -121,7 +122,11 @@ module.exports = [
       {
         title: "Upload API",
         path: "/docs/turbo/api/upload"
-      }
+      },
+      {
+        title: "Turbo SDK",
+        path: "/docs/turbo/turbo-sdk/",
+      },
     ]
   },
   {
