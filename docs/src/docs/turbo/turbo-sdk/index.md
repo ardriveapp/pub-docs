@@ -102,8 +102,9 @@ const rates = await turbo.getFiatRates();
 #### Browser
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@ardrive/turbo-sdk"></script>
-<script>
+<script type="module">
+  import { TurboFactory } from 'https://unpkg.com/@ardrive/turbo-sdk';
+
   const turbo = TurboFactory.unauthenticated();
   const rates = await turbo.getFiatRates();
 </script>
@@ -337,7 +338,7 @@ Types are exported from `./lib/types/[node/web]/index.d.ts` and should be automa
 
 If you encounter any issues or have feature requests, please file an issue on our GitHub repository. Contributions, pull requests, and feedback are both welcome and encouraged.
 
-[package.json]: https://github.com/ardriveapp/turbo-sdk/blob/main/package.json
-[examples]: https://github.com/ardriveapp/turbo-sdk/tree/main/examples
+[package.json]: ./package.json
+[examples]: ./examples
 [TurboAuthenticatedClient]: #turboauthenticatedclient
 [AbortSignal]: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
