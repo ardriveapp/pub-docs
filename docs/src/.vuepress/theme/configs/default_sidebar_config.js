@@ -132,6 +132,10 @@ module.exports = [
   {
     title: "Misc.",
     children: [
+      // {
+      //   title: "Permasites",
+      //   path: "/docs/misc/permasite"
+      // },
       {
         title: "Price Calculator",
         path: "/docs/misc/price-calculator",
