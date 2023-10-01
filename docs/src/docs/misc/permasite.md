@@ -58,6 +58,7 @@ To check on the status of your files, you can click the refresh icon in the top 
 
 Click on the red +New button and select Advanced > New Manifest.  Select the location for your manifest, ensuring it is in the same place as your index.html file.  
 
+
 Give your Manifest a name like “permasite”, it will be the main way you access your permanent website from ArDrive.
 
 ## 8. Wait Again
@@ -95,3 +96,4 @@ Try redirecting another domain to your permasite, or mask your permasite domain 
 Permasites can be used to archive web content before it disappears from the internet.  Or they can be used to create working copies of websites before it a particular site is replaced by new versions.  
 
 Manifests can also be used to make reliable perma-backups.  Many web hosts offer good daily backups and some offer reliable offsite backups as well. Permasites enable you to have decentralized, highly-redundant backups of your website’s content for a very low cost.
+
