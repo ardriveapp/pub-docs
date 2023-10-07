@@ -17,18 +17,22 @@ ArDrive allows you to preserve full working copies of the static content of exis
 
 To generate your static site files, we recommend:
 
-*Windows Users*
+### Windows Users
+
 [WebCopy](https://www.cyotek.com/cyotek-webcopy) and [HtTrack](https://www.httrack.com/) enable Windows users to download static copies of entire websites.
 
-*Mac Users*
+### Mac Users
+
 [Offline Pages Pro](https://apps.apple.com/us/app/offline-pages-pro/id391462107) (Mac users only), which creates files that work well with this process. After saving your site with Offline Pages Pro, go to File > Export > Local Website to download the local static files.  
 [SiteSucker](https://ricks-apps.com/osx/sitesucker/index.html) is another option for Mac users.
 
-*Command Line Utility*
+### Command Line Utility
+
 [Wget](https://www.gnu.org/software/wget/) is a free tool that helps capture static versions of websites. While Wget isn't a traditional static site generator, it's great for downloading whole websites for offline use. It offers a simple way to save your site's current look and feel as static files at no cost.
 
-*WordPress*
-[Simply Static]((https://wordpress.org/plugins/simply-static/)) is a plugin that generates static files for WordPress websites. Some users note that Simply Static fails to properly associate CSS and JS files with your static site, but others have had success with this free WordPress plugin.
+### WordPress
+
+[Simply Static](https://wordpress.org/plugins/simply-static/) is a plugin that generates static files for WordPress websites. Some users note that Simply Static fails to properly associate CSS and JS files with your static site, but others have had success with this free WordPress plugin.
 
 ## 2. Create an Account on ArDrive
 
@@ -97,3 +101,6 @@ Permasites can be used to archive web content before it disappears from the inte
 
 Manifests can also be used to make reliable perma-backups.  Many web hosts offer good daily backups and some offer reliable offsite backups as well. Permasites enable you to have decentralized, highly-redundant backups of your website’s content for a very low cost.
 
+## Example
+
+You can view a permasite version of this information at [permasite.arweave.dev](https://permasite.arweave.dev)
