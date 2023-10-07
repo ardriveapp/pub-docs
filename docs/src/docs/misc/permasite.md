@@ -28,7 +28,7 @@ To generate your static site files, we recommend:
 [Wget](https://www.gnu.org/software/wget/) is a free tool that helps capture static versions of websites. While Wget isn't a traditional static site generator, it's great for downloading whole websites for offline use. It offers a simple way to save your site's current look and feel as static files at no cost.
 
 *WordPress*
-[Simply Static]((https://wordpress.org/plugins/simply-static/)) is a plugin that generates static files for WordPress websites. Some users note that Simply Static fails to properly associate CSS and JS files with your static site, but others have had success with this free WordPress plugin.
+[Simply Static](https://wordpress.org/plugins/simply-static/) is a plugin that generates static files for WordPress websites. Some users note that Simply Static fails to properly associate CSS and JS files with your static site, but others have had success with this free WordPress plugin.
 
 ## 2. Create an Account on ArDrive
 
