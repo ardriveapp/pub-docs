@@ -8,6 +8,9 @@ Resources like the [Wayback Machine](https://archive.org/web/) are useful to res
 
 The process to make a ‘permasite’ takes 10 steps which are outlined below.  Advanced users can accomplish similar results by using manifests within the [ArDrive CLI](../cli/intro.md).
 
+You can view a permasite version of this information at [permasite.arweave.dev](https://permasite.arweave.dev)
+
+
 ## 1. Download Static Site Files
 
 ArDrive allows you to preserve full working copies of the static content of existing websites but there are a few limitations to be aware of:
