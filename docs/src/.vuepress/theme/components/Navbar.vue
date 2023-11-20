@@ -27,7 +27,7 @@
     >
       <a
         class="nav-link-right question"
-        href="https://ar-io.zendesk.com/hc/en-us"
+        href="https://ardrive.zendesk.com/hc/en-us"
         target="_blank"
         ><svg
           version="1.1"
