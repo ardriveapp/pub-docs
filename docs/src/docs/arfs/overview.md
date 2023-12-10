@@ -68,6 +68,11 @@ To start using ArFS, you'll need to familiarize yourself with the Arweave ecosys
             <td>December 2022</td>
             <td>Added Snapshot entities to support quick synchronization of drive state.</td>
         </tr>
+        <tr>
+            <td>0.13</td>
+            <td>August 2023</td>
+            <td>Added pins</td>
+        </tr>
     </table>
 </div>
         

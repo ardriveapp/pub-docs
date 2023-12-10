@@ -1,6 +1,6 @@
 # Content Types
 
-All transaction types in ArFS leverage a specific metadata tag for the Content-Type (also known as mime-type) of the data that is included in the transaction. ArFS clients must determine what the mime-type of the data is, in order for Arweave gateways and browswers to render this content appropriately.
+All transaction types in ArFS leverage a specific metadata tag for the Content-Type (also known as mime-type) of the data that is included in the transaction. ArFS clients must determine what the mime-type of the data is, in order for Arweave gateways and browsers to render this content appropriately.
 
 All public drive, folder, and file (metadata only) entity transactions all use a JSON standard, therefore they must have the following content type tag:
 
