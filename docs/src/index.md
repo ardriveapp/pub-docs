@@ -6,6 +6,50 @@ homepage: true
 
 ArDrive offers never-ending storage of your most valuable files. Pay once and save your memories forever.
 
+<div style='text-align:center'>
+<table class="inline-table">
+    <thead>
+        <tr>
+            <th>Feature</th>
+            <th>ArDrive</th>
+            <th>Traditional Cloud Storage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>One time payments for file storage</td>
+            <td style='color:green'>✓</td>
+            <td style='color:red'>✗</td>
+        </tr>
+        <tr>
+            <td>No monthly subscriptions</td>
+            <td style='color:green'>✓</td>
+            <td style='color:red'>✗</td>
+        </tr>
+        <tr>
+            <td>200+ years of file storage</td>
+            <td style='color:green'>✓</td>
+            <td style='color:red'>✗</td>
+        </tr>
+        <tr>
+            <td>Data available even if company disappears</td>
+            <td style='color:green'>✓</td>
+            <td style='color:red'>✗</td>
+        </tr>
+        <tr>
+            <td>Decentralized and open source</td>
+            <td style='color:green'>✓</td>
+            <td style='color:red'>✗</td>
+        </tr>
+        <tr>
+            <td>Inactive accounts never deleted</td>
+            <td style='color:green'>✓</td>
+            <td style='color:red'>✗</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
 
 ## Control Your Own Data
 

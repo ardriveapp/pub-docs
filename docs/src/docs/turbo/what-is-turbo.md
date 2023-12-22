@@ -4,4 +4,5 @@ prev: false
 
 # What Is Turbo?
 
-Turbo is a new service offered by ArDrive that removes the barriers to permaweb storage by allowing users to pay for uploads using a credit or debit card. Turbo consists of two separate components: a bundling upload service and a payment service. Turbo Credits can be purchased in the ArDrive web app, and represent a 1:1 conversion from AR tokens in the amount of data they can upload. The smallest denomination of a Turbo Credit is a Winston Credit (winc).
+Turbo, offered by ArDrive, is a streamlined service that simplifies permaweb storage, making it more accessible by allowing users to pay for uploads with credit or debit cards. It integrates two key components: a service that bundles uploads for efficiency and ease, and a payment system designed for straightforward transactions. Turbo Credits, which users can purchase within the ArDrive web app, enable a direct conversion from AR tokens, reflecting the amount of data one can upload. These credits are meticulously calibrated, with the Winston Credit (winc) representing the smallest unit, ensuring users have precise control over their storage needs. As an open-source technology, Turbo encourages community engagement, allowing developers to contribute to its continuous enhancement.
+

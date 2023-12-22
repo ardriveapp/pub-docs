@@ -127,6 +127,10 @@ module.exports = [
         title: "Turbo SDK",
         path: "/docs/turbo/turbo-sdk/",
       },
+      {
+        title: "Migrating From Irys",
+        path: "/docs/turbo/migrating"
+      },
     ]
   },
   {
