@@ -4,6 +4,10 @@ next: false
 
 # Migrating to Turbo From Irys
 
+::: tip Irys Version Management
+This was tested using Irys SDK v0.1.1 Future versions of the Irys SDK, and by extension the Irys CLI, may introduce breaking changes. It is suggested that developers lock their version.
+:::
+
 ## Overview
 
 In the interest of maintaining robust and decentralized infrastructure throughout the Arweave community, it is important to provide options and alternatives to single points of potential failure. With this in mind, ArDrive Turbo provides an Irys-compatible API, allowing for simple migrations across services if desired.
@@ -29,7 +33,7 @@ const wallet = JSON.parse(
 const init = async () => {
   const token = "arweave";
   const irys = new Irys({
-    url: "https://up.arweave.net", // URL of the node you want to connect to, up.arweave.net will facilitate upload using ArDrive Turbo.
+    url: "https://up.arweave.net", // URL of the node you want to connect to, https://up.arweave.net will facilitate upload using ArDrive Turbo.
     token, // Token used for payment and signing
     key: wallet, // Arweave wallet
   });
@@ -39,13 +43,11 @@ const init = async () => {
 }
 ```
 
-**NOTE**: This was tested using Irys SDK v0.1.1 Future versions of the Irys SDK may introduce breaking changes. It is suggested that developers lock their version.
-
 ## Using Irys CLI with Turbo 
 
-Selecting Turbo as the upload method using the Irys CLI is similarly simple. `up.arweave.net` can be set as the target node when using the `upload` or `upload-dir` CLI commands with the `-h` flag:
+Selecting Turbo as the upload method using the Irys CLI is similarly simple. `https://up.arweave.net` can be set as the target node when using the `upload` or `upload-dir` CLI commands with the `-h` flag:
 
-```terminal
+```
 irys upload importantFile.pdf -h https://up.arweave.net --tags superImportant needsPermanence
 ```
 
@@ -54,8 +56,6 @@ irys upload-dir ./bigFolder -h https://up.arweave.net
 ```
 
 Other flags may be used as normal
-
-**NOTE**: This was tested using Irys SDK v0.1.1 Future versions of the Irys SDK, and by extension the Irys CLI, may introduce breaking changes. It is suggested that developers lock their version.
 
 
 ## Differences
