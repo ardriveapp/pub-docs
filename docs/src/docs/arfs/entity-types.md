@@ -16,6 +16,8 @@ ArFS entities, therefore, have their data split between being stored as tags on 
 
 - Snapshot entities require a single transaction. which contains a Data JSON with all of the Drive’s rolled up ArFS metadata and standard Snapshot GQL tags that identify the Snapshot.
 
+ArFS v0.14 introduces the `isHidden` metadata property. `isHidden` is a boolean (true/false) that tells clients if they should display the file or folder. Hidden files still exist and will be included in [snapshots](#snapshot), but should not be rendered by clients. If `isHidden` is not present, its value should be assumed false.
+
 ## Drive
 
 A drive is the highest level logical grouping of folders and files. All folders and files must be part of a drive, and reference the Drive ID of that drive.
@@ -23,7 +25,7 @@ A drive is the highest level logical grouping of folders and files. All folders 
 When creating a Drive, a corresponding folder must be created as well. This will act as the root folder of the drive. This separation of drive and folder entity enables features such as folder view queries, renaming, and linking.
 
 ```json
-ArFS: "0.13"
+ArFS: "0.14"
 Cipher?: "AES256-GCM"
 Cipher-IV?: "<12 byte initialization vector as Base64>"
 Content-Type: "<application/json | application/octet-stream>"
@@ -105,9 +107,7 @@ Since the version v0.13, ArFS suports Pins. Pins are files whose data may be any
 
 When a new File Pin is created, the only created transaction is the Metadata Transaction. The `dataTxId` field will point it to any transaction in Arweave, and the optional `pinnedDataOwner` field is gonna hold the address of the wallet that owns the original copy of the data transaction.
 
-<div class='caption'>Hiding Files and Folders</div>
 
-ArFS v0.14 introduces the `isHidden` metadata property. `isHidden` is a boolean (true/false) that tells clients if they should display the file or folder. Hidden files still exist and will be included in [snapshots](#snapshot), but should not be rendered by clients.
 
 <div class='caption'>File Data Transaction Example</div>
 
