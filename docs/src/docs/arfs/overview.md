@@ -73,6 +73,11 @@ To start using ArFS, you'll need to familiarize yourself with the Arweave ecosys
             <td>August 2023</td>
             <td>Added pins</td>
         </tr>
+        <tr>
+            <td>0.14</td>
+            <td>January 2024</td>
+            <td>Added <code>isHidden</code> property to file and folder metadata to enable clients to "hide" content from end users.</td>
+        </tr>
     </table>
 </div>
         

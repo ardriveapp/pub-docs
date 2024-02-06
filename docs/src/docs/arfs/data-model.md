@@ -47,13 +47,13 @@ As you can see, each file and folder contains metadata which points to both the 
 
 Metadata stored in any Arweave transaction tag will be defined in the following manner:
 
-```
+```json
 { "name": "Example-Tag", "value": "example-data" }
 ```
 
 Metadata stored in the Transaction Data Payload will follow JSON formatting like below:
 
-```
+```json
 {
     "exampleField": "exampleData"
 }
@@ -61,7 +61,7 @@ Metadata stored in the Transaction Data Payload will follow JSON formatting like
 
 fields with a `?` suffix are optional.
 
-```
+```json
 {
   "name": "My Project",
   "description": "This is a sample project.",

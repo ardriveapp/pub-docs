@@ -29,3 +29,7 @@ When a user adds a new file to a folder, and there is a file in that folder with
     * Since the `File-Id` remains the same, the File Keys for private files can decrypt all versions of that file.
     * For private files, new `Cipher-IV`s are generated for this new metadata and data transaction
 * ArFS clients can now iterate through the state of this file, since it will have multiple versions using the same `File-Id`.
+
+## Hide or Unhide File
+
+Changing the value of `isHidden` in a file's metadata will change whether or not a client should display that file.

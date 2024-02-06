@@ -15,6 +15,7 @@
     * `lastModifiedDate` The file’s last time of modification as reported by the user’s operating system, in milliseconds since Unix epoch.
     * `dataTxId` The Arweave transaction id of this File Entity’s Data Transaction.
     * `dataContentType` The mime time of this File Entity’s data must be determined by the client.
+    * `isHidden` A boolean telling clients if they should display the file or not.
 * If the File is private:
     * Its `Cipher` tag must be filled out with the respective encryption algorithm (currently `AES256-GCM`) for both the Metadata and Data transactions. 
     * Its `Cipher-IV` tag must be filled out with the generated Initialization Vector for both the Metadata and Data transactions.  Each one has its own unique IV.
