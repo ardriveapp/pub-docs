@@ -1,3 +1,7 @@
+---
+tags: ["pin", "pins", "pinnedDataOwner", "hidden", "hide"]
+---
+
 # Entity Types
 
 ## Overview
