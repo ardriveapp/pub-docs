@@ -6,6 +6,24 @@ Welcome to the documentation page for the Turbo SDK release notes. Here, you wil
 
 ## Releases
 
+
+### V1.4.1
+
+(2024-01-30)
+
+Bug Fixes
+
+- **checkout session**: correct query param, change type, add coverage 
+
+### V1.4.0 
+
+(2024-01-30)
+
+Features
+
+- **ui mode**: support query param for checkout session ui mode 
+
+
 ### V1.3.0
 
 (2024-01-03)
