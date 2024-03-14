@@ -14,7 +14,7 @@ In the interest of maintaining robust and decentralized infrastructure throughou
 
 ## Using Irys SDK with Turbo
 
-ArDrive Turbo can be selected as the upload method for projects that currently use the Irys SDK by setting the `url` value to `https://up.arweave.net` when instantiating the Irys instance: 
+ArDrive Turbo can be selected as the upload method for projects that currently use the Irys SDK by setting the `url` value to `https://turbo.ardrive.io` when instantiating the Irys instance: 
 
 ```javascript
 // import Irys as normal
@@ -33,7 +33,7 @@ const wallet = JSON.parse(
 const init = async () => {
   const token = "arweave";
   const irys = new Irys({
-    url: "https://up.arweave.net", // URL of the node you want to connect to, https://up.arweave.net will facilitate upload using ArDrive Turbo.
+    url: "https://turbo.ardrive.io", // URL of the node you want to connect to, https://turbo.ardrive.io will facilitate upload using ArDrive Turbo.
     token, // Token used for payment and signing
     key: wallet, // Arweave wallet
   });
@@ -45,14 +45,14 @@ const init = async () => {
 
 ## Using Irys CLI with Turbo 
 
-Selecting Turbo as the upload method using the Irys CLI is similarly simple. `https://up.arweave.net` can be set as the target node when using the `upload` or `upload-dir` CLI commands with the `-h` flag:
+Selecting Turbo as the upload method using the Irys CLI is similarly simple. `https://turbo.ardrive.io` can be set as the target node when using the `upload` or `upload-dir` CLI commands with the `-h` flag:
 
 ```
-irys upload importantFile.pdf -h https://up.arweave.net --tags superImportant needsPermanence
+irys upload importantFile.pdf -h https://turbo.ardrive.io --tags superImportant needsPermanence
 ```
 
 ```
-irys upload-dir ./bigFolder -h https://up.arweave.net 
+irys upload-dir ./bigFolder -h https://turbo.ardrive.io 
 ```
 
 Other flags may be used as normal
