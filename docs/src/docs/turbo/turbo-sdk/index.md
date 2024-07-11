@@ -73,9 +73,9 @@ if (balance < fileSizeCost) {
 
 // upload the file
 try {
-  const { id, owner, dataCaches, fastFinalityIndexes } = await turbo.uploadFile(() => {
-    fileStreamFactory => () => fs.createReadStream(filePath),
-    fileSizeFactory => () => fileSize,
+  const { id, owner, dataCaches, fastFinalityIndexes } = await turbo.uploadFile({
+    fileStreamFactory: () => fs.createReadStream(filePath),
+    fileSizeFactory: () => fileSize,
   });
   // upload complete!
   console.log('Successfully upload data item!', { id, owner, dataCaches, fastFinalityIndexes });
