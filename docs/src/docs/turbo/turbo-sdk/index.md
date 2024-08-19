@@ -620,6 +620,67 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
   });
   ```
 
+#### `uploadFolder({ folderPath, files, dataItemOpts, signal, maxConcurrentUploads, throwOnFailure, manifestOptions})`
+
+- Signs and uploads a folder of files. For NodeJS, the `folderPath` of the folder to upload is required. 
+- For the browser, an array of `files` is required. 
+- The `dataItemOpts` is an optional object that can be used to configure tags, target, and anchor for the data item upload. 
+- The `signal` is an optional [AbortSignal](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) that can be used to cancel the upload or timeout the request. 
+- The `maxConcurrentUploads` is an optional number that can be used to limit the number of concurrent uploads. 
+- The `throwOnFailure` is an optional boolean that can be used to throw an error if any upload fails. 
+- The `manifestOptions` is an optional object that can be used to configure the manifest file, including a custom index file, fallback file, or whether to disable manifests altogether. Manifests are enabled by default.
+
+NodeJS Upload Folder
+
+```typescript
+const folderPath = path.join(__dirname, './my-folder');
+const { manifest, fileResponses, manifestResponse } = await turbo.uploadFolder({
+  folderPath,
+  dataItemOpts: {
+    // optional
+    tags: [
+      {
+        // User defined content type will overwrite file content type
+        name: 'Content-Type',
+        value: 'text/plain',
+      },
+      {
+        name: 'My-Custom-Tag',
+        value: 'my-custom-value',
+      },
+    ],
+    // no timeout or AbortSignal provided
+  },
+  manifestOptions: {
+    // optional
+    indexFile: 'custom-index.html',
+    fallbackFile: 'custom-fallback.html',
+    disableManifests: false,
+  },
+});
+```
+
+Browser Upload Folder
+
+```typescript
+<input type="file" id="folder" name="folder" webkitdirectory />
+<script type="module">
+  const folderInput = document.getElementById('folder');
+
+  folderInput.addEventListener('change', async (event) => {
+    const selectedFiles = folderInput.files;
+    console.log('Folder selected:', selectedFiles);
+
+    const { manifest, fileResponses, manifestResponse } =
+      await turbo.uploadFolder({
+        files: Array.from(selectedFiles).map((file) => file),
+      });
+
+    console.log(manifest, fileResponses, manifestResponse);
+  });
+</script>
+```
+
 #### `topUpWithTokens({ tokenAmount, feeMultiplier })`
 
 - Tops up the connected wallet with Credits by submitting a payment transaction for the token amount to the Turbo wallet and then submitting that transaction ID to Turbo Payment Service for top up processing.
