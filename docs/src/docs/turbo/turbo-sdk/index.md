@@ -403,7 +403,7 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
   });
   ```
 
-- Construct Turbo with a SOL signer
+- Construct Turbo with a HexSolanaSigner
 
   ```typescript
   const signer = new HexSolanaSigner(bs58.encode(secretKey));
@@ -416,6 +416,26 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
   const turbo = TurboFactory.authenticated({
     privateKey: bs58.encode(secretKey),
     token: "solana",
+  });
+  ```
+
+- KYVE Private Key
+
+  ```typescript
+  const turbo = TurboFactory.authenticated({
+    privateKey: kyveHexadecimalPrivateKey,
+    token: 'kyve',
+  });
+  ```
+
+- KYVE Mnemonic
+
+  ```typescript
+  import { privateKeyFromKyveMnemonic } from '@ardrive/turbo-sdk';
+
+  const turbo = TurboFactory.authenticated({
+    privateKey: privateKeyFromKyveMnemonic(mnemonic),
+    token: 'kyve',
   });
   ```
 
@@ -492,19 +512,21 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
 
 - Creates a Stripe checkout session for a Turbo Top Up with the provided amount, currency, owner. The returned URL can be opened in the browser, all payments are processed by Stripe. To leverage promo codes, see [TurboAuthenticatedClient].
 
+- Arweave (AR) Fiat Top UP
+
   ```typescript
   const { url, winc, paymentAmount, quotedPaymentAmount, adjustments } =
-    await turbo.createCheckoutSession({
-      amount: USD(10.0), // $10.00 USD
-      owner: publicArweaveAddress,
-      // promo codes require an authenticated client
-    });
+  await turbo.createCheckoutSession({
+    amount: USD(10.0), // $10.00 USD
+    owner: publicArweaveAddress,
+    // promo codes require an authenticated client
+  });
 
   // Open checkout session in a browser
-  if (process.platform === "darwin") {
+  if (process.platform === 'darwin') {
     // macOS
     exec(`open ${url}`);
-  } else if (process.platform === "win32") {
+  } else if (process.platform === 'win32') {
     // Windows
     exec(`start "" "${url}"`, { shell: true });
   } else {
@@ -513,10 +535,10 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
   }
   ```
 
-- Top up to ETH or SOL wallets
+- Ethereum (ETH) Fiat Top Up
 
   ```typescript
-  const turbo = TurboFactory.unauthenticated({ token: "ethereum" });
+  const turbo = TurboFactory.unauthenticated({ token: 'ethereum' });
 
   const { url, winc, paymentAmount } = await turbo.createCheckoutSession({
     amount: USD(10.0), // $10.00 USD
@@ -524,12 +546,25 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
   });
   ```
 
+- Solana (SOL) Top Up
+
   ```typescript
-  const turbo = TurboFactory.unauthenticated({ token: "solana" });
+  const turbo = TurboFactory.unauthenticated({ token: 'solana' });
 
   const { url, winc, paymentAmount } = await turbo.createCheckoutSession({
     amount: USD(10.0), // $10.00 USD
     owner: publicSolanaAddress,
+  });
+  ```
+
+- KYVE Fiat Top Up
+
+  ```typescript
+  const turbo = TurboFactory.unauthenticated({ token: 'kyve' });
+
+  const { url, winc, paymentAmount } = await turbo.createCheckoutSession({
+    amount: USD(10.0), // $10.00 USD
+    owner: publicKyveAddress,
   });
   ```
 
@@ -556,6 +591,14 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
   const { winc: balance } = await turbo.getBalance();
   ```
 
+#### `signer.getNativeAddress()`
+
+- Returns the native address of the connected signer.
+
+  ```typescript
+  const address = await turbo.signer.getNativeAddress();
+  ```
+
 #### `getWincForFiat({ amount, promoCodes })`
 
 - Returns the current amount of Winston Credits including all adjustments for the provided fiat currency, amount, and optional promo codes.
@@ -574,17 +617,17 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
 
   ```typescript
   const { url, winc, paymentAmount, quotedPaymentAmount, adjustments } =
-    await turbo.createCheckoutSession({
-      amount: USD(10.0), // $10.00 USD
-      owner: publicArweaveAddress,
-      promoCodes: ["MY_PROMO_CODE"], // promo codes require an authenticated client
-    });
+  await turbo.createCheckoutSession({
+    amount: USD(10.0), // $10.00 USD
+    owner: publicArweaveAddress,
+    promoCodes: ['MY_PROMO_CODE'], // promo codes require an authenticated client
+  });
 
   // Open checkout session in a browser
-  if (process.platform === "darwin") {
+  if (process.platform === 'darwin') {
     // macOS
     exec(`open ${url}`);
-  } else if (process.platform === "win32") {
+  } else if (process.platform === 'win32') {
     // Windows
     exec(`start "" "${url}"`, { shell: true });
   } else {
@@ -689,33 +732,118 @@ Browser Upload Folder
     - Note: As of release 1.5.0, only AR tokens are supported with `topUpWithTokens`.
   - The `feeMultiplier` (optional) is the multiplier to apply to the reward for the transaction to modify its chances of being mined. Credits will be added to the wallet balance after the transaction is confirmed on the given blockchain. Defaults to 1.0, meaning no multiplier.
 
+- Arweave (AR) Crypto Top Up
+
   ```typescript
-  const turbo = TurboFactory.authenticated({ signer, token: "arweave" });
+  const turbo = TurboFactory.authenticated({ signer, token: 'arweave' });
+
   const { winc, status, id, ...fundResult } = await turbo.topUpWithTokens({
     tokenAmount: WinstonToTokenAmount(100_000_000), // 0.0001 AR
     feeMultiplier: 1.1, // 10% increase in reward for improved mining chances
   });
   ```
 
-- Top up ETH tokens to ETH wallet
+- Ethereum (ETH) Crypto Top Up
 
   ```typescript
-  const turbo = TurboFactory.authenticated({ signer, token: "ethereum" });
+  const turbo = TurboFactory.authenticated({ signer, token: 'ethereum' });
 
   const { winc, status, id, ...fundResult } = await turbo.topUpWithTokens({
     tokenAmount: ETHToTokenAmount(0.00001), // 0.00001 ETH
   });
   ```
 
-- Top up Sol tokens to SOL wallet
+- Solana (SOL) Top Up
 
   ```typescript
-  const turbo = TurboFactory.authenticated({ signer, token: "solana" });
+  const turbo = TurboFactory.authenticated({ signer, token: 'solana' });
 
   const { winc, status, id, ...fundResult } = await turbo.topUpWithTokens({
     tokenAmount: SOLToTokenAmount(0.00001), // 0.00001 SOL
   });
   ```
+
+- KYVE Crypto Top Up
+
+  ```typescript
+  const turbo = TurboFactory.authenticated({ signer, token: 'kyve' });
+
+  const { winc, status, id, ...fundResult } = await turbo.topUpWithTokens({
+    tokenAmount: KYVEToTokenAmount(0.00001), // 0.00001 KYVE
+  });
+  ```
+
+## CLI
+
+### Install CLI
+
+Global installation:
+
+```shell
+npm install -g @ardrive/turbo-sdk
+```
+
+or
+
+```shell
+yarn global add @ardrive/turbo-sdk
+```
+
+or install locally as a dev dependency:
+
+```shell
+npm install --save-dev @ardrive/turbo-sdk
+```
+
+or
+
+```shell
+yarn add -D @ardrive/turbo-sdk
+```
+
+### CLI Usage
+
+```shell
+turbo --help
+```
+
+or from local installation:
+
+```shell
+yarn turbo --help
+```
+
+```shell
+npx turbo --help
+```
+
+#### Options
+
+- `-V, --version` - output the version number
+- `-h, --help` - display help for command
+- `--dev` - Enable development endpoints (default: false)
+- `-g, --gateway <url>` - Set a custom crypto gateway URL
+- `-t, --token <token>` - Token type for the command or connected wallet (default: "arweave")
+
+- `-w, --wallet-file <filePath>` - Wallet file to use with the action. Formats accepted: JWK.json, KYVE or ETH private key as a string, or SOL Secret Key as a Uint8Array
+- `-m, --mnemonic <phrase>` - Mnemonic to use with the action (KYVE only)
+- `-p, --private-key <key>` - Private key to use with the action
+
+#### Commands
+
+##### `crypto-fund`
+
+Fund a wallet with Turbo Credits by submitting a payment transaction for the crypto amount to the Turbo wallet and then submitting that transaction id to Turbo Payment Service for top up processing.
+
+Command Options:
+
+- `-v, --value <value>` - Amount of tokens in the token type's smallest unit value to fund the wallet with
+
+e.g:
+
+```shell
+turbo crypto-fund --value 0.0001 --token kyve --private-key 'b27...45c'
+```
 
 ## Developers
 
