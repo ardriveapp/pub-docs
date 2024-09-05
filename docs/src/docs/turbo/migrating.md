@@ -63,7 +63,7 @@ Other flags may be used as normal
 All uploads to Arweave through Turbo are paid for using Turbo Credits. Turbo Credits can be purchased through the `fund` method in the Irys SDK when the Irys instance is set to use Turbo. Currently, Turbo supports purchasing Turbo Credits with Arweave tokens (AR), Eth, and Sol.
 
 ```typescript
-const irys = async () => {
+const getIrys = async () => {
 	const token = "ethereum";
 
 	const irys = new Irys({
@@ -75,6 +75,7 @@ const irys = async () => {
 };
 
 try {
+  const irys = getIrys()
 	const fundTx = await irys.fund(irys.utils.toAtomic(0.05)); // converts 0.05 ETH to its equivalent in Wei
 	console.log(`Successfully funded ${irys.utils.fromAtomic(fundTx.quantity)} ${irys.token}`);
 } catch (e) {
