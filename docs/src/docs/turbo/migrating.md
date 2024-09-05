@@ -14,7 +14,7 @@ In the interest of maintaining robust and decentralized infrastructure throughou
 
 ## Using Irys SDK with Turbo
 
-ArDrive Turbo can be selected as the upload method for projects that currently use the Irys SDK by setting the `url` value to `https://turbo.ardrive.io` when instantiating the Irys instance: 
+Turbo can be selected as the upload method for projects that currently use the Irys SDK by setting the `url` value to `https://turbo.ardrive.io` when instantiating the Irys instance: 
 
 ```javascript
 // import Irys as normal
@@ -58,17 +58,26 @@ irys upload-dir ./bigFolder -h https://turbo.ardrive.io
 Other flags may be used as normal
 
 
-## Differences
+## Purchasing Turbo Credits with the Irys SDK
 
+All uploads to Arweave through Turbo are paid for using Turbo Credits. Turbo Credits can be purchased through the `fund` method in the Irys SDK when the Irys instance is set to use Turbo. Currently, Turbo supports purchasing Turbo Credits with Arweave tokens (AR), Eth, and Sol.
 
-### Crypto Top Ups / Withdrawals
+```typescript
+const irys = async () => {
+	const token = "ethereum";
 
-Turbo does not natively support block chains other than Arweave. This means that some features dealing with other chains, like topping up your Irys balance with other coins, or withdrawing from your Irys balance are not *currently* supported.
+	const irys = new Irys({
+		url: "https://turbo.ardrive.io", // URL of the node you want to connect to, https://turbo.ardrive.io will facilitate upload using ArDrive Turbo.
+		token, // Token used for payment
+		key: process.env.PRIVATE_KEY, // ETH private key
+	});
+	return irys;
+};
 
-## Wallet Extensions and Providers
-
-Turbo is not *yet* designed to interact with wallet extensions and providers that are not a part of the Arweave ecosystem. While the ArDrive Web App does support generating an Arweave wallet from an EVM wallet using Metamask, Turbo cannot facilitate uploading using an EVM wallet directly.
-
-## GraphQL
-
-Projects that do claim to allow uploading from non-arweave wallets actually accept payment on their front ends and handle the actual uploading using an Arweave wallet. As such, the `owner` of an upload will not match the non-arweave wallet address and the upload cannot be found by searching for it in GraphQL. This value can, however, be added as a tag on the upload and searched in that way.
+try {
+	const fundTx = await irys.fund(irys.utils.toAtomic(0.05)); // converts 0.05 ETH to its equivalent in Wei
+	console.log(`Successfully funded ${irys.utils.fromAtomic(fundTx.quantity)} ${irys.token}`);
+} catch (e) {
+	console.log("Error funding node ", e);
+}
+```
