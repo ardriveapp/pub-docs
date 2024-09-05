@@ -55,7 +55,7 @@ irys upload importantFile.pdf -h https://turbo.ardrive.io --tags superImportant 
 irys upload-dir ./bigFolder -h https://turbo.ardrive.io 
 ```
 
-Other flags may be used as normal
+Other flags may be used as normal.
 
 
 ## Purchasing Turbo Credits with the Irys SDK
