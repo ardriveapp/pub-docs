@@ -831,18 +831,113 @@ npx turbo --help
 
 #### Commands
 
-##### `crypto-fund`
+##### `balance`
 
-Fund a wallet with Turbo Credits by submitting a payment transaction for the crypto amount to the Turbo wallet and then submitting that transaction id to Turbo Payment Service for top up processing.
+Get the balance of a connected wallet or native address in Turbo Credits.
 
 Command Options:
 
-- `-v, --value <value>` - Amount of tokens in the token type's smallest unit value to fund the wallet with
+- `-a, --address <nativeAddress>` - Native address to get the balance of
+
+e.g:
+
+```shell
+turbo balance --address `crypto-wallet-public-native-address` --token solana
+```
+
+```shell
+turbo balance --wallet-file `../path/to/my/wallet.json` --token arweave
+```
+
+##### `top-up`
+
+Top up a connected wallet or native address with Turbo Credits using a supported fiat currency. This command will create a Stripe checkout session for the top-up amount and open the URL in the default browser.
+
+Command Options:
+
+- `-a, --address <nativeAddress>` - Native address to top up
+- `-c, --currency <currency>` - Currency to top up with
+- `-v, --value <value>` - Value of fiat currency for top up. e.g: 10.50 for $10.50 USD
+
+e.g:
+
+```shell
+# Open Stripe hosted checkout session in browser to top up for 10.00 USD worth of Turbo Credits
+turbo top-up --address 'crypto-wallet-public-native-address' --token ethereum --currency USD --value 10
+```
+
+##### `crypto-fund`
+
+Fund a wallet with Turbo Credits by submitting a payment transaction for the crypto amount to the Turbo wallet and then submitting that transaction id to Turbo Payment Service for top up processing. Alternatively, submit a transaction ID of an existing funding transaction to Turbo Payment Service for top up processing.
+
+Command Options:
+
+- `-v, --value <value>` - Value of crypto token for fund. e.g: 0.0001 for 0.0001 KYVE
+- `-i, --tx-id <txId>` - Transaction ID of an existing funding transaction
 
 e.g:
 
 ```shell
 turbo crypto-fund --value 0.0001 --token kyve --private-key 'b27...45c'
+```
+
+```shell
+turbo crypto-fund --tx-id 'my-valid-arweave-fund-transaction-id' --token arweave
+```
+
+##### `upload-folder`
+
+Upload a folder of files and create and upload a manifest file for the folder upload to the Turbo Upload Service.
+
+Command Options: 
+
+- `-f, --folder-path <folderPath>` - Path to the folder to upload
+- `--index-file <indexFile>` - File to use for the "index" path in the resulting manifest
+- `--fallback-file <fallbackFile` - File to use for the "fallback" path in the resulting manifest
+- `--no-manifest` - Disable manifest creation
+- `--max-concurrency <maxConcurrency>` - Maximum number of concurrent uploads
+
+e.g:
+
+```shell
+turbo upload-folder --folder-path '../path/to/my/folder' --token solana --wallet-file ../path/to/sol/sec/key.json
+```
+
+##### `upload-file`
+
+Upload a file to the Turbo Upload Service.
+
+Command Options:
+
+- `-f, --file-path <filePath>` - Path to the file to upload
+
+e.g:
+
+```shell
+turbo upload-file --file-path '../path/to/my/file.txt' --token ethereum --wallet-file ../path/to/eth/private/key.txt
+```
+
+##### `price`
+
+Get the current credit price estimate from Turbo Payment Service for a given value and price type.
+
+Command Options: 
+
+- `--value <value>` - Value to get the price for. e.g: 10.50 for $10.50 USD, 1024 for 1 KiB, 1.1 for 1.1AR
+- `--type <type>` - Type of price to get, e.g: 'bytes', 'arweave', 'usd', 'kyve'. Default: 'bytes'
+
+e.g:
+
+```shell
+turbo price --value 10.50 --type usd
+```
+
+```shell
+turbo price --value 1024 --type bytes
+```
+
+```shell
+turbo price --value 1.1 --type arweave
 ```
 
 ## Developers
