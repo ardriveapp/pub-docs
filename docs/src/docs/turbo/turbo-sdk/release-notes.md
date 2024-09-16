@@ -6,6 +6,91 @@ Welcome to the documentation page for the Turbo SDK release notes. Here, you wil
 
 ## Releases
 
+# 1.17.0 
+
+(2024-09-13)
+
+
+### Features
+
+- **pol:** add support for matic/pol crypto fund PE-6722 ([ee523ba](https://github.com/ardriveapp/turbo-sdk/commit/ee523bacac0b0e3213e6e132af6b0195cbf64562))
+- **pol:** add support for matic/pol token uploads and top ups PE-6721 ([62ff2c8](https://github.com/ardriveapp/turbo-sdk/commit/62ff2c881f51c492b37dc87bfb47354cdc978766))
+- **price commands:** init CLI price command PE-6728 ([d737b8e](https://github.com/ardriveapp/turbo-sdk/commit/d737b8e7bdfc9cd3c0eab5d505f805477db16106))
+
+## [1.16.1](https://github.com/ardriveapp/turbo-sdk/compare/v1.16.0...v1.16.1) (2024-09-13)
+
+
+### Bug Fixes
+
+- bump kyvejs to resolve downstream errors PE-6664 ([3ccc0bf](https://github.com/ardriveapp/turbo-sdk/commit/3ccc0bf06daad6e6c182f4a13d955fc24a9097d7))
+
+# 1.16.0
+
+(2024-09-12)
+
+
+### Bug Fixes
+
+- **cli:** assign token to config PE-6632 ([d6444b2](https://github.com/ardriveapp/turbo-sdk/commit/d6444b27fd3dd774e5ffefbda785cf5f86306f91))
+
+
+### Features
+
+- **crypto fund:** add --tx-id parameter with submitFundTransaction compatibility and docs PE-6732 ([23b6035](https://github.com/ardriveapp/turbo-sdk/commit/23b6035d3e8edbd9b16864930266880056231c9b))
+- **crypto fund:** init confirmation promot PE-6732 ([3714599](https://github.com/ardriveapp/turbo-sdk/commit/3714599bd3fc050e0d97299972de0e8343b6b4ea))
+- **crypto fund:** show target wallet in confirmation prompt PE-6732 ([06f1c9a](https://github.com/ardriveapp/turbo-sdk/commit/06f1c9a2a153ec8d5e8103f87617617e3854157d))
+- **winc for token:** init getWincForToken PE-6632 ([143cb39](https://github.com/ardriveapp/turbo-sdk/commit/143cb398aa9d13437a34877003a68fc4ecdf6059))
+
+# 1.15.0
+
+(2024-09-12)
+
+
+### Bug Fixes
+
+- repair types returned from payment service PE-6718 ([f97dfcb](https://github.com/ardriveapp/turbo-sdk/commit/f97dfcb4bc042ad4755b7e3fe2bb39ceab8c21bf))
+
+
+### Features
+
+- enable unauthenticated winc for fiat promo code PE-6716 ([b2ade37](https://github.com/ardriveapp/turbo-sdk/commit/b2ade37b67444f4b0e63041746a39e6385c27d2c))
+
+## 1.14.1
+
+(2024-09-11)
+
+
+### Bug Fixes
+
+- **cli:** assign token to config PE-6632 ([5a0e837](https://github.com/ardriveapp/turbo-sdk/commit/5a0e837853888cb3536ea69a45fe6245b6a8d108))
+
+# 1.14.0
+
+(2024-09-11)
+
+
+### Bug Fixes
+
+- repair dependency errors; upgrade arweave; upgrade to [@ar](https://github.com/ar).io/arbundles PE-6664 ([a2e421f](https://github.com/ardriveapp/turbo-sdk/commit/a2e421f593abe9e37fa52a93e212445ea96bd17e))
+
+
+### Features
+
+- **upload file:** init cli upload file command PE-6636 ([f802fc5](https://github.com/ardriveapp/turbo-sdk/commit/f802fc5208ef574853f134e8ca3197fc1e6941c0))
+- **upload folder:** init CLI command PE-6636 ([17af9f3](https://github.com/ardriveapp/turbo-sdk/commit/17af9f36ff9d826ae92664691d557eb198582ccb))
+- **upload folder:** init manifest options PE-6636 ([305bd5a](https://github.com/ardriveapp/turbo-sdk/commit/305bd5a6b49ab9b326954548ab22e75807c9e080))
+
+
+# 1.13.0
+
+(2024-09-06)
+
+
+### Features
+
+- **balance:** init CLI balance command PE-6635 ([18de656](https://github.com/ardriveapp/turbo-sdk/commit/18de65605d985a901b9211f94ce68fd305c0d8e6))
+- **top-up:** init top-up with stripe checkout command PE-6635 ([c43e11b](https://github.com/ardriveapp/turbo-sdk/commit/c43e11bc82f63f9b99e061848787fd1458c71a21))
+
 ### 1.12.0
 
 (2024-08-30)
