@@ -17,7 +17,7 @@ When purchasing Turbo Credits, using either fiat currencies or crypto tokens, th
 - **Per-Byte Pricing**: Arweave requires payment for every chunk of data (256 KiB) uploaded. This means that many direct-to-network uploads have a small portion of the upload costs paying for empty space in the final chunk of the data. Turbo subsidizes this empty space, allowing users to pay only for the exact amount of data being uploaded.
 
 - **Fast Finality**: Data uploaded to Arweave nodes propagates over time to other nodes in the network so that they, and the gateways that interface with them, may serve and index that data. These retrieval and indexing latencies, lasting minutes or even hours, are eliminated by Turbo via direct integrations with leading Arweave gateways, allowing you to retrieve data immediately and query for it via GQL APIs within seconds of upload time. Additionally, Turbo uploads to gateways that seed data to various nodes on the Arweave network, facilitating more rapid and durable propagation of your data into the network.
-
+F
 - **Failed Upload Protection**: In rare occasions, transactions committed to the Arweave network are dropped when network nodes opt to reorganize the chain. And while AR value is restored to the transaction uploaders in this process, the dropped transactions may need to be recomposed and have to be resubmitted to the network. Turbo ensures that your data obtains the necessary number of confirmations on chain that mitigate the risk of reorganization and will retain and, if necessary, later submit your data in the unlikely event of a chain reorganization or network outage.
 
 - **Subsidies**: Data item uploads through Turbo under 100 KiB in size are currently fully subsidized, allowing users to upload small files for free. Subsidized uploads are not possible with direct-to-network transactions.
@@ -73,7 +73,7 @@ When purchasing Turbo Credits, using either fiat currencies or crypto tokens, th
             <td></td>
         </tr>
         <tr>
-            <th>Sign Upload Transactions From Ethereum or Solana Wallets</th>
+            <th>Sign Uploads From Ethereum or Solana Wallets</th>
             <td>✅</td>
             <td></td>
         </tr>
