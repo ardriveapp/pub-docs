@@ -118,6 +118,10 @@ module.exports = [
         path: "/docs/turbo/what-is-turbo"
       },
       {
+        title: "Turbo Credits",
+        path: "/docs/turbo/credits"
+      },
+      {
         title: "Payment API",
         path: "/docs/turbo/api/payment"
       },
