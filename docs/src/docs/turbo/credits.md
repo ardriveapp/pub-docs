@@ -10,6 +10,8 @@ Turbo Credits are the payment medium used by the Turbo Upload Service. Each cred
 
 Turbo Credits are not, themselves, a crypto token, in the sense that they cannot be traded, transferred, sold, or exchanged. 
 
+***NOTE***: Turbo Credits are non-refundable and cannot be withdrawn or exchanged for other cryptocurrencies.
+
 ## Fees and Benefits
 
 When purchasing Turbo Credits, using either fiat currencies or crypto tokens, there is a `23.4%` fee applied to the purchase price. This fee helps to develop and maintain the infrastructure used to provide a number of benefits over direct-to-network uploads (uploads using AR directly). There is no additional fee at the time of using Turbo Credits for upload. At the time of upload, Credits having the same, or better, value per GiB of storage as AR as priced by the Arweave network regardless of fluctuations in the fiat value of AR since the time of purchase.
