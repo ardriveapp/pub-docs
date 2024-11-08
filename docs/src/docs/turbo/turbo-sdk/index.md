@@ -125,6 +125,8 @@ Browser:
 </script>
 ```
 
+***NOTE***: Polyfills are not provided by default for bundled web projects (Vite, ESBuild, Webpack, Rollup, etc.) . Depending on your apps bundler configuration and plugins, you will need to provide polyfills for various imports including `crypto`, `process`, `fs` and `buffer`. Refer to your bundler's documentation for how to provide the necessary polyfills.
+
 ### NodeJS
 
 #### CommonJS
@@ -390,7 +392,7 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
 - Construct Turbo with an ETH signer
 
   ```typescript
-  const signer = new ArconnectSigner(window.arweaveWallet);
+  const signer = new EthereumSigner(privateKey);
   const turbo = TurboFactory.authenticated({ signer });
   ```
 
@@ -402,6 +404,15 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
     token: "ethereum",
   });
   ```
+
+- Construct Turbo with POL (MATIC) Private Key
+
+  ```typescript
+  const turbo = TurboFactory.authenticated({
+  privateKey: ethHexadecimalPrivateKey,
+  token: 'pol',
+  });
+```
 
 - Construct Turbo with a HexSolanaSigner
 
@@ -557,6 +568,17 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
   });
   ```
 
+- Polygon (POL / MATIC) Fiat Top UP
+
+  ```typescript
+  const turbo = TurboFactory.unauthenticated({ token: 'pol' });
+
+  const { url, winc, paymentAmount } = await turbo.createCheckoutSession({
+    amount: USD(10.0), // $10.00 USD
+    owner: publicPolygonAddress,
+  });
+  ```
+
 - KYVE Fiat Top Up
 
   ```typescript
@@ -593,7 +615,7 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
 
 #### `signer.getNativeAddress()`
 
-- Returns the native address of the connected signer.
+- Returns the [native address](https://docs.ar.io/glossary.html#native-address) of the connected signer.
 
   ```typescript
   const address = await turbo.signer.getNativeAddress();
@@ -763,6 +785,16 @@ Browser Upload Folder
   });
   ```
 
+- Polygon ( POL / MATIC ) Crypto Top Up
+
+  ```typescript
+  const turbo = TurboFactory.authenticated({ signer, token: 'pol' });
+
+  const { winc, status, id, ...fundResult } = await turbo.topUpWithTokens({
+    tokenAmount: POLToTokenAmount(0.00001), // 0.00001 POL
+  });
+  ```
+
 - KYVE Crypto Top Up
 
   ```typescript
@@ -772,6 +804,39 @@ Browser Upload Folder
     tokenAmount: KYVEToTokenAmount(0.00001), // 0.00001 KYVE
   });
   ```
+
+####  `shareCredits({ approvedAddress, approvedWincAmount, expiresBySeconds })
+
+Shares credits from the connected wallet to the provided native address and approved winc amount. This action will create a signed data item for the approval.
+
+```typescript
+const { approvalDataItemId, approvedWincAmount } = await turbo.shareCredits({
+  approvedAddress: '2cor...VUa',
+  approvedWincAmount: 0.08315565032,
+  expiresBySeconds: 3600,
+});
+```
+
+#### `revokeCredits({ approvedAddress })`
+
+Revokes all credits shared from the connected wallet to the provided native address.
+
+```typescript
+const revokedApprovals = await turbo.revokeCredits({
+  approvedAddress: '2cor...VUa',
+});
+```
+
+#### `getCreditShareApprovals({ userAddress })`
+
+Returns all given or received credit share approvals for the connected wallet or the provided native address.
+
+```typescript
+const { givenApprovals, receivedApprovals } =
+  await turbo.getCreditShareApprovals({
+    userAddress: '2cor...VUa',
+  });
+```
 
 ## CLI
 
@@ -939,6 +1004,79 @@ turbo price --value 1024 --type bytes
 ```shell
 turbo price --value 1.1 --type arweave
 ```
+
+
+#### `share-credits`
+
+Shares credits from the connected wallet to the provided native address and approved winc amount.
+
+Command Options:
+
+- `-a, --address <nativeAddress>` - Native address that will receive the Credits
+- `-v, --value <value>` - Value of winc to share to the target address
+- `-e, --expires-by-seconds <seconds>` - Expiry time in seconds for the credit share approval
+
+e.g:
+
+```bash
+turbo share-credits --address 2cor...VUa --value 0.083155650320 --wallet-file ../path/to/my/wallet --expires-by-seconds 3600
+```
+
+#### `revoke-credits`
+
+Revoke all credits shared from the connected wallet to the provided native address.
+
+Command Options:
+
+- `-a, --address <nativeAddress>` - Native address to revoke credit share approvals for
+
+e.g:
+
+```bash
+turbo revoke-credits --wallet-file ../path/to/my/wallet
+```
+
+#### `list-share`
+
+List all given and received credit share approvals from the connected wallet or the provided native address.
+
+Command Options:
+- `-a, --address <nativeAddress>` - Native address to list credit share approvals for
+
+e.g:
+
+```bash
+turbo list-shares --address 2cor...VUa --wallet-file ../path/to/my/wallet
+```
+
+## Turbo Credit Sharing
+
+Users can share their purchased Credits with other users' wallets by creating Credit Share Approvals. These approvals are created by uploading a signed data item with tags indicating the recipient's wallet address, the amount of Credits to share, and an optional amount of seconds that the approval will expire in. The recipient can then use the shared Credits to pay for their own uploads to Turbo.
+
+Shared Credits cannot be re-shared by the recipient to other recipients. Only the original owner of the Credits can share or revoke Credit Share Approvals. Credits that are shared to other wallets may not be used by the original owner of the Credits for sharing or uploading unless the Credit Share Approval is revoked or expired.
+
+Approvals can be revoked at any time by similarly uploading a signed data item with tags indicating the recipient's wallet address. This will remove all approvals and prevent the recipient from using the shared Credits. All unused Credits from expired or revoked approvals are returned to the original owner of the Credits.
+
+To use the shared Credits, recipient users must provide the wallet address of the user who shared the Credits with them in the `x-paid-by` HTTP header when uploading data. This tells Turbo services to look for and use Credit Share Approvals to pay for the upload before using the signer's balance.
+
+For user convenience, during upload the Turbo CLI will use any available Credit Share Approvals found for the connected wallet before using the signing wallet's balance. To instead ignore all Credit shares and only use the signer's balance, use the `--ignore-approvals` flag. To use the signer's balance first before using Credit shares, use the `--use-signer-balance-first` flag. In contrast, the Turbo SDK layer does not provide this functionality and will only use approvals when `paidBy` is provided.
+
+The Turbo SDK provides the following methods to manage Credit Share Approvals:
+
+- `shareCredits`: Creates a Credit Share Approval for the specified wallet address and amount of Credits.
+- `revokeCredits`: Revokes all Credit Share Approvals for the specified wallet address.
+- `listShares`: Lists all Credit Share Approvals for the specified wallet address or connected wallet.
+- `dataItemOpts: { ...opts, paidBy: string[] }`: Upload methods now accept `paidBy`, an array of wallet addresses that have provided Credit Share Approvals to the user from which to pay, in the order provided and as necessary, for the upload.
+
+The Turbo CLI provides the following commands to manage Credit Share Approvals:
+
+- `share-credits`: Creates a Credit Share Approval for the specified wallet address and amount of Credits.
+- `revoke-credits`: Revokes all Credit Share Approvals for the specified wallet address.
+- `list-shares`: Lists all Credit Share Approvals for the specified wallet address or connected wallet.
+- `paidBy: --paid-by <paidBy...>`: Upload commands now accept `--paid-by`, an array of wallet addresses that have provided credit share approvals to the user from which to pay, in the order provided and as necessary, for the upload.
+- `--ignore-approvals`: Ignore all Credit Share Approvals and only use the signer's balance.
+- `--use-signer-balance-first`: Use the signer's balance first before using Credit Share Approvals.
+
 
 ## Developers
 
