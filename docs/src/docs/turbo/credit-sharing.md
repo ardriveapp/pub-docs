@@ -7,11 +7,11 @@
 
 Turbo Credits are the payment medium used by the Turbo Upload Service to facilitate uploading data to the Arweave Blockweave. While they exist as assets accessible on Arweave, they are not a cryptocurrency token in the traditional sense. They cannot be transferred, traded, exchanged, or otherwise interacted with in a way that you typically could with a cryptocurrency token. A purchase of Turbo Credits also cannot be refunded, whether obtained via fiat or through exchanging supported cryptocurrency tokens like Ethereum or Kyve.
 
-Recently, however, the Turbo Upload Service has been upgraded to allow holders of Turbo Credits to share the upload power of those Credits with other users. This means holders of Turbo Credits can authorize other users to use some of their Credits for uploading data to Arweave without those Credits ever leaving their own wallet.
+Recently, however, the Turbo Upload Service has been upgraded to allow holders of Turbo Credits to share the upload power of those Credits with other users. This means holders of Turbo Credits can authorize other users to use some of their Credits for uploading data to Arweave without giving away control of those Credits.
 
 ## How it Works
 
-A holder of Turbo Credits may explicitly authorize another wallet to use some of their Turbo Credits for uploading to Arweave. The shared Credits become "locked", meaning that ONLY the authorized user is able to access those Credits to pay for uploading data. This happens without the Credits ever leaving the wallet of the original holder. 
+A holder of Turbo Credits may explicitly authorize another wallet to use some of their Turbo Credits for uploading to Arweave. The shared Credits become "locked", meaning that ONLY the authorized user is able to access those Credits to pay for uploading data. This happens without control of the Credits being lost by the wallet of the original holder. 
 
 Authorizations, or "Approvals" are data items that are uploaded to Arweave that the Turbo Upload Service is able to see when processing transactions. The uploaded data item states the address of the user being approved, the amount of Turbo Credits (in winc) being approved for that user, and an optional time limit at which point the approval will expire and the user will lose access to those Credits. While processing upload transactions, Turbo will automatically find these approvals for the uploading user and pull funds from shared Credits before Credits held by the user directly. Approvals that are closest to expiring will be pulled from first, unless a different criteria is provided.
 
