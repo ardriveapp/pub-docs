@@ -83,6 +83,73 @@ F
 </div>
 
 ## How to Purchase Credits
+::: warning Wallet Types
+When purchasing Turbo Credits using cryptocurrencies, the purchased Credits can only be deposited into the wallet type for the corresponding cryptocurrency. i.e. You cannot top up an ETH wallet by paying in AR.
+:::
+
+<div style="text-align: left">
+    <table class="inline-table" style="text-align: center; border-collapse: collapse;">
+    <tr style="background-color: #666; border-bottom: none;">
+        <th  colspan="6" style="border-bottom: none;">How to Top Up</th>
+    </tr>
+    <tr style="background-color: #666; border-top: none;">
+        <th style="border-top: none; border-right: none">Payment Method</th>
+        <th style="border-top: none; border-left: none; border-right: none;">Turbo SDK</th>
+        <th style="border-top: none; border-left: none; border-right: none;">Turbo CLI</th>
+        <th style="border-top: none; border-left: none; border-right: none;">Turbo API</th>
+        <th style="border-top: none; border-left: none; border-right: none;">Top Up App</th>
+        <th style="border-top: none; border-left: none;">ArDrive Web App</th>
+    </tr>
+    <tr>
+        <th>Fiat (credit/debit card)</th>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+    </tr>
+    <tr>
+        <th>AR</th>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>ETH</th>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>SOL</th>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>POL/MATIC</th>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>KYVE</th>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </table>
+</div>
 
 ### Top Up App
 

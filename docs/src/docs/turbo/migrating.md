@@ -62,6 +62,7 @@ Other flags may be used as normal.
 
 All uploads to Arweave through Turbo are paid for using Turbo Credits. Turbo Credits can be purchased through the `fund` method in the Irys SDK when the Irys instance is set to use Turbo. Currently, Turbo supports purchasing Turbo Credits with Arweave tokens (AR), Eth, and Sol.
 
+
 ***NOTE***: Turbo Credits are non-refundable and cannot be withdrawn or exchanged for other cryptocurrencies.
 
 ```typescript

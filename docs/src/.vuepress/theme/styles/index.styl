@@ -32,6 +32,11 @@ html, body, .page, .theme-container, .links, header, .prefix
   color: var(--TextColor)
   font-family: var(--fontFamily)
 
+@media (min-width: 768px)
+  .page
+    width: 1200px
+    margin: 0 auto
+
 .sidebar, .sidebar-group, .sidebar-heading, nav, .navbar, .nav-dropdown, .is-sub-group
   background: var(--BgColor2) 
   color: var(--TextColor)
@@ -78,6 +83,20 @@ h2
 .theme-default-content .tip {
   background-color:  var(--BorderColor);
   border-left-color:  var(--AccentColor);
+
+  .custom-block-title {
+    background-color: transparent;
+    color: var(--TextColor);
+    font-weight: bold;
+  }
+}
+
+/* Tip container customization */
+.theme-default-content .warning {
+  background-color:  var(--BorderColor);
+  border-left-color:  var(--AccentColor);
+   color: var(--TextColor);
+   max-width: 50%
 
   .custom-block-title {
     background-color: transparent;
