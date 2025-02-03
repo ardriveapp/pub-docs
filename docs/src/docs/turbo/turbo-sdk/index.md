@@ -76,6 +76,21 @@ try {
   const { id, owner, dataCaches, fastFinalityIndexes } = await turbo.uploadFile({
     fileStreamFactory: () => fs.createReadStream(filePath),
     fileSizeFactory: () => fileSize,
+     // optional
+    dataItemOpts: {
+      tags: [
+        // Content-type tag lets gateways know how to serve the data, if omitted, files will be downloaded as binary. 
+        {
+          name: "Content-Type",
+          value: "text/plain",
+        },
+        {
+          name: "My-Custom-Tag",
+          value: "my-custom-value",
+        },
+      ],
+      // no timeout or AbortSignal provided
+    },
   });
   // upload complete!
   console.log('Successfully upload data item!', { id, owner, dataCaches, fastFinalityIndexes });
