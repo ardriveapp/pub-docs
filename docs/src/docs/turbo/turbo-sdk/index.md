@@ -400,7 +400,7 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
 - Construct Turbo with an Arconnect signer
 
   ```typescript
-  const signer = new ArweaveSigner(jwk);
+  const signer = new ArconnectSigner(window.arweaveWallet);
   const turbo = TurboFactory.authenticated({ signer });
   ```
 
