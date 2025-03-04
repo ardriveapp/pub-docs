@@ -605,6 +605,16 @@ Creates an instance of a client that accesses Turbo's authenticated and unauthen
   });
   ```
 
+- Eth on Base Network Crypto Top Up
+
+  ```typescript
+  const turbo = TurboFactory.authenticated({ signer, token: 'base-eth' });
+
+  const { winc, status, id, ...fundResult } = await turbo.topUpWithTokens({
+    tokenAmount: ETHToTokenAmount(0.00001), // 0.00001 ETH bridged on Base Network
+  });
+  ```
+
 #### `submitFundTransaction({ txId})`
 
 - Submits the transaction ID of a funding transaction to Turbo Payment Service for top up processing. The `txId` is the transaction ID of the transaction to be submitted.
@@ -820,7 +830,7 @@ Browser Upload Folder
   });
   ```
 
-####  `shareCredits({ approvedAddress, approvedWincAmount, expiresBySeconds })
+####  `shareCredits({ approvedAddress, approvedWincAmount, expiresBySeconds })`
 
 Shares credits from the connected wallet to the provided native address and approved winc amount. This action will create a signed data item for the approval.
 

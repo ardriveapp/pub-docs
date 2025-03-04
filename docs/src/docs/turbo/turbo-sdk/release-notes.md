@@ -6,6 +6,123 @@ Welcome to the documentation page for the Turbo SDK release notes. Here, you wil
 
 ## Releases
 
+### 1.23.0
+
+(2025-02-27)
+
+Features
+
+- **eth on base:** add methods/commands for funding ETH on base network for SDK and CLI PE-7481 ([a5ac224](https://github.com/ardriveapp/turbo-sdk/commit/a5ac22488fdad80941aa32091dd92219294e2560))
+
+### 1.22.1
+
+(2025-02-10)
+
+Bug Fixes
+
+- **data post:** add retry capability on upload file as intended PE-7598 ([cfe312b](https://github.com/ardriveapp/turbo-sdk/commit/cfe312b435096b697e70d5f6db2f76714a29f630))
+- **http:** catch uncaught `get` errors, return best effort error message PE-7598 ([c884edc](https://github.com/ardriveapp/turbo-sdk/commit/c884edc64b71ab9a37f46fa614aa30a9318754b9))
+
+### 1.22.0
+
+(2025-01-22)
+
+Bug Fixes
+
+- **arconnect:** use signDataItem method, signature is deprecated PE-7455 ([0cd3ca7](https://github.com/ardriveapp/turbo-sdk/commit/0cd3ca7f59f72766f7cbc8cafb3e1fa8e5a71f24))
+
+Features
+
+- **cli:** add custom Arweave tags support ([4b367e2](https://github.com/ardriveapp/turbo-sdk/commit/4b367e28ab54df4dfa53ac477b963c49af12fb21))
+- **cli:** add tag support for file and folder uploads ([5580085](https://github.com/ardriveapp/turbo-sdk/commit/55800857bee7e8be9fdad1599c1a096ec98ee903))
+
+### 1.21.0
+
+(2024-11-25)
+
+Bug Fixes
+
+- include `pol` on exported create signer function PE-7171 ([3586f57](https://github.com/ardriveapp/turbo-sdk/commit/3586f5788e0f18f05b3dc62165db066c4a96b3e8))
+
+Features
+
+- **token-price:** init new price method PE-7171 ([c4df2f2](https://github.com/ardriveapp/turbo-sdk/commit/c4df2f214dffc6b4cb0c883ab2e0a5ea2ec26e6b))
+- **token-price:** init token-price CLI command PE-7171 ([5325173](https://github.com/ardriveapp/turbo-sdk/commit/5325173b97988b849d728d8bbba9df13abf7c879))
+
+### 1.20.2
+
+(2024-11-07)
+
+Bug Fixes
+
+- **share credits:** use web polyfilled safe Buffer.from over Readable.from ([473a469](https://github.com/ardriveapp/turbo-sdk/commit/473a4696d21c03540aec7c18d36e6f4152683b65))
+
+### 1.20.1
+
+(2024-11-05)
+
+Bug Fixes
+
+- access arweave at different levels of default for esm bundle compat PE-7069 ([4c75290](https://github.com/ardriveapp/turbo-sdk/commit/4c752909aae24eed985102511654c6361ede38a5))
+
+### 1.20.0
+
+(2024-11-04)
+
+Bug Fixes
+
+- **arweave:** modify import of Arweave in `ArweaveToken` ([b934677](https://github.com/ardriveapp/turbo-sdk/commit/b934677e00b95283d30bca0bf719d919312aabe2))
+- supply starknet dependency for resolving kyve-js -> keplr-wallet import error ([cf5ab39](https://github.com/ardriveapp/turbo-sdk/commit/cf5ab39a3a08afebbb9d4f7b535ddd40fd57798c))
+
+Features
+
+- add cli helper for --local development endpoints PE-6754 ([79fe7a0](https://github.com/ardriveapp/turbo-sdk/commit/79fe7a0b81daeec18a9ca4aa68fe300d71bee009))
+- **delegated payments:** add list-approvals command rather than overloaded balance command  PE-6754 ([ee44ef6](https://github.com/ardriveapp/turbo-sdk/commit/ee44ef6c1176734a72e5e4b310dcd9468028c779))
+- **delegated payments:** add paid-by headers for uploads when applicable PE-6754 ([953648e](https://github.com/ardriveapp/turbo-sdk/commit/953648e67719cc3c663ac75a702fd653e33b7c8f))
+- **delegated payments:** add revoke approvals to SDK and CLI PE-6754 ([f2d26da](https://github.com/ardriveapp/turbo-sdk/commit/f2d26daa5ee12008dc8173a0ee44bfc2828028ba))
+- **delegated payments:** display approvals if they exist on `balance` command PE-6754 ([669dfca](https://github.com/ardriveapp/turbo-sdk/commit/669dfca76332756e93accf1b0a01cfa8538f9e84))
+- **delegated payments:** extend turbo.getBalance method to include approval details PE-6754 ([baec107](https://github.com/ardriveapp/turbo-sdk/commit/baec1072b7750cc08bb1588dc5ff2a870f47b3e5))
+- **delegated payments:** init logic for create-approval PE-6754 ([1047762](https://github.com/ardriveapp/turbo-sdk/commit/10477621bad131ec85203814ce3846040cba15ea))
+- **delegated payments:** push created/revoked approvals into upload response if they exist PE-6754 ([33da73d](https://github.com/ardriveapp/turbo-sdk/commit/33da73d29b6db6f706f1debd1e83aa5acb5f9ee5))
+- **delegated payments:** use any approvals first by default on CLI PE-6754 ([96d4a32](https://github.com/ardriveapp/turbo-sdk/commit/96d4a32fe3d2e84a6dd3742a2d1c981acc786596))
+- update credit sharing command and method names ([c3e9bd9](https://github.com/ardriveapp/turbo-sdk/commit/c3e9bd95dc1585e80cdce1b237cab02889976d41))
+
+### 1.19.2
+
+(2024-10-21)
+
+Bug Fixes
+
+- still use relative path for manifest when folderPath inputs with `./` PE-6975 ([23007f7](https://github.com/ardriveapp/turbo-sdk/commit/23007f7115b7699b91110da41581b8023ed6a232))
+
+### 1.19.1
+
+(2024-10-17)
+
+Bug Fixes
+
+- **deps:** pin `@keplr-wallet/cosmos` dependency ([aa424f4](https://github.com/ardriveapp/turbo-sdk/commit/aa424f4d95ae6fd62be37e40d0311103622f3c11))
+
+### 1.19.0
+
+(2024-10-03)
+
+Bug Fixes
+
+- **upload file:** allows buffer type in uploadFile inputs PE-6851 ([7c8d75b](https://github.com/ardriveapp/turbo-sdk/commit/7c8d75bbdc113894f43dfb319bfc17dd3b577285))
+
+Features
+
+- **web:** implement walletAdapter for SOL and ETH web signing support PE-6052 ([2ab2486](https://github.com/ardriveapp/turbo-sdk/commit/2ab2486b98930db25cf74d9ba84f2ffeef989920))
+
+### 1.18.0
+
+(2024-09-27)
+
+Features
+
+- **cli:** add parameters to inject upload and payment urls PE-6830 ([edf2948](https://github.com/ardriveapp/turbo-sdk/commit/edf29486191bad86007e972e88897c4916784602))
+
 ### 1.17.0 
 
 (2024-09-13)
