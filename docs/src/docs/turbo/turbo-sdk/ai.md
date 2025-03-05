@@ -28,6 +28,36 @@ The SDK supports the following tokens:
 
 > **IMPORTANT**: The token being used must be specified when authenticating the TurboFactory instance. The correct token type must be specified at authentication because it affects how the class expects the signer to be formatted and how transactions are processed.
 
+
+## Content-Type Tags
+
+> **EXTREMELY IMPORTANT**: Content-Type tags are REQUIRED for all file uploads to ensure proper viewing and accessibility. Without a Content-Type tag, browsers cannot determine how to display the file, and it will only be downloadable as binary data.
+
+### Common MIME Types:
+- Text files: `text/plain`, `text/html`, `text/css`, `text/javascript`
+- Images: `image/jpeg`, `image/png`, `image/gif`, `image/svg+xml`
+- Documents: `application/pdf`, `application/msword`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
+- Audio: `audio/mpeg`, `audio/wav`
+- Video: `video/mp4`, `video/webm`
+- JSON: `application/json`
+
+### Adding Content-Type Tags:
+```typescript
+// In SDK
+await turbo.uploadFile({
+  fileStreamFactory: () => fs.createReadStream('document.pdf'),
+  fileSizeFactory: () => fs.statSync('document.pdf').size,
+  dataItemOpts: {
+    tags: [
+      { name: "Content-Type", value: "application/pdf" }
+    ]
+  }
+});
+
+// In CLI
+turbo upload-file --file-path document.pdf --content-type application/pdf
+```
+
 ## Core Types
 
 ### Basic Types
@@ -570,34 +600,7 @@ The SDK includes a CLI tool with the following commands:
    - Options:
      - `-a, --address <nativeAddress>`: Address to check
 
-## Content-Type Tags
 
-> **EXTREMELY IMPORTANT**: Content-Type tags are REQUIRED for all file uploads to ensure proper viewing and accessibility. Without a Content-Type tag, browsers cannot determine how to display the file, and it will only be downloadable as binary data.
-
-### Common MIME Types:
-- Text files: `text/plain`, `text/html`, `text/css`, `text/javascript`
-- Images: `image/jpeg`, `image/png`, `image/gif`, `image/svg+xml`
-- Documents: `application/pdf`, `application/msword`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
-- Audio: `audio/mpeg`, `audio/wav`
-- Video: `video/mp4`, `video/webm`
-- JSON: `application/json`
-
-### Adding Content-Type Tags:
-```typescript
-// In SDK
-await turbo.uploadFile({
-  fileStreamFactory: () => fs.createReadStream('document.pdf'),
-  fileSizeFactory: () => fs.statSync('document.pdf').size,
-  dataItemOpts: {
-    tags: [
-      { name: "Content-Type", value: "application/pdf" }
-    ]
-  }
-});
-
-// In CLI
-turbo upload-file --file-path document.pdf --content-type application/pdf
-```
 
 ## Credit Sharing
 
