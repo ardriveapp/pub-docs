@@ -315,7 +315,7 @@ The SDK supports multiple authentication methods:
 
 Includes all TurboUnauthenticatedClient methods plus:
 
-1. `getBalance(): Promise<BalanceResponse>`
+1. `getBalance(): Promise<TurboBalanceResponse>`
    - Returns credit balance in winc
 
 2. `signer.getNativeAddress(): Promise<string>`
@@ -342,7 +342,7 @@ Includes all TurboUnauthenticatedClient methods plus:
      - `signal`: Optional AbortSignal
    - Signs and uploads a raw file
 
-   > **IMPORTANT**: When using `uploadFile`, you must manually add a Content-Type tag to specify the file's MIME type. Without this tag, the file can only be downloaded as a binary and not viewed as the original file type. Example:
+   > **EXTREMELY IMPORTANT**: When using `uploadFile`, you MUST add a Content-Type tag to specify the file's MIME type. Without this tag, files cannot be properly viewed in browsers and will only be downloadable as binary data. This is a critical step for all file uploads. Example:
    > ```typescript
    > await turbo.uploadFile({
    >   fileStreamFactory: () => fs.createReadStream('image.png'),
@@ -366,7 +366,7 @@ Includes all TurboUnauthenticatedClient methods plus:
      - `manifestOptions`: Optional manifest configuration
    - Signs and uploads a folder of files with manifest
 
-   > **IMPORTANT**: Unlike `uploadFile`, the `uploadFolder` method automatically identifies file MIME types and adds appropriate Content-Type tags, so files can be properly viewed when accessed.
+   > **NOTE**: Unlike `uploadFile`, the `uploadFolder` method automatically identifies file MIME types and adds appropriate Content-Type tags, so files can be properly viewed when accessed.
 
 7. `topUpWithTokens({ tokenAmount, feeMultiplier }): Promise<TopUpResponse>`
    - Parameters:
@@ -544,8 +544,8 @@ The SDK includes a CLI tool with the following commands:
    - Upload a single file
    - Options:
      - `-f, --file-path <filePath>`: Path to file
-     - `--content-type <contentType>`: MIME type for the file (important for proper viewing)
-   - Note: Without specifying content-type, files will be downloaded as binary
+     - `--content-type <contentType>`: MIME type for the file (REQUIRED for proper viewing)
+   - **EXTREMELY IMPORTANT**: Always specify the content-type when using this command. Without it, files will be inaccessible as their original format.
 
 6. `price`
    - Get price estimates
@@ -569,6 +569,35 @@ The SDK includes a CLI tool with the following commands:
    - List credit share approvals
    - Options:
      - `-a, --address <nativeAddress>`: Address to check
+
+## Content-Type Tags
+
+> **EXTREMELY IMPORTANT**: Content-Type tags are REQUIRED for all file uploads to ensure proper viewing and accessibility. Without a Content-Type tag, browsers cannot determine how to display the file, and it will only be downloadable as binary data.
+
+### Common MIME Types:
+- Text files: `text/plain`, `text/html`, `text/css`, `text/javascript`
+- Images: `image/jpeg`, `image/png`, `image/gif`, `image/svg+xml`
+- Documents: `application/pdf`, `application/msword`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
+- Audio: `audio/mpeg`, `audio/wav`
+- Video: `video/mp4`, `video/webm`
+- JSON: `application/json`
+
+### Adding Content-Type Tags:
+```typescript
+// In SDK
+await turbo.uploadFile({
+  fileStreamFactory: () => fs.createReadStream('document.pdf'),
+  fileSizeFactory: () => fs.statSync('document.pdf').size,
+  dataItemOpts: {
+    tags: [
+      { name: "Content-Type", value: "application/pdf" }
+    ]
+  }
+});
+
+// In CLI
+turbo upload-file --file-path document.pdf --content-type application/pdf
+```
 
 ## Credit Sharing
 
