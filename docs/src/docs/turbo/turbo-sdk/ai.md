@@ -141,12 +141,16 @@ export type TurboSubmitFundTxResponse = {
 export type TurboFileFactory<T = FileStreamFactory> = {
   fileStreamFactory: T;  // Function that returns a file stream
   fileSizeFactory: () => number;  // Function that returns file size
-  dataItemOpts?: DataItemOptions;  // Optional configuration
+  dataItemOpts: {  // REQUIRED for proper file viewing
+    tags: [
+      { name: "Content-Type", value: string }  // REQUIRED tag
+    ]
+  }
 };
 
 // Folder upload parameters
 export type UploadFolderParams = {
-  dataItemOpts?: DataItemOptions;
+  dataItemOpts?: DataItemOptions;  // Optional for folders (auto-detected)
   maxConcurrentUploads?: number;
   throwOnFailure?: boolean;
   manifestOptions?: {
@@ -368,18 +372,18 @@ Includes all TurboUnauthenticatedClient methods plus:
    - Parameters:
      - `fileStreamFactory`: Function returning file stream
      - `fileSizeFactory`: Function returning file size
-     - `dataItemOpts`: Optional data item options
+     - `dataItemOpts`: **REQUIRED** - Must include Content-Type tag
      - `signal`: Optional AbortSignal
    - Signs and uploads a raw file
 
-   > **EXTREMELY IMPORTANT**: When using `uploadFile`, you MUST add a Content-Type tag to specify the file's MIME type. Without this tag, files cannot be properly viewed in browsers and will only be downloadable as binary data. This is a critical step for all file uploads. Example:
+   > **EXTREMELY IMPORTANT**: When using `uploadFile`, you MUST add a Content-Type tag to specify the file's MIME type. The `dataItemOpts` parameter with tags is NOT optional for proper functionality. Without this tag, files cannot be properly viewed in browsers and will only be downloadable as binary data. This is a critical step for all file uploads. Example:
    > ```typescript
    > await turbo.uploadFile({
    >   fileStreamFactory: () => fs.createReadStream('image.png'),
    >   fileSizeFactory: () => fs.statSync('image.png').size,
-   >   dataItemOpts: {
+   >   dataItemOpts: {  // REQUIRED
    >     tags: [
-   >       { name: "Content-Type", value: "image/png" }
+   >       { name: "Content-Type", value: "image/png" }  // REQUIRED
    >     ]
    >   }
    > });
@@ -575,7 +579,7 @@ The SDK includes a CLI tool with the following commands:
    - Options:
      - `-f, --file-path <filePath>`: Path to file
      - `--content-type <contentType>`: MIME type for the file (REQUIRED for proper viewing)
-   - **EXTREMELY IMPORTANT**: Always specify the content-type when using this command. Without it, files will be inaccessible as their original format.
+   - **EXTREMELY IMPORTANT**: The `--content-type` parameter is NOT optional. Always specify the content-type when using this command. Without it, files will be inaccessible as their original format.
 
 6. `price`
    - Get price estimates
