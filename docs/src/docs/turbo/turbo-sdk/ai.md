@@ -26,6 +26,8 @@ The SDK supports the following tokens:
 - KYVE
 - Ethereum on Base (ETH on Base) - Added in v1.23.0
 
+> **IMPORTANT**: The token being used must be specified when authenticating the TurboFactory instance. The correct token type must be specified at authentication because it affects how the class expects the signer to be formatted and how transactions are processed.
+
 ## Core Types
 
 ### Basic Types
@@ -172,6 +174,8 @@ The main entry point for creating Turbo clients.
 
 The SDK supports multiple authentication methods:
 
+> **IMPORTANT**: The authentication methods for all EVM-based tokens (Ethereum, Polygon, ETH on Base) use the same pattern, but you must specify the correct token type in the options. The signer format is the same for these tokens, but the network and endpoints used will differ based on the specified token.
+
 1. **Arweave JWK**
    ```typescript
    const turbo = TurboFactory.authenticated({ privateKey: jwk });
@@ -265,223 +269,116 @@ The SDK supports multiple authentication methods:
 
 ### TurboUnauthenticatedClient Methods
 
-1. `getSupportedCurrencies(): Promise<TurboCurrenciesResponse>`
-   - Returns:
-     ```typescript
-     {
-       supportedCurrencies: Currency[];
-       limits: Record<Currency, CurrencyLimit>;
-     }
-     ```
+1. `getSupportedCurrencies(): Promise<string[]>`
    - Returns list of currencies supported for topping up
 
-2. `getSupportedCountries(): Promise<Country[]>`
+2. `getSupportedCountries(): Promise<string[]>`
    - Returns list of countries supported for top-up workflow
 
-3. `getFiatToAR({ currency }): Promise<TurboFiatToArResponse>`
+3. `getFiatToAR({ currency }): Promise<number>`
    - Parameters:
      - `currency`: String currency code
-   - Returns:
-     ```typescript
-     {
-       currency: Currency;
-       rate: number;
-     }
-     ```
    - Returns raw fiat to AR conversion rate
 
-4. `getFiatRates(): Promise<TurboRatesResponse>`
-   - Returns:
-     ```typescript
-     {
-       winc: string;
-       adjustments: Adjustment[];
-       fees: Adjustment[];
-       fiat: Record<Currency, number>;
-     }
-     ```
+4. `getFiatRates(): Promise<FiatRates>`
    - Returns current fiat rates for 1 GiB of data
 
-5. `getWincForFiat({ amount }): Promise<TurboWincForFiatResponse>`
+5. `getWincForFiat({ amount }): Promise<WincForFiatResponse>`
    - Parameters:
      - `amount`: Fiat amount (use helper like `USD(100)`)
-   - Returns:
-     ```typescript
-     {
-       winc: string;
-       adjustments: Adjustment[];
-       fees: Adjustment[];
-       actualPaymentAmount: number;
-       quotedPaymentAmount: number;
-     }
-     ```
    - Returns winc amount with payment details
 
-6. `getUploadCosts({ bytes }): Promise<TurboPriceResponse[]>`
+6. `getUploadCosts({ bytes }): Promise<UploadCostResponse[]>`
    - Parameters:
      - `bytes`: Array of file sizes in bytes
-   - Returns array of:
-     ```typescript
-     {
-       winc: string;
-       adjustments: Adjustment[];
-       fees: Adjustment[];
-     }
-     ```
    - Returns estimated costs in winc
 
-7. `uploadSignedDataItem({ dataItemStreamFactory, dataItemSizeFactory, signal }): Promise<TurboUploadDataItemResponse>`
+7. `uploadSignedDataItem({ dataItemStreamFactory, dataItemSizeFactory, signal }): Promise<UploadResponse>`
    - Parameters:
      - `dataItemStreamFactory`: Function returning a data stream
      - `dataItemSizeFactory`: Function returning size
      - `signal`: Optional AbortSignal
-   - Returns:
-     ```typescript
-     {
-       dataCaches: string[];
-       fastFinalityIndexes: string[];
-       id: TransactionId;
-       owner: PublicArweaveAddress;
-       winc: string;
-     }
-     ```
    - Uploads a pre-signed data item
 
-8. `createCheckoutSession({ amount, owner }): Promise<TurboCheckoutSessionResponse>`
+8. `createCheckoutSession({ amount, owner }): Promise<CheckoutSessionResponse>`
    - Parameters:
      - `amount`: Fiat amount (use helper like `USD(10.0)`)
      - `owner`: Wallet address
-   - Returns:
-     ```typescript
-     {
-       id: string;
-       client_secret?: string;
-       url?: string;
-       winc: string;
-       adjustments: Adjustment[];
-       fees: Adjustment[];
-       actualPaymentAmount: number;
-       quotedPaymentAmount: number;
-       paymentAmount: number; // Deprecated
-     }
-     ```
    - Creates a Stripe checkout session for top-up
 
-9. `submitFundTransaction({ txId }): Promise<TurboSubmitFundTxResponse>`
+9. `submitFundTransaction({ txId }): Promise<FundTransactionResponse>`
    - Parameters:
      - `txId`: Transaction ID
-   - Returns:
-     ```typescript
-     {
-       id: string;
-       quantity: string;
-       owner: string;
-       winc: string;
-       token: string;
-       status: 'pending' | 'confirmed' | 'failed';
-       block?: number;
-     }
-     ```
    - Submits existing funding transaction for processing
 
 ### TurboAuthenticatedClient Methods
 
 Includes all TurboUnauthenticatedClient methods plus:
 
-1. `getBalance(): Promise<TurboBalanceResponse>`
-   - Returns:
-     ```typescript
-     {
-       controlledWinc: string;
-       winc: string;
-       effectiveBalance: string;
-       receivedApprovals: CreditShareApproval[];
-       givenApprovals: CreditShareApproval[];
-     }
-     ```
+1. `getBalance(): Promise<BalanceResponse>`
    - Returns credit balance in winc
 
 2. `signer.getNativeAddress(): Promise<string>`
    - Returns native address of connected signer
 
-3. `getWincForFiat({ amount, promoCodes }): Promise<TurboWincForFiatResponse>`
+3. `getWincForFiat({ amount, promoCodes }): Promise<WincForFiatResponse>`
    - Parameters:
      - `amount`: Fiat amount
      - `promoCodes`: Optional array of promo codes
    - Returns winc amount with promo code benefits
 
-4. `createCheckoutSession({ amount, owner, promoCodes }): Promise<TurboCheckoutSessionResponse>`
+4. `createCheckoutSession({ amount, owner, promoCodes }): Promise<CheckoutSessionResponse>`
    - Parameters:
      - `amount`: Fiat amount
      - `owner`: Wallet address
      - `promoCodes`: Optional array of promo codes
    - Creates checkout session with promo code benefits
 
-5. `uploadFile({ fileStreamFactory, fileSizeFactory, dataItemOpts, signal }): Promise<TurboUploadDataItemResponse>`
+5. `uploadFile({ fileStreamFactory, fileSizeFactory, dataItemOpts, signal }): Promise<UploadResponse>`
    - Parameters:
      - `fileStreamFactory`: Function returning file stream
      - `fileSizeFactory`: Function returning file size
-     - `dataItemOpts`: Optional configuration for tags, target, anchor
+     - `dataItemOpts`: Optional data item options
      - `signal`: Optional AbortSignal
    - Signs and uploads a raw file
 
-6. `uploadFolder({ folderPath, files, dataItemOpts, signal, maxConcurrentUploads, throwOnFailure, manifestOptions }): Promise<TurboUploadFolderResponse>`
+   > **IMPORTANT**: When using `uploadFile`, you must manually add a Content-Type tag to specify the file's MIME type. Without this tag, the file can only be downloaded as a binary and not viewed as the original file type. Example:
+   > ```typescript
+   > await turbo.uploadFile({
+   >   fileStreamFactory: () => fs.createReadStream('image.png'),
+   >   fileSizeFactory: () => fs.statSync('image.png').size,
+   >   dataItemOpts: {
+   >     tags: [
+   >       { name: "Content-Type", value: "image/png" }
+   >     ]
+   >   }
+   > });
+   > ```
+
+6. `uploadFolder({ folderPath, files, dataItemOpts, signal, maxConcurrentUploads, throwOnFailure, manifestOptions }): Promise<UploadFolderResponse>`
    - Parameters:
      - `folderPath`: Path to folder (NodeJS)
-     - `files`: Array of files (Browser)
-     - `dataItemOpts`: Optional configuration
+     - `files`: Array of files (Web)
+     - `dataItemOpts`: Optional data item options
      - `signal`: Optional AbortSignal
      - `maxConcurrentUploads`: Optional concurrency limit
      - `throwOnFailure`: Optional error handling flag
      - `manifestOptions`: Optional manifest configuration
-   - Returns:
-     ```typescript
-     {
-       fileResponses: TurboUploadDataItemResponse[];
-       manifestResponse?: TurboUploadDataItemResponse;
-       manifest?: ArweaveManifest;
-       errors?: Error[];
-     }
-     ```
    - Signs and uploads a folder of files with manifest
 
-7. `topUpWithTokens({ tokenAmount, feeMultiplier }): Promise<TurboCryptoFundResponse>`
+   > **IMPORTANT**: Unlike `uploadFile`, the `uploadFolder` method automatically identifies file MIME types and adds appropriate Content-Type tags, so files can be properly viewed when accessed.
+
+7. `topUpWithTokens({ tokenAmount, feeMultiplier }): Promise<TopUpResponse>`
    - Parameters:
      - `tokenAmount`: Amount in token's smallest unit
      - `feeMultiplier`: Optional transaction fee multiplier
-   - Returns:
-     ```typescript
-     {
-       id: string;
-       quantity: string;
-       owner: string;
-       winc: string;
-       token: string;
-       status: 'pending' | 'confirmed' | 'failed';
-       block?: number;
-       target: string;
-       reward?: string;
-     }
-     ```
-   - Tops up wallet with credits using tokens
+   - Funds account with tokens from connected wallet
 
 8. `shareCredits({ approvedAddress, approvedWincAmount, expiresBySeconds }): Promise<CreditShareApproval>`
    - Parameters:
-     - `approvedAddress`: Recipient address
+     - `approvedAddress`: Address to share with
      - `approvedWincAmount`: Amount to share
-     - `expiresBySeconds`: Expiry time
-   - Returns:
-     ```typescript
-     {
-       approvalDataItemId: TransactionId;
-       approvedAddress: UserAddress;
-       payingAddress: UserAddress;
-       approvedWincAmount: string;
-       usedWincAmount: string;
-       creationDate: string;
-       expirationDate: string | undefined;
-     }
-     ```
+     - `expiresBySeconds`: Optional expiration time
    - Shares credits with another wallet
 
 9. `revokeCredits({ approvedAddress }): Promise<CreditShareApproval[]>`
@@ -505,6 +402,8 @@ Includes all TurboUnauthenticatedClient methods plus:
 ## Token-Specific Operations
 
 ### Funding with Tokens
+
+> **IMPORTANT**: The token type specified during TurboFactory authentication determines which network and wallet will be used for funding operations. Make sure to authenticate with the correct token type before calling `topUpWithTokens()`.
 
 1. **Arweave (AR)**
    ```typescript
@@ -639,11 +538,14 @@ The SDK includes a CLI tool with the following commands:
      - `--fallback-file <fallbackFile>`: Custom fallback file
      - `--no-manifest`: Disable manifest creation
      - `--max-concurrency <maxConcurrency>`: Concurrent upload limit
+   - Note: Automatically identifies and adds Content-Type tags for files
 
 5. `upload-file`
    - Upload a single file
    - Options:
      - `-f, --file-path <filePath>`: Path to file
+     - `--content-type <contentType>`: MIME type for the file (important for proper viewing)
+   - Note: Without specifying content-type, files will be downloaded as binary
 
 6. `price`
    - Get price estimates
