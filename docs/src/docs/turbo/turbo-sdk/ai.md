@@ -31,7 +31,7 @@ The SDK supports the following tokens:
 
 ## Content-Type Tags
 
-> **EXTREMELY IMPORTANT**: Content-Type tags are REQUIRED for all file uploads to ensure proper viewing and accessibility. Without a Content-Type tag, browsers cannot determine how to display the file, and it will only be downloadable as binary data.
+> **EXTREMELY IMPORTANT**: Content-Type tags are REQUIRED for all Turbo.uploadFile() calls to ensure proper viewing and accessibility. Without a Content-Type tag, browsers cannot determine how to display the file, and it will only be downloadable as binary data.
 
 ### Common MIME Types:
 - Text files: `text/plain`, `text/html`, `text/css`, `text/javascript`
@@ -78,6 +78,12 @@ export type SolSecretKey = Base58String;
 export type EthPrivateKey = HexadecimalString;
 export type KyvePrivateKey = HexadecimalString;
 export type TurboWallet = ArweaveJWK | SolSecretKey | EthPrivateKey;
+
+// Signer types
+export type TurboDataItemSigner = {
+  signDataItem: (dataItem: DataItem): Promise<DataItem>;
+  getNativeAddress: () => Promise<string>;
+};
 
 // Currency and token types
 export type Currency = 'usd' | 'eur' | 'gbp' | 'cad' | 'aud' | 'jpy' | 'inr' | 'sgd' | 'hkd' | 'brl';
@@ -141,9 +147,9 @@ export type TurboSubmitFundTxResponse = {
 export type TurboFileFactory<T = FileStreamFactory> = {
   fileStreamFactory: T;  // Function that returns a file stream
   fileSizeFactory: () => number;  // Function that returns file size
-  dataItemOpts: {  // REQUIRED for proper file viewing
+  dataItemOpts?: {  // Optional, but recommended for proper file viewing
     tags: [
-      { name: "Content-Type", value: string }  // REQUIRED tag
+      { name: "Content-Type", value: string }  // Recommended for proper file viewing
     ]
   }
 };
@@ -206,7 +212,9 @@ The main entry point for creating Turbo clients.
 
 ### Authentication Options
 
-The SDK supports multiple authentication methods:
+The SDK supports multiple authentication methods through the `TurboDataItemSigner` interface. Each signer must implement:
+- `signDataItem(dataItem: DataItem): Promise<DataItem>` - Signs a data item
+- `getNativeAddress(): Promise<string>` - Returns the native address of the signer
 
 > **IMPORTANT**: The authentication methods for all EVM-based tokens (Ethereum, Polygon, ETH on Base) use the same pattern, but you must specify the correct token type in the options. The signer format is the same for these tokens, but the network and endpoints used will differ based on the specified token.
 
@@ -299,6 +307,8 @@ The SDK supports multiple authentication methods:
    });
    ```
 
+> **NOTE**: When using a signer directly, you don't need to specify the `token` type as it's inferred from the signer implementation. However, when using `privateKey` or `walletAdapter`, you must specify the correct `token` type to ensure proper network and endpoint configuration.
+
 ## API Reference
 
 ### TurboUnauthenticatedClient Methods
@@ -372,18 +382,18 @@ Includes all TurboUnauthenticatedClient methods plus:
    - Parameters:
      - `fileStreamFactory`: Function returning file stream
      - `fileSizeFactory`: Function returning file size
-     - `dataItemOpts`: **REQUIRED** - Must include Content-Type tag
+     - `dataItemOpts`: Optional - Recommended to include Content-Type tag for proper file viewing
      - `signal`: Optional AbortSignal
    - Signs and uploads a raw file
 
-   > **EXTREMELY IMPORTANT**: When using `uploadFile`, you MUST add a Content-Type tag to specify the file's MIME type. The `dataItemOpts` parameter with tags is NOT optional for proper functionality. Without this tag, files cannot be properly viewed in browsers and will only be downloadable as binary data. This is a critical step for all file uploads. Example:
+   > **IMPORTANT**: While `dataItemOpts` is technically optional, it's strongly recommended to include a Content-Type tag when using `uploadFile` to ensure proper file viewing. Without this tag, files cannot be properly viewed in browsers and will only be downloadable as binary data. Example:
    > ```typescript
    > await turbo.uploadFile({
    >   fileStreamFactory: () => fs.createReadStream('image.png'),
    >   fileSizeFactory: () => fs.statSync('image.png').size,
-   >   dataItemOpts: {  // REQUIRED
+   >   dataItemOpts: {  // Recommended for proper file viewing
    >     tags: [
-   >       { name: "Content-Type", value: "image/png" }  // REQUIRED
+   >       { name: "Content-Type", value: "image/png" }  // Recommended for proper file viewing
    >     ]
    >   }
    > });
