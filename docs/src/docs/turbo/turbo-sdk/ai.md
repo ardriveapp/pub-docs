@@ -384,12 +384,56 @@ Includes all TurboUnauthenticatedClient methods plus:
      - `files`: Array of files (Web)
      - `dataItemOpts`: Optional data item options
      - `signal`: Optional AbortSignal
-     - `maxConcurrentUploads`: Optional concurrency limit
+     - `maxConcurrentUploads`: Optional concurrency limit (defaults to system-defined limit)
      - `throwOnFailure`: Optional error handling flag
      - `manifestOptions`: Optional manifest configuration
    - Signs and uploads a folder of files with manifest
+   - **Implementation Details**:
+     - Uses `pLimit` for concurrent upload control
+     - Creates an Arweave manifest for the folder structure
+     - Handles file uploads in parallel batches
+     - Automatically retries failed uploads based on configuration
+     - Returns both upload results and manifest information
+   
+   > **NOTE**: The `uploadFolder` method handles the entire upload process, including:
+   > 1. Concurrent file uploads with rate limiting
+   > 2. Automatic MIME type detection for each file
+   > 3. Manifest generation for preserving folder structure
+   > 4. Retry logic for failed uploads
+   > 5. Progress tracking for all files
 
-   > **NOTE**: Unlike `uploadFile`, the `uploadFolder` method automatically identifies file MIME types and adds appropriate Content-Type tags, so files can be properly viewed when accessed.
+   Example usage:
+   ```typescript
+   // NodeJS - Upload entire folder with default settings
+   const result = await turbo.uploadFolder({
+     folderPath: './my-folder'
+   });
+
+   // NodeJS - Upload with custom settings
+   const result = await turbo.uploadFolder({
+     folderPath: './my-folder',
+     maxConcurrentUploads: 3,
+     throwOnFailure: true,
+     manifestOptions: {
+       indexFile: 'index.html',
+       fallbackFile: '404.html'
+     }
+   });
+
+   // Web - Upload files from input
+   const result = await turbo.uploadFolder({
+     files: folderInput.files,
+     maxConcurrentUploads: 5
+   });
+   ```
+
+   The response includes:
+   ```typescript
+   {
+     manifest: ArweaveManifest;  // Manifest data for the folder structure
+     response: TurboUploadDataItemResponse;  // Upload transaction details
+   }
+   ```
 
 6. `uploadFile({ fileStreamFactory, fileSizeFactory, dataItemOpts, signal }): Promise<UploadResponse>`
    - Parameters:
