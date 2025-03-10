@@ -31,7 +31,7 @@ The SDK supports the following tokens:
 
 ## Content-Type Tags
 
-> **EXTREMELY IMPORTANT**: Content-Type tags are REQUIRED for all Turbo.uploadFile() calls to ensure proper viewing and accessibility. Without a Content-Type tag, browsers cannot determine how to display the file, and it will only be downloadable as binary data.
+> **EXTREMELY IMPORTANT**: Content-Type tags are REQUIRED for all turbo.uploadFile() calls to ensure proper viewing and accessibility. Without a Content-Type tag, browsers cannot determine how to display the file, and it will only be downloadable as binary data.
 
 ### Common MIME Types:
 - Text files: `text/plain`, `text/html`, `text/css`, `text/javascript`
@@ -378,7 +378,20 @@ Includes all TurboUnauthenticatedClient methods plus:
      - `promoCodes`: Optional array of promo codes
    - Creates checkout session with promo code benefits
 
-5. `uploadFile({ fileStreamFactory, fileSizeFactory, dataItemOpts, signal }): Promise<UploadResponse>`
+5. `uploadFolder({ folderPath, files, dataItemOpts, signal, maxConcurrentUploads, throwOnFailure, manifestOptions }): Promise<UploadFolderResponse>`
+   - Parameters:
+     - `folderPath`: Path to folder (NodeJS)
+     - `files`: Array of files (Web)
+     - `dataItemOpts`: Optional data item options
+     - `signal`: Optional AbortSignal
+     - `maxConcurrentUploads`: Optional concurrency limit
+     - `throwOnFailure`: Optional error handling flag
+     - `manifestOptions`: Optional manifest configuration
+   - Signs and uploads a folder of files with manifest
+
+   > **NOTE**: Unlike `uploadFile`, the `uploadFolder` method automatically identifies file MIME types and adds appropriate Content-Type tags, so files can be properly viewed when accessed.
+
+6. `uploadFile({ fileStreamFactory, fileSizeFactory, dataItemOpts, signal }): Promise<UploadResponse>`
    - Parameters:
      - `fileStreamFactory`: Function returning file stream
      - `fileSizeFactory`: Function returning file size
@@ -398,19 +411,6 @@ Includes all TurboUnauthenticatedClient methods plus:
    >   }
    > });
    > ```
-
-6. `uploadFolder({ folderPath, files, dataItemOpts, signal, maxConcurrentUploads, throwOnFailure, manifestOptions }): Promise<UploadFolderResponse>`
-   - Parameters:
-     - `folderPath`: Path to folder (NodeJS)
-     - `files`: Array of files (Web)
-     - `dataItemOpts`: Optional data item options
-     - `signal`: Optional AbortSignal
-     - `maxConcurrentUploads`: Optional concurrency limit
-     - `throwOnFailure`: Optional error handling flag
-     - `manifestOptions`: Optional manifest configuration
-   - Signs and uploads a folder of files with manifest
-
-   > **NOTE**: Unlike `uploadFile`, the `uploadFolder` method automatically identifies file MIME types and adds appropriate Content-Type tags, so files can be properly viewed when accessed.
 
 7. `topUpWithTokens({ tokenAmount, feeMultiplier }): Promise<TopUpResponse>`
    - Parameters:
