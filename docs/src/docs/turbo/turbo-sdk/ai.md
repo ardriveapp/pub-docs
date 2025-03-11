@@ -9,6 +9,51 @@
   aiConsumptionLevel: "Optimized"
 }
 
+@critical-methods-comparison {
+  section: "File Upload Methods",
+  importance: "HIGH",
+  placement: "TOP"
+}
+
+## Key Upload Methods Distinction
+
+• `uploadFile` Method
+  - Purpose: Single file upload
+  - Content-Type Requirements:
+    * REQUIRES manual Content-Type tag specification
+    * Must be included in dataItemOpts.tags
+    * Without proper Content-Type, files become inaccessible in original format
+  - Usage Pattern:
+    * Direct file-to-file upload
+    * No automatic MIME type detection
+    * No folder structure preservation
+  - Best For:
+    * Individual file uploads
+    * Custom tag requirements
+    * Direct control over Content-Type
+  - Not For:
+    * Recursively uploading files in a folder
+
+• `uploadFolder` Method
+  - Purpose: Multiple files/directory upload
+  - Content-Type Handling:
+    * AUTOMATIC Content-Type detection for all files
+    * No manual tag specification needed
+    * Preserves file accessibility automatically
+  - Features:
+    * Creates Arweave manifest
+    * Preserves folder structure
+    * Handles concurrent uploads
+    * Built-in retry logic
+  - Environment-Specific Requirements:
+    * Node.js: Uses folderPath parameter
+    * Web: Uses files parameter (File[] from input/drag-drop)
+  - Best For:
+    * Directory uploads
+    * Bulk file uploads
+    * Maintaining folder structure
+    * Automatic MIME type handling
+
 @semantic-markers {
   critical: ["IMPORTANT", "EXTREMELY IMPORTANT", "REQUIRED"],
   relationships: ["extends", "implements", "requires"],
@@ -220,10 +265,15 @@ export type TurboFileFactory<T = FileStreamFactory> = {
   dataItemOpts?: DataItemOptions;  // REQUIRED to include Content-Type tag for uploadFile
 };
 
-// Folder upload parameters
+// Folder upload parameters - Environment specific!
 export type UploadFolderParams = {
-  folderPath?: string;  // Required for NodeJS
-  files?: File[];  // Required for Web
+  // Node.js environment only:
+  folderPath?: string;  // Required for Node.js - path to folder on filesystem
+
+  // Web environment only:
+  files?: File[];  // Required for Web - array of File objects from input or drag-and-drop
+
+  // Common parameters for both environments:
   dataItemOpts?: DataItemOptions;  // Optional - Content-Type tags are auto-detected
   maxConcurrentUploads?: number;
   throwOnFailure?: boolean;
@@ -447,28 +497,22 @@ Includes all TurboUnauthenticatedClient methods plus:
    - Creates checkout session with promo code benefits
 
 5. `uploadFolder({ folderPath, files, dataItemOpts, signal, maxConcurrentUploads, throwOnFailure, manifestOptions }): Promise<UploadFolderResponse>`
-   - Parameters:
-     - `folderPath`: Path to folder (NodeJS)
-     - `files`: Array of files (Web)
+   - Environment-specific Parameters:
+     - Node.js:
+       - `folderPath`: Path to folder on filesystem (REQUIRED for Node.js)
+     - Web:
+       - `files`: Array of File objects from input or drag-and-drop (REQUIRED for Web)
+   - Common Parameters:
      - `dataItemOpts`: Optional data item options
      - `signal`: Optional AbortSignal
-     - `maxConcurrentUploads`: Optional concurrency limit (defaults to system-defined limit)
+     - `maxConcurrentUploads`: Optional concurrency limit
      - `throwOnFailure`: Optional error handling flag
      - `manifestOptions`: Optional manifest configuration
-   - Signs and uploads a folder of files with manifest
-   - **Implementation Details**:
-     - Uses `pLimit` for concurrent upload control
-     - Creates an Arweave manifest for the folder structure
-     - Handles file uploads in parallel batches
-     - Automatically retries failed uploads based on configuration
-     - Returns both upload results and manifest information
    
-   > **NOTE**: The `uploadFolder` method handles the entire upload process automatically, including:
-   > 1. Concurrent file uploads with rate limiting
-   > 2. Automatic MIME type detection for each file
-   > 3. Manifest generation for preserving folder structure
-   > 4. Retry logic for failed uploads
-   > 5. Progress tracking for all files
+   > **IMPORTANT**: You must use the appropriate parameter for your environment:
+   > - Node.js applications must use `folderPath`
+   > - Web applications must use `files`
+   > Using the wrong parameter for your environment will result in an error.
 
    ### Node.js Environment Example:
    ```typescript
