@@ -180,6 +180,20 @@ export type UserAddress = string | PublicArweaveAddress;
 export type Base58String = string;
 export type HexadecimalString = string;
 
+// Stream factory types
+export type FileStreamFactory = WebFileStreamFactory | NodeFileStreamFactory;
+export type WebFileStreamFactory = (() => ReadableStream) | (() => Buffer);
+export type NodeFileStreamFactory = (() => Readable) | (() => Buffer);
+export type SignedDataStreamFactory = FileStreamFactory;
+export type StreamSizeFactory = () => number;
+
+// File factory type
+export type TurboFileFactory<T = FileStreamFactory> = {
+  fileStreamFactory: T; // Function that returns a file stream
+  fileSizeFactory: StreamSizeFactory;  // Function that returns file size
+  dataItemOpts?: DataItemOptions;  // Optional data item options
+};
+
 // Wallet types
 export type ArweaveJWK = JWKInterface;
 export type SolSecretKey = Base58String;
