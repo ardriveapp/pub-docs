@@ -2,6 +2,63 @@
 
 # Turbo SDK AI Reference
 
+@metadata {
+  version: "1.23.0",
+  lastUpdated: "2025-02-27",
+  primaryPurpose: "SDK Documentation",
+  aiConsumptionLevel: "Optimized"
+}
+
+@semantic-markers {
+  critical: ["IMPORTANT", "EXTREMELY IMPORTANT", "REQUIRED"],
+  relationships: ["extends", "implements", "requires"],
+  dataTypes: ["string", "number", "boolean", "Promise", "Array"],
+  environments: ["NodeJS", "Web", "Browser"]
+}
+
+## Core Concepts
+
+@concept {
+  name: "TurboFactory",
+  type: "EntryPoint",
+  description: "Primary entry point for creating authenticated and unauthenticated Turbo clients",
+  relationships: ["creates TurboAuthenticatedClient", "creates TurboUnauthenticatedClient"]
+}
+
+@concept {
+  name: "Authentication",
+  type: "Process",
+  description: "Methods for authenticating with the Turbo service",
+  relationships: ["requires TurboDataItemSigner", "produces AuthenticatedClient"]
+}
+
+@concept {
+  name: "FileOperations",
+  type: "Operations",
+  description: "Two distinct methods for uploading content to Arweave:",
+  methods: [
+    {
+      name: "uploadFile",
+      description: "Single file upload method",
+      criticalRequirement: "Content-Type tags are REQUIRED for proper file viewing"
+    },
+    {
+      name: "uploadFolder",
+      description: "Folder upload method with automatic handling",
+      features: "Automatically detects and sets Content-Type tags for all files"
+    }
+  ]
+}
+
+## Type System
+
+@type-hierarchy {
+  base: ["Base64String", "NativeAddress", "UserAddress"],
+  wallet: ["ArweaveJWK", "SolSecretKey", "EthPrivateKey"],
+  signer: ["TurboDataItemSigner", "ArweaveSigner", "EthereumSigner"],
+  response: ["TurboUploadDataItemResponse", "TurboBalanceResponse", "TurboCheckoutSessionResponse"]
+}
+
 This document provides a structured reference of the Turbo SDK for AI consumption. It contains key information about the SDK's functionality, methods, parameters, and usage patterns.
 
 ## Overview
@@ -31,7 +88,9 @@ The SDK supports the following tokens:
 
 ## Content-Type Tags
 
-> **EXTREMELY IMPORTANT**: Content-Type tags are REQUIRED for all turbo.uploadFile() calls to ensure proper viewing and accessibility. Without a Content-Type tag, browsers cannot determine how to display the file, and it will only be downloadable as binary data.
+> **EXTREMELY IMPORTANT**: Content-Type tags are REQUIRED for all `turbo.uploadFile()` calls to ensure proper viewing and accessibility. Without a Content-Type tag, browsers cannot determine how to display the file, and it will only be downloadable as binary data.
+
+> **NOTE**: For `turbo.uploadFolder()` calls, Content-Type tags are automatically detected and added for each file. You do not need to manually specify Content-Type tags when using `uploadFolder()`.
 
 ### Common MIME Types:
 - Text files: `text/plain`, `text/html`, `text/css`, `text/javascript`
@@ -395,35 +454,131 @@ Includes all TurboUnauthenticatedClient methods plus:
      - Automatically retries failed uploads based on configuration
      - Returns both upload results and manifest information
    
-   > **NOTE**: The `uploadFolder` method handles the entire upload process, including:
+   > **NOTE**: The `uploadFolder` method handles the entire upload process automatically, including:
    > 1. Concurrent file uploads with rate limiting
    > 2. Automatic MIME type detection for each file
    > 3. Manifest generation for preserving folder structure
    > 4. Retry logic for failed uploads
    > 5. Progress tracking for all files
 
-   Example usage:
+   ### Node.js Environment Example:
    ```typescript
-   // NodeJS - Upload entire folder with default settings
+   import { TurboFactory } from '@ardrive/turbo-sdk';
+   import path from 'path';
+
+   // Initialize authenticated client
+   const turbo = TurboFactory.authenticated({ privateKey: jwk });
+
+   // Basic folder upload
    const result = await turbo.uploadFolder({
      folderPath: './my-folder'
    });
 
-   // NodeJS - Upload with custom settings
+   // Advanced folder upload with options
    const result = await turbo.uploadFolder({
-     folderPath: './my-folder',
+     folderPath: path.join(__dirname, './my-folder'),
      maxConcurrentUploads: 3,
      throwOnFailure: true,
      manifestOptions: {
        indexFile: 'index.html',
-       fallbackFile: '404.html'
+       fallbackFile: '404.html',
+       disableManifest: false
+     },
+     dataItemOpts: {
+       // Optional - will be auto-detected per file
+       tags: [
+         {
+           name: 'My-Custom-Tag',
+           value: 'my-custom-value'
+         }
+       ]
      }
    });
 
-   // Web - Upload files from input
-   const result = await turbo.uploadFolder({
-     files: folderInput.files,
-     maxConcurrentUploads: 5
+   console.log('Folder uploaded!', {
+     manifestId: result.response.id,
+     manifestUrl: `https://arweave.net/${result.response.id}`,
+     dataCaches: result.response.dataCaches,
+     fastFinalityIndexes: result.response.fastFinalityIndexes
+   });
+   ```
+
+   ### Web Environment Example:
+   ```typescript
+   import { TurboFactory } from '@ardrive/turbo-sdk';
+
+   // Initialize authenticated client
+   const turbo = TurboFactory.authenticated({ signer });
+
+   // HTML input element
+   <input 
+     type="file" 
+     id="folder-input" 
+     webkitdirectory 
+     directory
+     multiple
+   />
+
+   // JavaScript/TypeScript
+   const folderInput = document.getElementById('folder-input');
+   
+   folderInput.addEventListener('change', async (event) => {
+     try {
+       const result = await turbo.uploadFolder({
+         files: Array.from(folderInput.files),
+         maxConcurrentUploads: 5,
+         throwOnFailure: true,
+         manifestOptions: {
+           indexFile: 'index.html',
+           fallbackFile: '404.html'
+         }
+       });
+
+       console.log('Folder uploaded!', {
+         manifestId: result.response.id,
+         manifestUrl: `https://arweave.net/${result.response.id}`,
+         dataCaches: result.response.dataCaches,
+         fastFinalityIndexes: result.response.fastFinalityIndexes
+       });
+     } catch (error) {
+       console.error('Upload failed:', error);
+     }
+   });
+
+   // With drag and drop
+   const dropZone = document.getElementById('drop-zone');
+   
+   dropZone.addEventListener('dragover', (e) => {
+     e.preventDefault();
+     e.stopPropagation();
+   });
+   
+   dropZone.addEventListener('drop', async (e) => {
+     e.preventDefault();
+     e.stopPropagation();
+     
+     const items = e.dataTransfer.items;
+     const files = [];
+     
+     for (let item of items) {
+       if (item.kind === 'file') {
+         files.push(item.getAsFile());
+       }
+     }
+     
+     try {
+       const result = await turbo.uploadFolder({
+         files,
+         maxConcurrentUploads: 5
+       });
+       
+       console.log('Dropped folder uploaded!', {
+         manifestId: result.response.id,
+         manifestUrl: `https://arweave.net/${result.response.id}`
+       });
+     } catch (error) {
+       console.error('Upload failed:', error);
+     }
    });
    ```
 
@@ -443,18 +598,179 @@ Includes all TurboUnauthenticatedClient methods plus:
      - `signal`: Optional AbortSignal
    - Signs and uploads a raw file
 
-   > **IMPORTANT**: While `dataItemOpts` is technically optional, it's strongly recommended to include a Content-Type tag when using `uploadFile` to ensure proper file viewing. Without this tag, files cannot be properly viewed in browsers and will only be downloadable as binary data. Example:
-   > ```typescript
-   > await turbo.uploadFile({
-   >   fileStreamFactory: () => fs.createReadStream('image.png'),
-   >   fileSizeFactory: () => fs.statSync('image.png').size,
-   >   dataItemOpts: {  // Recommended for proper file viewing
-   >     tags: [
-   >       { name: "Content-Type", value: "image/png" }  // Recommended for proper file viewing
-   >     ]
-   >   }
-   > });
-   > ```
+   ### Node.js Environment Example:
+   ```typescript
+   import { TurboFactory } from '@ardrive/turbo-sdk';
+   import fs from 'fs';
+   import path from 'path';
+
+   // Initialize authenticated client
+   const turbo = TurboFactory.authenticated({ privateKey: jwk });
+
+   // Basic file upload
+   const filePath = path.join(__dirname, './my-file.txt');
+   const result = await turbo.uploadFile({
+     fileStreamFactory: () => fs.createReadStream(filePath),
+     fileSizeFactory: () => fs.statSync(filePath).size,
+     dataItemOpts: {
+       tags: [
+         {
+           name: "Content-Type",
+           value: "text/plain"  // Required for proper file viewing
+         }
+       ]
+     }
+   });
+
+   // Advanced file upload with options
+   const result = await turbo.uploadFile({
+     fileStreamFactory: () => fs.createReadStream(filePath),
+     fileSizeFactory: () => fs.statSync(filePath).size,
+     dataItemOpts: {
+       tags: [
+         {
+           name: "Content-Type",
+           value: "text/plain"
+         },
+         {
+           name: "Application-Name",
+           value: "My App"
+         },
+         {
+           name: "Unix-Time",
+           value: Date.now().toString()
+         }
+       ]
+     },
+     signal: AbortSignal.timeout(30000)  // 30 second timeout
+   });
+
+   console.log('File uploaded!', {
+     id: result.id,  // Transaction ID
+     url: `https://arweave.net/${result.id}`,
+     owner: result.owner,
+     dataCaches: result.dataCaches,
+     fastFinalityIndexes: result.fastFinalityIndexes
+   });
+   ```
+
+   ### Web Environment Example:
+   ```typescript
+   import { TurboFactory } from '@ardrive/turbo-sdk';
+
+   // Initialize authenticated client
+   const turbo = TurboFactory.authenticated({ signer });
+
+   // HTML input element
+   <input 
+     type="file" 
+     id="file-input" 
+     accept="image/*,video/*,audio/*,.pdf,.txt"
+   />
+
+   // JavaScript/TypeScript
+   const fileInput = document.getElementById('file-input');
+   
+   fileInput.addEventListener('change', async (event) => {
+     const file = fileInput.files[0];
+     if (!file) return;
+     
+     try {
+       const result = await turbo.uploadFile({
+         fileStreamFactory: () => file.stream(),
+         fileSizeFactory: () => file.size,
+         dataItemOpts: {
+           tags: [
+             {
+               name: "Content-Type",
+               value: file.type || 'application/octet-stream'  // Use file's MIME type or fallback
+             }
+           ]
+         }
+       });
+
+       console.log('File uploaded!', {
+         id: result.id,
+         url: `https://arweave.net/${result.id}`,
+         owner: result.owner,
+         dataCaches: result.dataCaches,
+         fastFinalityIndexes: result.fastFinalityIndexes
+       });
+     } catch (error) {
+       console.error('Upload failed:', error);
+     }
+   });
+
+   // With drag and drop
+   const dropZone = document.getElementById('drop-zone');
+   
+   dropZone.addEventListener('dragover', (e) => {
+     e.preventDefault();
+     e.stopPropagation();
+     dropZone.classList.add('drag-over');
+   });
+   
+   dropZone.addEventListener('dragleave', (e) => {
+     e.preventDefault();
+     e.stopPropagation();
+     dropZone.classList.remove('drag-over');
+   });
+   
+   dropZone.addEventListener('drop', async (e) => {
+     e.preventDefault();
+     e.stopPropagation();
+     dropZone.classList.remove('drag-over');
+     
+     const file = e.dataTransfer.files[0];
+     if (!file) return;
+     
+     try {
+       const result = await turbo.uploadFile({
+         fileStreamFactory: () => file.stream(),
+         fileSizeFactory: () => file.size,
+         dataItemOpts: {
+           tags: [
+             {
+               name: "Content-Type",
+               value: file.type || 'application/octet-stream'
+             },
+             {
+               name: "Upload-Method",
+               value: "drag-and-drop"
+             }
+           ]
+         },
+         signal: AbortSignal.timeout(60000)  // 1 minute timeout
+       });
+       
+       console.log('Dropped file uploaded!', {
+         id: result.id,
+         url: `https://arweave.net/${result.id}`,
+         dataCaches: result.dataCaches
+       });
+     } catch (error) {
+       console.error('Upload failed:', error);
+     }
+   });
+   ```
+
+   The response includes:
+   ```typescript
+   {
+     id: TransactionId;  // The unique transaction ID
+     owner: PublicArweaveAddress;  // The wallet address that owns this upload
+     dataCaches: string[];  // URLs where the data can be accessed
+     fastFinalityIndexes: string[];  // Fast finality index locations
+     winc: string;  // Amount of winc spent on the upload
+   }
+   ```
+
+   > **IMPORTANT NOTES**:
+   > 1. Always include a Content-Type tag when using `uploadFile` to ensure proper file viewing
+   > 2. The `fileStreamFactory` must return a NEW stream each time it's called
+   > 3. The file size must be known before upload
+   > 4. For large files, consider implementing progress tracking using stream events
+   > 5. Always handle errors appropriately as network issues or insufficient funds can cause failures
 
 7. `topUpWithTokens({ tokenAmount, feeMultiplier }): Promise<TopUpResponse>`
    - Parameters:
@@ -695,3 +1011,64 @@ The SDK supports sharing credits between wallets:
 ## Type Definitions
 
 The SDK provides TypeScript type definitions for all methods and parameters.
+
+## Method Signatures
+
+@method-signatures {
+  uploadFile: {
+    name: "uploadFile",
+    type: "async",
+    parameters: {
+      fileStreamFactory: "() => FileStream",
+      fileSizeFactory: "() => number",
+      dataItemOpts: "Optional<DataItemOptions>",
+      signal: "Optional<AbortSignal>"
+    },
+    returns: "Promise<UploadResponse>",
+    requirements: ["Content-Type tag recommended", "New stream per call"]
+  },
+  uploadFolder: {
+    name: "uploadFolder",
+    type: "async",
+    parameters: {
+      folderPath: "string (NodeJS)",
+      files: "File[] (Web)",
+      dataItemOpts: "Optional<DataItemOptions>",
+      manifestOptions: "Optional<ManifestOptions>"
+    },
+    returns: "Promise<UploadFolderResponse>",
+    features: ["Automatic MIME type detection", "Concurrent uploads", "Manifest generation"]
+  }
+}
+
+## Data Flow
+
+@data-flow {
+  authentication: [
+    "TurboFactory.authenticated()",
+    "→ Signer validation",
+    "→ Client instance creation"
+  ],
+  fileUpload: [
+    "File selection",
+    "→ Stream creation",
+    "→ Content-Type detection",
+    "→ Data item signing",
+    "→ Upload to service"
+  ],
+  folderUpload: [
+    "Folder/Files selection",
+    "→ Concurrent processing",
+    "→ Manifest generation",
+    "→ Batch uploading",
+    "→ Response aggregation"
+  ]
+}
+
+## Error Handling
+
+@error-patterns {
+  authentication: ["InvalidSigner", "NetworkError", "TokenMismatch"],
+  upload: ["InsufficientFunds", "StreamError", "TimeoutError"],
+  validation: ["InvalidContentType", "FileSizeMismatch", "ManifestError"]
+}
