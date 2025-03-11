@@ -202,20 +202,29 @@ export type TurboSubmitFundTxResponse = {
 ### Parameter Types
 
 ```typescript
+// Data Item Options
+export interface DataItemCreateOptions {
+  target?: string;  // Optional target address
+  anchor?: string;  // Optional anchor string
+  tags?: { name: string; value: string }[];  // Optional array of name-value tag pairs
+}
+
+export type DataItemOptions = DataItemCreateOptions & {
+  paidBy?: UserAddress | UserAddress[];  // Optional address(es) to pay for the upload
+};
+
 // File upload parameters
 export type TurboFileFactory<T = FileStreamFactory> = {
   fileStreamFactory: T;  // Function that returns a file stream
   fileSizeFactory: () => number;  // Function that returns file size
-  dataItemOpts?: {  // Optional, but recommended for proper file viewing
-    tags: [
-      { name: "Content-Type", value: string }  // Recommended for proper file viewing
-    ]
-  }
+  dataItemOpts?: DataItemOptions;  // REQUIRED to include Content-Type tag for uploadFile
 };
 
 // Folder upload parameters
 export type UploadFolderParams = {
-  dataItemOpts?: DataItemOptions;  // Optional for folders (auto-detected)
+  folderPath?: string;  // Required for NodeJS
+  files?: File[];  // Required for Web
+  dataItemOpts?: DataItemOptions;  // Optional - Content-Type tags are auto-detected
   maxConcurrentUploads?: number;
   throwOnFailure?: boolean;
   manifestOptions?: {
@@ -1072,3 +1081,45 @@ The SDK provides TypeScript type definitions for all methods and parameters.
   upload: ["InsufficientFunds", "StreamError", "TimeoutError"],
   validation: ["InvalidContentType", "FileSizeMismatch", "ManifestError"]
 }
+
+## Upload Methods Comparison
+
+> **IMPORTANT DISTINCTION**:
+
+### uploadFile
+- Requires manual specification of Content-Type tag in `dataItemOpts.tags`
+- Used for single file uploads
+- Without Content-Type tag, files will be inaccessible in their original format
+
+Example:
+```typescript
+await turbo.uploadFile({
+  fileStreamFactory: () => fs.createReadStream('document.pdf'),
+  fileSizeFactory: () => fs.statSync('document.pdf').size,
+  dataItemOpts: {
+    tags: [
+      { name: "Content-Type", value: "application/pdf" }  // REQUIRED
+    ],
+    paidBy: "optional-wallet-address"  // Optional
+  }
+});
+```
+
+### uploadFolder
+- Automatically detects and sets Content-Type tags for all files
+- Used for uploading multiple files/directories
+- No need to manually specify Content-Type tags
+- Creates a manifest to preserve folder structure
+
+Example:
+```typescript
+await turbo.uploadFolder({
+  folderPath: './my-folder',
+  dataItemOpts: {
+    tags: [
+      { name: "App-Name", value: "My App" }  // Optional custom tags
+    ],
+    paidBy: "optional-wallet-address"  // Optional
+  }
+});
+```
