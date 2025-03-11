@@ -53,6 +53,10 @@
     * Bulk file uploads
     * Maintaining folder structure
     * Automatic MIME type handling
+    * Node operations
+  - Common Mistakes:
+    * The SDK handles preparing the folder for upload, there is no need to do so manually. Simply providing the folder path is sufficient
+    * `folderPath` is used for Node environments, `files` is used in Web environments. There is never a cause to provide both.
 
 @semantic-markers {
   critical: ["IMPORTANT", "EXTREMELY IMPORTANT", "REQUIRED"],
