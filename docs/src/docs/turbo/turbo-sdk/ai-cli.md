@@ -32,7 +32,7 @@
 }
 
 @metadata {
-  version: "0.1.1",
+  version: "0.1.2",
   lastUpdated: "2025-03-12",
   primaryPurpose: "CLI Documentation",
   aiConsumptionLevel: "Optimized"
@@ -266,3 +266,159 @@ turbo balance \
   --local \
   --token ethereum
 ```
+
+## Complete Options Reference
+
+The following section provides a comprehensive list of all available CLI options and their configurations:
+
+### Token and Currency Options
+
+- `-t, --token <type>`
+  - Description: Crypto token type for wallet or action
+  - Default: 'arweave'
+
+- `-c, --currency <currency>`
+  - Description: Fiat currency type to use for the action
+  - Default: 'usd'
+
+- `--type <priceType>`
+  - Description: Price type for the action. Can be a fiat currency or crypto token or bytes
+  - Default: 'bytes'
+
+### Transaction and Address Options
+
+- `-i, --tx-id <txId>`
+  - Description: Transaction ID or hash to use for action
+
+- `-a, --address <nativeAddress>`
+  - Description: Native address to use for action
+
+- `--tags <tags...>`
+  - Description: An array of additional tags for the write action, in "--tags name1 value1 name2 value2" format
+  - Type: array
+
+- `-v, --value <value>`
+  - Description: Value of fiat currency or crypto token for action. e.g: 10.50 for $10.50 USD or 0.0001 for 0.0001 AR
+
+### Wallet Authentication Options
+
+- `-w, --wallet-file <filePath>`
+  - Description: Wallet file to use with the action. Formats accepted: JWK.json, KYVE or ETH private key as a string, or SOL Secret Key as a Uint8Array
+
+- `-m, --mnemonic <phrase>`
+  - Description: Mnemonic to use with the action
+
+- `-p, --private-key <key>`
+  - Description: Private key to use with the action
+
+### Service Configuration Options
+
+- `-g, --gateway <url>`
+  - Description: Set a custom crypto gateway URL
+
+- `--upload-url <url>`
+  - Description: Set a custom upload service URL
+
+- `--payment-url <url>`
+  - Description: Set a custom payment service URL
+
+### Development and Debug Options
+
+- `--dev`
+  - Description: Enable Turbo development endpoints
+  - Default: false
+
+- `--local`
+  - Description: Enable local development endpoints
+  - Default: false
+
+- `--debug`
+  - Description: Enable verbose logging
+  - Default: false
+  - Note: Currently in development
+
+- `--quiet`
+  - Description: Disable logging
+  - Default: false
+  - Note: Currently in development
+
+### Upload-Specific Options
+
+- `-f, --folder-path <folderPath>`
+  - Description: Directory to upload
+
+- `--paid-by <paidBy...>`
+  - Description: Address to pay for the upload
+  - Type: array
+
+- `--expires-by-seconds <expiresBySeconds>`
+  - Description: Expiration time in seconds
+
+- `--ignore-approvals`
+  - Description: Ignore all credit share approvals, only use signing wallet's balance
+  - Default: false
+
+- `--use-signer-balance-first`
+  - Description: Use the signer balance first before using credit share approvals
+  - Default: false
+
+- `--byte-count <byteCount>`
+  - Description: Number of bytes to use for the action
+
+### Interaction Options
+
+- `--skip-confirmation`
+  - Description: Skip all confirmation prompts
+  - Default: false
+
+### Option Groups
+
+The CLI internally groups these options for different commands:
+
+1. **Wallet Options**
+   - `--wallet-file`
+   - `--mnemonic`
+   - `--private-key`
+
+2. **Global Options**
+   - `--dev`
+   - `--local`
+   - `--gateway`
+   - `--debug`
+   - `--quiet`
+   - `--token`
+   - `--skip-confirmation`
+   - `--payment-url`
+   - `--upload-url`
+
+3. **Upload Options**
+   - All wallet options
+   - `--paid-by`
+   - `--ignore-approvals`
+   - `--use-signer-balance-first`
+   - `--tags`
+
+4. **Upload Folder Options**
+   - All upload options
+   - `--folder-path`
+   - `--index-file`
+   - `--fallback-file`
+   - `--manifest`
+   - `--max-concurrency`
+
+5. **Upload File Options**
+   - All upload options
+   - `--file-path`
+
+6. **Share Credits Options**
+   - All wallet options
+   - `--value`
+   - `--address`
+   - `--expires-by-seconds`
+
+7. **Revoke Credits Options**
+   - All wallet options
+   - `--address`
+
+8. **List Shares Options**
+   - Same as revoke credits options
