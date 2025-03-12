@@ -2,24 +2,14 @@
 
 Welcome to the `@ardrive/turbo-sdk`! This SDK provides functionality for interacting with the Turbo Upload and Payment Services and is available for both NodeJS and Web environments.
 
-<!-- ## Table of Contents
+## AI-Assisted Development
 
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Usage](#usage)
-  - [NodeJS Environments](#nodejs)
-    - [CommonJS](#commonjs)
-    - [ESM](#esm)
-  - [Web Environments](#web)
-    - [Bundlers (Webpack, Rollup, ESbuild, etc.)](#bundlers-webpack-rollup-esbuild-etc)
-    - [Browser](#browser)
-  - [Typescript](#typescript)
-- [APIs](#apis)
-  - [TurboFactory](#turbofactory)
-  - [TurboUnauthenticatedClient](#turbounauthenticatedclient)
-  - [TurboAuthenticatedClient](#turboauthenticatedclient)
-- [Examples](./examples)
-- [Contributions](#contributions) -->
+To help developers get started quickly, we provide specialized documentation designed for AI code assistants. You can point your AI assistant to:
+
+* [SDK Documentation for AI](https://docs.ardrive.io/docs/turbo/turbo-sdk/ai-sdk.html)
+* [CLI Documentation for AI](https://docs.ardrive.io/docs/turbo/turbo-sdk/ai-cli.html)
+
+**Note on AI Usage**: While AI assistants can be helpful for learning and prototyping, any code they generate should be treated as a starting point. Always review, test, and validate AI-generated code against this standard documentation before using it in your applications.
 
 ## Installation
 

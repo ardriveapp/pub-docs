@@ -153,6 +153,8 @@ npm install @ardrive/turbo-sdk
 yarn add @ardrive/turbo-sdk
 ```
 
+> **Note**: For detailed information about the Turbo CLI and its commands, see the [CLI Documentation for AI](https://docs.ardrive.io/docs/turbo/turbo-sdk/ai-cli.html).
+
 ## Turbo Credits System
 
 Turbo Credits are the payment mechanism used for uploading files and folders to Arweave through the Turbo service. The SDK provides two primary methods for purchasing credits:
