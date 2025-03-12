@@ -34,7 +34,7 @@
 # Turbo SDK AI Reference
 
 @metadata {
-  version: "0.1.1",
+  version: "0.1.0",
   lastUpdated: "2025-03-12",
   primaryPurpose: "SDK Documentation",
   aiConsumptionLevel: "Optimized"

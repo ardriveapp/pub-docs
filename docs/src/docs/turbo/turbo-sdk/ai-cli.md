@@ -32,7 +32,7 @@
 }
 
 @metadata {
-  version: "0.1.2",
+  version: "0.1.0",
   lastUpdated: "2025-03-12",
   primaryPurpose: "CLI Documentation",
   aiConsumptionLevel: "Optimized"
