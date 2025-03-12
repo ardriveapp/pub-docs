@@ -40,6 +40,28 @@
 
 # Turbo CLI Reference
 
+## Turbo Credits Overview
+
+Turbo Credits are the payment mechanism used for uploading files and folders to Arweave through the Turbo service. These credits can be purchased in two ways:
+
+1. **Fiat Currency** (using the `top-up` command)
+   - Purchase credits using traditional currencies (USD, EUR, etc.)
+   - Processed through a secure payment service
+   - Ideal for users who prefer traditional payment methods
+
+2. **Cryptocurrency** (using the `crypto-fund` command)
+   - Purchase credits using supported cryptocurrencies:
+     - Arweave (AR)
+     - Ethereum (ETH)
+     - Solana (SOL)
+     - Polygon (MATIC/POL)
+     - KYVE
+     - Ethereum on Base (ETH on Base)
+   - Direct blockchain transactions
+   - Ideal for users who hold supported cryptocurrencies
+
+Credits are stored in your wallet and are automatically used when uploading files or folders. You can check your credit balance using the `balance` command and share credits with other wallets using the `share-credits` command.
+
 The Turbo CLI is included in the `@ardrive/turbo-sdk` package. You can install it in one of the following ways:
 
 ```bash
@@ -59,7 +81,8 @@ After installation, the `turbo` command will be available in your terminal.
 ## Commands
 
 1. `balance`
-   - Get wallet balance
+   - Get wallet balance in Turbo Credits
+   - Shows both controlled credits and effective balance (including shared credits)
    - Options:
      - `-a, --address <nativeAddress>`: Address to check
      - `--wallet-file <path>`: Path to wallet file
@@ -75,7 +98,9 @@ After installation, the `turbo` command will be available in your terminal.
      ```
 
 2. `top-up`
-   - Top up with fiat currency
+   - Purchase Turbo Credits using fiat currency
+   - Processes payment through a secure payment service
+   - Adds credits directly to your wallet balance
    - Options:
      - `-a, --address <nativeAddress>`: Address to top up
      - `-c, --currency <currency>`: Currency to use
@@ -93,7 +118,9 @@ After installation, the `turbo` command will be available in your terminal.
      ```
 
 3. `crypto-fund`
-   - Fund with cryptocurrency
+   - Purchase Turbo Credits using supported cryptocurrencies
+   - Direct blockchain transaction from your wallet
+   - Automatically converts crypto to credits at current rates
    - Options:
      - `-v, --value <value>`: Amount to fund
      - `-i, --tx-id <txId>`: Existing transaction ID

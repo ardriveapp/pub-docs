@@ -153,6 +153,63 @@ npm install @ardrive/turbo-sdk
 yarn add @ardrive/turbo-sdk
 ```
 
+## Turbo Credits System
+
+Turbo Credits are the payment mechanism used for uploading files and folders to Arweave through the Turbo service. The SDK provides two primary methods for purchasing credits:
+
+1. **Fiat Currency Purchases** (`createCheckoutSession`)
+   - Purchase credits using traditional currencies (USD, EUR, etc.)
+   - Processed through a secure payment service
+   - Example:
+     ```typescript
+     const checkoutSession = await turbo.createCheckoutSession({
+       amount: USD(10.0),
+       owner: publicArweaveAddress
+     });
+     ```
+
+2. **Cryptocurrency Purchases** (`topUpWithTokens`)
+   - Purchase credits using supported cryptocurrencies
+   - Direct blockchain transaction from your wallet
+   - Automatically converts crypto to credits at current rates
+   - Example:
+     ```typescript
+     const topUpResult = await turbo.topUpWithTokens({
+       tokenAmount: WinstonToTokenAmount(100_000_000) // 0.0001 AR
+     });
+     ```
+
+Credits are stored in your wallet and are automatically used when uploading files or folders. The SDK provides methods to:
+- Check balance: `getBalance()`
+- Share credits: `shareCredits()`
+- Revoke shared credits: `revokeCredits()`
+- List credit shares: `getCreditShareApprovals()`
+
+### Credit Management Features
+
+1. **Balance Checking**
+   ```typescript
+   const balance = await turbo.getBalance();
+   console.log({
+     controlledWinc: balance.controlledWinc,    // Credits you own
+     effectiveBalance: balance.effectiveBalance  // Including shared credits
+   });
+   ```
+
+2. **Credit Sharing**
+   ```typescript
+   const approval = await turbo.shareCredits({
+     approvedAddress: "recipient-address",
+     approvedWincAmount: BigNumber.from("1000000"),
+     expiresBySeconds: 86400 // Optional 24-hour expiry
+   });
+   ```
+
+3. **Credit Usage**
+   - Credits are automatically deducted during uploads
+   - Can specify which wallet pays using `paidBy` option
+   - Can prioritize different credit sources using `useSignerBalanceFirst`
+
 ## Supported Tokens
 
 The SDK supports the following tokens:
