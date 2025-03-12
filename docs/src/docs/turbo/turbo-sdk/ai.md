@@ -1000,6 +1000,22 @@ Includes all TurboUnauthenticatedClient methods plus:
 
 ## CLI Commands
 
+The Turbo CLI is included in the `@ardrive/turbo-sdk` package. You can install it in one of the following ways:
+
+```bash
+# Global installation (recommended for single user)
+npm install -g @ardrive/turbo-sdk
+
+# User-specific installation
+npm install --user @ardrive/turbo-sdk
+
+# Project-specific installation
+npm install --save-dev @ardrive/turbo-sdk
+# Then use via npx: npx turbo <command>
+```
+
+After installation, the `turbo` command will be available in your terminal.
+
 The SDK includes a CLI tool with the following commands:
 
 1. `balance`
