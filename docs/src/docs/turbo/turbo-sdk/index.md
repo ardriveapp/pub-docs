@@ -11,8 +11,8 @@ To help developers get started quickly, we provide specialized documentation des
 
 For developers who want to use these docs with local AI tools or include them in their projects, you can access the raw markdown files directly from GitHub:
 
-* [Raw SDK Documentation for AI](https://github.com/ardriveapp/pub-docs/blob/production/docs/src/docs/turbo/turbo-sdk/ai-sdk.md)
-* [Raw CLI Documentation for AI](https://github.com/ardriveapp/pub-docs/blob/production/docs/src/docs/turbo/turbo-sdk/ai-cli.md)
+* [Raw SDK Documentation for AI](https://raw.githubusercontent.com/ardriveapp/pub-docs/refs/heads/production/docs/src/docs/turbo/turbo-sdk/ai-sdk.md)
+* [Raw CLI Documentation for AI](https://raw.githubusercontent.com/ardriveapp/pub-docs/refs/heads/production/docs/src/docs/turbo/turbo-sdk/ai-cli.md)
 
 **Note on AI Usage**: While AI assistants can be helpful for learning and prototyping, any code they generate should be treated as a starting point. Always review, test, and validate AI-generated code against this standard documentation before using it in your applications.
 
