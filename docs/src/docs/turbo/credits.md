@@ -149,7 +149,7 @@ When purchasing Turbo Credits using cryptocurrencies, the purchased Credits can 
         <td></td>
     </tr>
     <tr>
-        <th>BASE (ETH)</th>
+        <th>ETH (BASE)</th>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
