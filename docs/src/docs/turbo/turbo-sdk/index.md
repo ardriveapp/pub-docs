@@ -785,6 +785,16 @@ Browser Upload Folder
   });
   ```
 
+  - AR.IO Network (ARIO) Crypto Top Up
+
+  ```typescript
+  const turbo = TurboFactory.authenticated({ signer, token: 'ario' })
+
+  const { winc, status, id, ...fundResult } = await turbo.topUpWithTokens({
+    tokenAmount: ARIOToTokenAmount(100), // 100 $ARIO
+  })
+  ```
+
 - Ethereum (ETH) Crypto Top Up
 
   ```typescript
@@ -909,6 +919,8 @@ npx turbo --help
 - `--dev` - Enable development endpoints (default: false)
 - `-g, --gateway <url>` - Set a custom crypto gateway URL
 - `-t, --token <token>` - Token type for the command or connected wallet (default: "arweave")
+- `--cu-url <url>` - Set a custom AO compute unit URL
+- `--process-id <id>` - Set a custom target process ID for AO action
 
 - `-w, --wallet-file <filePath>` - Wallet file to use with the action. Formats accepted: JWK.json, KYVE or ETH private key as a string, or SOL Secret Key as a Uint8Array
 - `-m, --mnemonic <phrase>` - Mnemonic to use with the action (KYVE only)
@@ -959,6 +971,7 @@ Command Options:
 
 - `-v, --value <value>` - Value of crypto token for fund. e.g: 0.0001 for 0.0001 KYVE
 - `-i, --tx-id <txId>` - Transaction ID of an existing funding transaction
+- `-w, --wallet-file <filePath>` - Wallet file to use with the action. Formats accepted: JWK.json, KYVE or ETH private key as string, or SOL Secret Key as a Uint8Array
 
 e.g:
 
@@ -968,6 +981,15 @@ turbo crypto-fund --value 0.0001 --token kyve --private-key 'b27...45c'
 
 ```shell
 turbo crypto-fund --tx-id 'my-valid-arweave-fund-transaction-id' --token arweave
+```
+
+```shell
+turbo crypto-fund --value 100 --token ario --wallet-file ../path/to/arweave/wallet/with/ario.json
+```
+
+```shell
+# Use a custom AO process ID and compute unit:
+turbo crypto-fund --value 100 --token ario --process-id agYcCFJtrMG6cqMuZfskIkFTGvUPddICmtQSBIoPdiA --cu-url https://cu.ao-testnet.xyz
 ```
 
 ##### `upload-folder`
