@@ -6,6 +6,56 @@ Welcome to the documentation page for the Turbo SDK release notes. Here, you wil
 
 ## Releases
 
+### 1.24.0
+
+(2025-05-02)
+
+Features
+
+- **ario:** extend crypto fund for $ARIO payments PE-8005 ([457eb85](https://github.com/ardriveapp/turbo-sdk/commit/457eb85b7dda11a159ac39c5971a6f003a42aa05))
+
+### 1.23.5
+
+(2025-04-16)
+
+Bug Fixes
+
+- **arweave fund:** use a working GQL query PE-7980 ([848afdc](https://github.com/ardriveapp/turbo-sdk/commit/848afdc6493ba1149ee6b90ba8fdcb8c3eb27b1c))
+
+### 1.23.4
+
+(2025-04-09)
+
+Bug Fixes
+
+- **deps:** include bitcoinjs-lib as a dependency ([794748b](https://github.com/ardriveapp/turbo-sdk/commit/794748b045a58b8de9b9ac7f329845b061cc0610))
+- **types:** avoid using node: imports as they are only available in node environments ([37e5706](https://github.com/ardriveapp/turbo-sdk/commit/37e5706c6a95484ad49208ca2c88c45f2dfa79ca))
+
+### 1.23.3
+
+(2025-04-07)
+
+Bug Fixes
+
+- gracefully access platform on in CLI constants file PE-7931 ([ab9d7a0](https://github.com/ardriveapp/turbo-sdk/commit/ab9d7a0d5dfef42650ca80ddd61da72ce99f6d71))
+- standardize winston import PE-7931 ([7e4a8bd](https://github.com/ardriveapp/turbo-sdk/commit/7e4a8bdec081987bdb2e00d50a3547ca4ef704b9))
+
+### 1.23.2
+
+(2025-04-04)
+
+Bug Fixes
+
+- **kyve:** bump to kyve 1.4.5 to resolve kyve gas fee issue PE-7921 ([11e5226](https://github.com/ardriveapp/turbo-sdk/commit/11e52262dcba82d928036f9f3f3aa47a40a9023d))
+
+### 1.23.1
+
+(2025-03-19)
+
+Bug Fixes
+
+- use correct kyve signer type PE-7834 ([b82e2db](https://github.com/ardriveapp/turbo-sdk/commit/b82e2db7e887e3a7023f72c113191b83effb189f))
+
 ### 1.23.0
 
 (2025-02-27)
@@ -77,7 +127,7 @@ Bug Fixes
 Features
 
 - add cli helper for --local development endpoints PE-6754 ([79fe7a0](https://github.com/ardriveapp/turbo-sdk/commit/79fe7a0b81daeec18a9ca4aa68fe300d71bee009))
-- **delegated payments:** add list-approvals command rather than overloaded balance command  PE-6754 ([ee44ef6](https://github.com/ardriveapp/turbo-sdk/commit/ee44ef6c1176734a72e5e4b310dcd9468028c779))
+- **delegated payments:** add list-approvals command rather than overloaded balance command PE-6754 ([ee44ef6](https://github.com/ardriveapp/turbo-sdk/commit/ee44ef6c1176734a72e5e4b310dcd9468028c779))
 - **delegated payments:** add paid-by headers for uploads when applicable PE-6754 ([953648e](https://github.com/ardriveapp/turbo-sdk/commit/953648e67719cc3c663ac75a702fd653e33b7c8f))
 - **delegated payments:** add revoke approvals to SDK and CLI PE-6754 ([f2d26da](https://github.com/ardriveapp/turbo-sdk/commit/f2d26daa5ee12008dc8173a0ee44bfc2828028ba))
 - **delegated payments:** display approvals if they exist on `balance` command PE-6754 ([669dfca](https://github.com/ardriveapp/turbo-sdk/commit/669dfca76332756e93accf1b0a01cfa8538f9e84))
@@ -123,10 +173,9 @@ Features
 
 - **cli:** add parameters to inject upload and payment urls PE-6830 ([edf2948](https://github.com/ardriveapp/turbo-sdk/commit/edf29486191bad86007e972e88897c4916784602))
 
-### 1.17.0 
+### 1.17.0
 
 (2024-09-13)
-
 
 Features
 
@@ -138,7 +187,6 @@ Features
 
 (2024-09-13)
 
-
 Bug Fixes
 
 - bump kyvejs to resolve downstream errors PE-6664 ([3ccc0bf](https://github.com/ardriveapp/turbo-sdk/commit/3ccc0bf06daad6e6c182f4a13d955fc24a9097d7))
@@ -147,11 +195,9 @@ Bug Fixes
 
 (2024-09-12)
 
-
 Bug Fixes
 
 - **cli:** assign token to config PE-6632 ([d6444b2](https://github.com/ardriveapp/turbo-sdk/commit/d6444b27fd3dd774e5ffefbda785cf5f86306f91))
-
 
 Features
 
@@ -168,7 +214,6 @@ Bug Fixes
 
 - repair types returned from payment service PE-6718 ([f97dfcb](https://github.com/ardriveapp/turbo-sdk/commit/f97dfcb4bc042ad4755b7e3fe2bb39ceab8c21bf))
 
-
 Features
 
 - enable unauthenticated winc for fiat promo code PE-6716 ([b2ade37](https://github.com/ardriveapp/turbo-sdk/commit/b2ade37b67444f4b0e63041746a39e6385c27d2c))
@@ -176,7 +221,6 @@ Features
 ### 1.14.1
 
 (2024-09-11)
-
 
 Bug Fixes
 
@@ -196,7 +240,6 @@ Features
 - **upload folder:** init CLI command PE-6636 ([17af9f3](https://github.com/ardriveapp/turbo-sdk/commit/17af9f36ff9d826ae92664691d557eb198582ccb))
 - **upload folder:** init manifest options PE-6636 ([305bd5a](https://github.com/ardriveapp/turbo-sdk/commit/305bd5a6b49ab9b326954548ab22e75807c9e080))
 
-
 ### 1.13.0
 
 (2024-09-06)
@@ -215,14 +258,13 @@ Features
 - **balance:** add an unauthenticated getBalance method PE-6630 ([63bb4f8](https://github.com/ardriveapp/turbo-sdk/commit/63bb4f8b05560848a67016d08f6bbe4d3724cf74))
 - **native address:** get native address from connected signer PE-6629 ([7432156](https://github.com/ardriveapp/turbo-sdk/commit/7432156311811e921eff99254c4c44dfb97ca353))
 
-### 1.11.0 
+### 1.11.0
 
 (2024-08-29)
 
 Bug Fixes
 
 - **cli:** include bin/turbo in argv check PE-6449 ([cf57515](https://github.com/ardriveapp/turbo-sdk/commit/cf575154a679ea846ff049d3390ca0cea6989a7a))
-
 
 Features
 
@@ -237,16 +279,13 @@ Features
 
 (2024-08-23)
 
-
 Bug Fixes
 
 - expose `token` on unauthenticated turbo factory PE-6569 ([7f0c44c](https://github.com/ardriveapp/turbo-sdk/commit/7f0c44cfc319d0f303d252d0aa73f0d42a635e03))
 
-
 ### 1.10.0
 
 (2024-08-15)
-
 
 Bug Fixes
 
@@ -254,7 +293,6 @@ Bug Fixes
 - **logger:** fix winston setImmediate issue in web export for logger ([481cbe6](https://github.com/ardriveapp/turbo-sdk/commit/481cbe6bbe05b542f498f2d68333854259e98497))
 - **upload folder:** improve node exports PE-4643 ([a6c073b](https://github.com/ardriveapp/turbo-sdk/commit/a6c073bb8b8e8bebf818f08b2ae4b4613ae28c9f))
 - **upload folder:** improve web exports PE-4643 ([4b50778](https://github.com/ardriveapp/turbo-sdk/commit/4b50778707cc74b03058eddd98cf1b8818ec39c4))
-
 
 Features
 
@@ -267,7 +305,7 @@ Features
 - **upload folder:** slice leading `/` from relative manifest paths PE-4643 ([c6e3b7c](https://github.com/ardriveapp/turbo-sdk/commit/c6e3b7c961699a57a5b43626f10283dbe9d4b12e))
 - **upload folder:** use concurrency with plimit-lit PE-4643 ([110a424](https://github.com/ardriveapp/turbo-sdk/commit/110a424db68cfca985303187b318e5a4b1c43b30))
 
-### 1.9.0 
+### 1.9.0
 
 (2024-05-06)
 
@@ -277,19 +315,17 @@ Bug Fixes
 
 Features
 
-- **eth payments**: init eth tx payments 
+- **eth payments**: init eth tx payments
 
-
-### 1.8.0 
+### 1.8.0
 
 (2024-05-02)
 
 Features
 
-- **solana payments**: init solana token tools for sol payment 
+- **solana payments**: init solana token tools for sol payment
 
-
-### 1.7.0 
+### 1.7.0
 
 (2024-04-25)
 
@@ -298,16 +334,14 @@ Features
 - **upload**: allow eth and sol signing for upload
 - **upload**: allow eth/sol signer types
 
-
-### 1.6.0 
+### 1.6.0
 
 (2024-04-24)
 
 Features
 
-- **top up**: allow eth/sol destination for fiat top up 
-- **top up**: allow eth/sol destination for fiat top up 
-
+- **top up**: allow eth/sol destination for fiat top up
+- **top up**: allow eth/sol destination for fiat top up
 
 ### 1.5.0
 
@@ -336,23 +370,21 @@ Bug Fixes
 
 - **arbundles**: pin arbundles to v0.9.9 and run tests locally
 
-
 ### 1.4.1
 
 (2024-01-30)
 
 Bug Fixes
 
-- **checkout session**: correct query param, change type, add coverage 
+- **checkout session**: correct query param, change type, add coverage
 
-### 1.4.0 
+### 1.4.0
 
 (2024-01-30)
 
 Features
 
-- **ui mode**: support query param for checkout session ui mode 
-
+- **ui mode**: support query param for checkout session ui mode
 
 ### 1.3.0
 
@@ -367,7 +399,6 @@ Features
 
 - **signer**: allow an optional signer to be passed instead of JWK for signing data items
 
-
 ### 1.2.0
 
 (2023-12-15)
@@ -376,7 +407,6 @@ Features
 
 - **data item opts**: init tags anchor and target support PE-5035
 
-
 ### 1.1.1
 
 (2023-12-14)
@@ -384,9 +414,8 @@ Features
 Bug Fixes
 
 - **exports**: use bundled export to avoid issue with polyfilled features needed for web
-- **exports**: web exports reference an invalid build path 
+- **exports**: web exports reference an invalid build path
 - **polyfills**: update esbuild script to include crypto polyfill
-
 
 ### 1.1.0
 
@@ -400,7 +429,6 @@ Features
 
 - **logger**: add configurable global logger
 
-
 ### 1.0.2
 
 (2023-11-03)
@@ -409,17 +437,15 @@ Bug Fixes
 
 - **upload**: update the default upload service URL
 
-
 ### 1.0.1
 
 (2023-09-27)
 
 Bug Fixes
 
-- **headers**: add default headers for all HTTP requests 
-- **release**: use script that updates built version.js files 
+- **headers**: add default headers for all HTTP requests
+- **release**: use script that updates built version.js files
 - **version**: update version.js to proper version on build and commit it back to git after a release
-
 
 ### 1.0.0
 
@@ -427,49 +453,49 @@ Bug Fixes
 
 Bug Fixes
 
-- add command that removes type module from package.json 
-- add command that removes type module from package.json 
+- add command that removes type module from package.json
+- add command that removes type module from package.json
 - add main import and allow wildcard imports
 - add module to package.json and tweak types
-- add one more step to make esm useable 
-- add owner to TurboUploadDataItemResponse and remove byteCount 
-- add separate folder for types, use it in named exports 
-- change name of public facing clients. 
-- **cjs**: add separate cjs and esm outputs 
-- **content-length**: require content length factory for uploads 
-- **exports**: move turbo configurations to turbo.ts so it is available to clients 
-- fix package.json 
-- modify return type of signDataItem function, tweak implementation of ArweaveSigner header 
-- move from getWincPriceForBytes to getUploadCosts 
-- **package.json**: add back module to package.json 
-- remove package.json from lib directory 
-- remove postinstall command 
-- replace retry-axios, add additional retry logic 
-- **retry-axios**: pin retry-axios to 3.0.0 
-- revert to single file upload/data item upload 
-- swap adding package.json to esm to cjs 
-- **top up**: export type PE-4465 
-- type imports for web and node 
-- **types**: finalize types, update default payment and upload URLs 
-- update main and types path in package.json 
-- update package.json output for esm 
-- update web signer and cleanup examples 
-- use .cjs as base for types to avoid reference require errors 
-- use declare in sub-classes to overwrite parent class type 
-- **wildcard**: allow wildcard exports for older projects 
-- wrong path for types! 
+- add one more step to make esm useable
+- add owner to TurboUploadDataItemResponse and remove byteCount
+- add separate folder for types, use it in named exports
+- change name of public facing clients.
+- **cjs**: add separate cjs and esm outputs
+- **content-length**: require content length factory for uploads
+- **exports**: move turbo configurations to turbo.ts so it is available to clients
+- fix package.json
+- modify return type of signDataItem function, tweak implementation of ArweaveSigner header
+- move from getWincPriceForBytes to getUploadCosts
+- **package.json**: add back module to package.json
+- remove package.json from lib directory
+- remove postinstall command
+- replace retry-axios, add additional retry logic
+- **retry-axios**: pin retry-axios to 3.0.0
+- revert to single file upload/data item upload
+- swap adding package.json to esm to cjs
+- **top up**: export type PE-4465
+- type imports for web and node
+- **types**: finalize types, update default payment and upload URLs
+- update main and types path in package.json
+- update package.json output for esm
+- update web signer and cleanup examples
+- use .cjs as base for types to avoid reference require errors
+- use declare in sub-classes to overwrite parent class type
+- **wildcard**: allow wildcard exports for older projects
+- wrong path for types!
 
 Features
 
-- abstract axios to TurboHTTPService class 
-- abstract JWKInterface used in AuthenticatedPayment and AuthenticatedUploadService 
-- add remaining unauthenticated apis for payment service, introduce some new types, add tests 
-- add uploadFiles implementation for node and web 
-- break services into auth vs unauth 
-- initial implementation of TurboWebClient and TurboNodeClient 
-- introduce AbortController 
-- introduce uploadSignedDataItem interface, implement for node 
-- remove TurboDataItemVerifier 
-- **sdk**: all uphill from here 🚀 PE-4064 
-- **top-up**: init get checkout session PE-4465 
+- abstract axios to TurboHTTPService class
+- abstract JWKInterface used in AuthenticatedPayment and AuthenticatedUploadService
+- add remaining unauthenticated apis for payment service, introduce some new types, add tests
+- add uploadFiles implementation for node and web
+- break services into auth vs unauth
+- initial implementation of TurboWebClient and TurboNodeClient
+- introduce AbortController
+- introduce uploadSignedDataItem interface, implement for node
+- remove TurboDataItemVerifier
+- **sdk**: all uphill from here 🚀 PE-4064
+- **top-up**: init get checkout session PE-4465
 - **winc for fiat**: extend AmountMapper pattern and add promoCode support PE-4465
