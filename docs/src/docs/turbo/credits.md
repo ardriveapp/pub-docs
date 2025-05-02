@@ -156,6 +156,14 @@ When purchasing Turbo Credits using cryptocurrencies, the purchased Credits can 
         <td></td>
         <td></td>
     </tr>
+    <tr>
+        <th>AR.IO Network (ARIO)</th>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td></td>
+        <td></td>
+    </tr>
     </table>
 </div>
 
