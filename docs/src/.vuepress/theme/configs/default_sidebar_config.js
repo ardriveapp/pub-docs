@@ -151,6 +151,10 @@ module.exports = [
     title: "Misc.",
     children: [
       {
+        title: "Upgrading Private Drives",
+        path: "/docs/arfs/upgrading-privade-drives"
+      },
+      {
         title: "EthAReum",
         path: "/docs/misc/eth"
       },
