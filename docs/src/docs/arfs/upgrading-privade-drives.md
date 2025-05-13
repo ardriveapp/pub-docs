@@ -6,11 +6,20 @@ prev: false
 
 ## Overview
 
-[Private drives](./privacy.md#private-drives) rely on a combination of user-set password and a wallet signature for encryption and decryption. [Wander](https://www.wander.app/), formerly ArConnect, is a popular Arweave wallet that is depreciating its `signature()` method in favor of `signDataItem()`. Because of this, the method used for obtaining signatures for private drives must change as well. ArFS v0.15 was introduced to address this need.
+[Private drives](./privacy.md#private-drives) rely on a combination of user-set password and a wallet signature for encryption and decryption. [Wander](https://www.wander.app/), formerly ArConnect, is a popular Arweave wallet that is depreciating its `signature()` method in favor of `signDataItem()` or `signMessage()`. Because of this, the method used for obtaining signatures for private drives must change as well. ArFS v0.15 was introduced to address this need.
 
-Because private drive entities exist on chain and their encryption cannot be altered, an upgrade is required to allow continued access to "V1" private drives. This upgrade essentially takes a signature from the drive owner wallet, encrypts it using the required signature structure for V2 private drives, and places it on Arweave. This allows the signature to be fetched and decrypted using the latest methods before using it to decrypt the private drive in the V1 format.
+Because private drive entities exist on chain and their encryption cannot be altered, an upgrade is required to allow continued access to "V1" private drives. This upgrade essentially takes a signature from the drive owner wallet, encrypts it using the required signature structure for V2 private drives, and places it on Arweave as a new "Drive-Signature" entity. This allows the signature to be fetched and decrypted using the latest methods before using it to decrypt the private drive in the V1 format.
+
+::: tip Depreciation Period
+
+The below instructions for upgrading a private drive will work during the depreciation period for the `signature()` method from Wanter. Once this period is over, and `signature()` loses all support, additional steps will be required to obtain the correct signature format to decrypt V1 private drives in order to upgrade them.
+
+There is, at this time, no set date for when the depreciation period will end.
+
+:::
 
 ## Upgrading
+
 
 ### Using ArDrive
 

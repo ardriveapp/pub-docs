@@ -20,7 +20,9 @@ ArFS entities, therefore, have their data split between being stored as tags on 
 
 - Snapshot entities require a single transaction. which contains a Data JSON with all of the Drive’s rolled up ArFS metadata and standard Snapshot GQL tags that identify the Snapshot.
 
-ArFS v0.14 introduces the `isHidden` metadata property. `isHidden` is a boolean (true/false) that tells clients if they should display the file or folder. Hidden files still exist and will be included in [snapshots](#snapshot), but should not be rendered by clients. If `isHidden` is not present, its value should be assumed false.
+ArFS v0.14 introduces the `isHidden` property. `isHidden` is a boolean (true/false) that tells clients if they should display the file or folder. Hidden files still exist and will be included in [snapshots](#snapshot), but should not be rendered by clients. If `isHidden` is not present, its value should be assumed false.
+
+ArFS v0.15 introduces the `Signature-Type` metadata property on Drive entities, and a new entity type `DriveSignature`.
 
 ## Drive
 
@@ -29,30 +31,48 @@ A drive is the highest level logical grouping of folders and files. All folders 
 When creating a Drive, a corresponding folder must be created as well. This will act as the root folder of the drive. This separation of drive and folder entity enables features such as folder view queries, renaming, and linking.
 
 ```json
-ArFS: "0.14"
-Cipher?: "AES256-GCM"
-Cipher-IV?: "<12 byte initialization vector as Base64>"
-Content-Type: "<application/json | application/octet-stream>"
-Drive-Id: "<uuid>"
-Drive-Privacy: "<public | private>"
-Drive-Auth-Mode?: "password"
-Entity-Type: "drive"
+ArFS: "0.15",
+Cipher?: "AES256-GCM",
+Cipher-IV?: "<12 byte initialization vector as Base64>",
+Content-Type: "<application/json | application/octet-stream>",
+Drive-Id: "<uuid>",
+Drive-Privacy: "<public | private>",
+Drive-Auth-Mode?: "password",
+Entity-Type: "drive",
+Signature-Type?: "1",
 Unix-Time: "<seconds since unix epoch>"
 
 Metadata JSON {
     "name": "<user defined drive name>",
-    "rootFolderId": "<uuid of the drive root folder>"
+    "rootFolderId": "<uuid of the drive root folder>",
+    "isHidden": false
 }
 ```
 
 <div class="caption">Drive Entity Transaction Example</div>
+
+## Drive-Signature
+
+A drive signature is an ArFS entity that stores an encrypted version of a wallet signature for private drives created using a depreciated signature method (prior to ArFS v0.15). This signature is encrypted using the latest signing method and allows for continued access to the drive once the depreciated method is no longer available.
+
+```json
+ArFS: "0.15",
+Entity-Type: "drive-signature",
+Signature-Format: "1",
+Cipher?: "AES256-GCM",
+Cipher-IV: "<12 byte initialization vector as Base64>"
+{data: <Encrypted type 1 signature>}
+```
+
+The encrypted "type 1" signature for the drive must be provided in the `data` field of the transaction creating the drive-signature entity.
+
 
 ## Folder
 
 A folder is a logical grouping of other folders and files. Folder entity metadata transactions without a parent folder id are considered the Drive Root Folder of their corresponding Drives. All other Folder entities must have a parent folder id. Since folders do not have underlying data, there is no Folder data transaction required.
 
 ```json
-ArFS: "0.14",
+ArFS: "0.15",
 Cipher?: "AES256-GCM",
 Cipher-IV?: "<12 byte initialization vector as Base64>",
 Content-Type: "<application/json | application/octet-stream>",
@@ -83,7 +103,7 @@ In the Arweave File System, a single file is broken into 2 parts - its metadata 
 A File entity metadata transaction does not include the actual File data. Instead, the File data must be uploaded as a separate transaction, called the File Data Transaction. The File JSON metadata transaction contains a reference to the File Data Transaction ID so that it can retrieve the actual data. This separation allows for file metadata to be updated without requiring the file itself to be reuploaded. It also ensures that private files can have their JSON Metadata Transaction encrypted as well, ensuring that no one without authorization can see either the file or its metadata.
 
 ```json
-ArFS: "0.14",
+ArFS: "0.15",
 Cipher?: "AES256-GCM",
 Cipher-IV?: "<12 byte initialization vector as Base64>",
 Content-Type: "<application/json | application/octet-stream>",
@@ -131,7 +151,7 @@ The the File Metadata Transaction contains the GQL Tags necessary to identify th
 Its data contains the JSON metadata for the file. This includes the file name, size, last modified date, data transaction id, and data content type.
 
 ```json
-ArFS: "0.14",
+ArFS: "0.15",
 Cipher?: "AES256-GCM",
 Cipher-IV?: "<12 byte initialization vector as Base64>",
 Content-Type: "<application/json | application/octet-stream>",
@@ -158,7 +178,7 @@ This optional method offers convenience and resource efficiency when building th
 Snapshot entities require the following tags. These are queried by ArFS clients to find drive snapshots, organize them together with any other transactions not included within them, and build the latest state of the drive.
 
 ```json
-ArFS: "0.14",
+ArFS: "0.15",
 Drive-Id: "<drive uuid that this snapshot is associated with>",
 Entity-Type: "snapshot",
 Snapshot-Id: "<uuid of this snapshot entity>",

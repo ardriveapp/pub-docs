@@ -78,6 +78,11 @@ To start using ArFS, you'll need to familiarize yourself with the Arweave ecosys
             <td>January 2024</td>
             <td>Added <code>isHidden</code> property to file and folder metadata to enable clients to "hide" content from end users.</td>
         </tr>
+        <tr>
+            <td>0.15</td>
+            <td>may 2025</td>
+            <td>Added <code>Drive-Signature</code> entity type.</td>
+        </tr>
     </table>
 </div>
         
