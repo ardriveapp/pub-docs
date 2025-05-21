@@ -6,9 +6,9 @@ tags: ["pin", "pins", "pinnedDataOwner", "hidden", "hide"]
 
 ## Overview
 
-Arweave transactions are composed of transaction headers and data payloads. 
+Arweave transactions provide for a separation between data and metadata about that data via the use of headers. Key-value tags in the headers provide for expressive description about the data as well as searchability via gateway GraphQL APIs.
 
-ArFS entities, therefore, have their data split between being stored as tags on their transaction header and encoded as JSON and stored as the data of a transaction. In the case of private entities, JSON data and file data payloads are always encrypted according to the protocol processes defined below.
+ArFS adds an additional layer of separation between data and metadata by using separate transactions for ArFS metadata and, where applicable, ArFS file data. But it also makes use of tags and data separation within an ArFS metadata transaction by including data critical to tracking drive composition in the tags space of ArFS metadata transactions and having most of the other metadata encoded as JSON in the data body of the metadata transaction. In the case of private entities, JSON data and file data payloads are always encrypted according to the protocol processes defined below.
 
 - Drive entities require a single metadata transaction, with standard Drive tags and encoded JSON with secondary metadata.
 
@@ -28,7 +28,7 @@ ArFS v0.15 introduces the `Signature-Type` metadata property on Drive entities, 
 
 A drive is the highest level logical grouping of folders and files. All folders and files must be part of a drive, and reference the Drive ID of that drive.
 
-When creating a Drive, a corresponding folder must be created as well. This will act as the root folder of the drive. This separation of drive and folder entity enables features such as folder view queries, renaming, and linking.
+When creating a Drive, a corresponding "root" folder must be created as well. This separation of drive and folder entity enables features such as folder view queries, renaming, and linking.
 
 ```json
 ArFS: "0.15",
@@ -53,7 +53,9 @@ Metadata JSON {
 
 ## Drive-Signature
 
-A drive signature is an ArFS entity that stores an encrypted version of a wallet signature for private drives created using a depreciated signature method (prior to ArFS v0.15). This signature is encrypted using the latest signing method and allows for continued access to the drive once the depreciated method is no longer available.
+ArFS versions prior to v0.15 applied encryption to drive contents with a signing scheme that, while secure, is now deprecated in modern Arweave software wallets. ArFS v0.15 introduces an updated signing scheme compatible with these wallets and as well as "Drive Signatures", a new entity type to help bridge the signature derivation schemes across ArFS versions.
+
+A drive signature uses the v0.15 encryption scheme to encrypt and store the pre-v0.15 wallet signature for a private drive that is necessary for deriving the "drive key" for that drive. This allows for continued access of historical drive contents into the future.
 
 ```json
 ArFS: "0.15",
