@@ -16,8 +16,8 @@ Turbo is a ultrahigh-throughput Permaweb service that streamlines the funding, i
             <th>Access</th>
             <td style="text-align:left">
                 <ul>
-                    <li>Optimistic, instant data caching, using arweave.net.</li>
-                    <li>Optimistic, near instant GraphQL indexing including cross-chain token address indexing, using arweave.net.</li>
+                    <!-- <li>Optimistic, instant data caching, using arweave.net.</li> -->
+                    <li>GraphQL indexing including cross-chain token address indexing</li>
                     <li>Transaction status endpoint for checking transaction finality. (Irys compatible)</li>
                 </ul>
             </td>
@@ -65,7 +65,7 @@ Turbo is a ultrahigh-throughput Permaweb service that streamlines the funding, i
             <td style="text-align:left">
                 <ul>
                     <li>Instantly fund your Turbo account with your credit card or popular crypto tokens.</li>
-                    <li>ETH, SOL, POL, and AR are supported for funding your Turbo account.</li>
+                    <li>ETH, SOL, POL, KYVE, ETH(base), and AR are supported for funding your Turbo account.</li>
                     <li>Leverage other Turbo benefits like Gifting and Coupon Codes.</li>
                 </ul>
             </td>
