@@ -50,7 +50,7 @@ module.exports = [
       },
       {
         title: "Schema Diagrams",
-        path: "/docs/arfs/schema-diagrams"
+        path: "/docs/arfs/schema-diagrams",
       },
       {
         title: "Content Types",
@@ -103,7 +103,7 @@ module.exports = [
           },
           {
             title: "Extending Schemas",
-            path: "/docs/arfs/usage/extending-schemas"
+            path: "/docs/arfs/usage/extending-schemas",
           },
         ],
       },
@@ -115,23 +115,23 @@ module.exports = [
     children: [
       {
         title: "What is Turbo?",
-        path: "/docs/turbo/what-is-turbo"
+        path: "/docs/turbo/what-is-turbo",
       },
       {
         title: "Turbo Credits",
-        path: "/docs/turbo/credits"
+        path: "/docs/turbo/credits",
       },
       {
         title: "Turbo Credit Sharing",
-        path: "/docs/turbo/credit-sharing"
+        path: "/docs/turbo/credit-sharing",
       },
       {
         title: "Payment API",
-        path: "/docs/turbo/api/payment"
+        path: "/docs/turbo/api/payment",
       },
       {
         title: "Upload API",
-        path: "/docs/turbo/api/upload"
+        path: "/docs/turbo/api/upload",
       },
       {
         title: "Turbo SDK",
@@ -139,28 +139,45 @@ module.exports = [
       },
       {
         title: "Turbo SDK Release Notes",
-        path: "/docs/turbo/turbo-sdk/release-notes"
+        path: "/docs/turbo/turbo-sdk/release-notes",
+      },
+      {
+        title: "Frameworks",
+        children: [
+          {
+            title: "Next.js",
+            path: "/docs/turbo/turbo-sdk/frameworks/next",
+          },
+          {
+            title: "Vite",
+            path: "/docs/turbo/turbo-sdk/frameworks/vite",
+          },
+          {
+            title: "Vanilla HTML",
+            path: "/docs/turbo/turbo-sdk/frameworks/html",
+          },
+        ],
       },
       {
         title: "Migrating From Irys",
-        path: "/docs/turbo/migrating"
+        path: "/docs/turbo/migrating",
       },
-    ]
+    ],
   },
   {
     title: "Misc.",
     children: [
       {
         title: "Upgrading Private Drives",
-        path: "/docs/arfs/upgrading-private-drives"
+        path: "/docs/arfs/upgrading-private-drives",
       },
       {
         title: "EthAReum",
-        path: "/docs/misc/eth"
+        path: "/docs/misc/eth",
       },
       {
         title: "Permasites",
-        path: "/docs/misc/permasite"
+        path: "/docs/misc/permasite",
       },
       {
         title: "Price Calculator",
@@ -171,7 +188,7 @@ module.exports = [
         children: [
           {
             title: "Preparing your dApp",
-            path: "/docs/misc/deploy/prepare"
+            path: "/docs/misc/deploy/prepare",
           },
           {
             title: "Hash Routing",
@@ -179,17 +196,17 @@ module.exports = [
           },
           {
             title: "Relative File Paths",
-            path: "/docs/misc/deploy/paths"
+            path: "/docs/misc/deploy/paths",
           },
           {
             title: "How to Deploy",
-            path: "/docs/misc/deploy/deploy"
+            path: "/docs/misc/deploy/deploy",
           },
           {
             title: "Examples",
-            path: "/docs/misc/deploy/examples"
-          }
-        ]
+            path: "/docs/misc/deploy/examples",
+          },
+        ],
       },
     ],
   },
