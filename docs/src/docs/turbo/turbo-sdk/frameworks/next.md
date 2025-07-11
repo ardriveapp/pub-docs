@@ -4,8 +4,9 @@
 
 This guide demonstrates how to configure the `@ardrive/turbo-sdk` in a Next.js application with proper polyfills for client-side usage. Next.js uses webpack under the hood, which requires specific configuration to handle Node.js modules that the Turbo SDK depends on.
 
-> [!WARNING]
-> Polyfills are required when using the Turbo SDK in Next.js applications. The SDK relies on Node.js modules like `crypto`, `buffer`, `process`, and `stream` that are not available in the browser by default.
+::: warning Polyfills
+Polyfills are required when using the Turbo SDK in Next.js applications. The SDK relies on Node.js modules like `crypto`, `buffer`, `process`, and `stream` that are not available in the browser by default.
+:::
 
 ## Prerequisites
 
@@ -27,7 +28,9 @@ For client-side usage, you'll also need polyfill packages:
 npm install --save-dev crypto-browserify stream-browserify process buffer
 ```
 
-> [!NOTE] > **Wallet Integration Dependencies**: The Turbo SDK includes `@dha-team/arbundles` as a peer dependency, which provides the necessary signers for browser wallet integration (like `InjectedEthereumSigner` and `ArconnectSigner`). You can import these directly without additional installation.
+::: warning Wallet Integration Dependencies
+The Turbo SDK includes `@dha-team/arbundles` as a peer dependency, which provides the necessary signers for browser wallet integration (like `InjectedEthereumSigner` and `ArconnectSigner`). You can import these directly without additional installation.
+:::
 
 ## Configuration
 
@@ -197,14 +200,16 @@ export default function TurboRates() {
 
 ### Wallet Integration Examples
 
-> [!IMPORTANT] > **Never expose private keys in browser applications!** Always use browser wallet integrations for security.
+::: warning
+ **Never expose private keys in browser applications!** 
+ Always use browser wallet integrations for security.
+:::
 
-#### MetaMask Integration
+#### Uploading with Metamask
 
-Connect to MetaMask for Ethereum-funded uploads:
-
-> [!NOTE]
-> For MetaMask integration, you'll need to use `InjectedEthereumSigner` from `@dha-team/arbundles`, which is available as a peer dependency through the Turbo SDK.
+::: warning
+For MetaMask integration, you'll need to use `InjectedEthereumSigner` from `@dha-team/arbundles`, which is available as a peer dependency through the Turbo SDK.
+:::
 
 ```tsx
 "use client";
@@ -386,9 +391,7 @@ export default function MetaMaskUploader() {
 }
 ```
 
-#### Wander Wallet Integration (formerly ArConnect)
-
-Connect to Wander wallet for Arweave-funded uploads:
+#### Uploading with Wander
 
 ```tsx
 "use client";
@@ -588,7 +591,7 @@ const TurboUploader = dynamic(() => import("./TurboUploader"), {
 1. **Incorrect Signer Import**
 
    ```tsx
-   // ❌ INCORRECT - For browser wallets
+   // ❌ INCORRECT - For Node environments
    import { EthereumSigner } from "@ardrive/turbo-sdk/web";
 
    // ✅ CORRECT - For browser wallets
@@ -644,7 +647,7 @@ const nextConfig = {
    - Validate wallet connections before use
    - Handle wallet disconnection gracefully
 
-## Production Deployment
+## Production Deployment Checklist
 
 For production deployments:
 

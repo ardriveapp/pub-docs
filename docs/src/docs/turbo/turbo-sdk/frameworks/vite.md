@@ -4,8 +4,9 @@
 
 This guide demonstrates how to configure the `@ardrive/turbo-sdk` in a Vite application with proper polyfills for client-side usage. Vite provides excellent support for modern JavaScript features and can be easily configured to work with the Turbo SDK through plugins.
 
-> [!NOTE]
-> Vite simplifies polyfill management compared to other bundlers. The `vite-plugin-node-polyfills` plugin handles most of the complexity automatically.
+::: warning Polyfills
+Vite simplifies polyfill management compared to other bundlers. The `vite-plugin-node-polyfills` plugin handles most of the complexity automatically.
+:::
 
 ## Prerequisites
 
@@ -35,7 +36,9 @@ npm install react react-dom
 npm install --save-dev @vitejs/plugin-react @types/react @types/react-dom
 ```
 
-> [!NOTE] > **Wallet Integration Dependencies**: The Turbo SDK includes `@dha-team/arbundles` as a peer dependency, which provides the necessary signers for browser wallet integration (like `InjectedEthereumSigner` and `ArconnectSigner`). You can import these directly without additional installation.
+::: warning Wallet Integration Dependencies
+The Turbo SDK includes `@dha-team/arbundles` as a peer dependency, which provides the necessary signers for browser wallet integration (like `InjectedEthereumSigner` and `ArconnectSigner`). You can import these directly without additional installation.
+:::
 
 ## Configuration
 
@@ -220,11 +223,11 @@ export default function TurboRates() {
 
 ### Wallet Integration Examples
 
-> [!IMPORTANT] > **Never expose private keys in browser applications!** Always use browser wallet integrations for security.
+::: warning Never expose private keys in browser applications!
+Always use browser wallet integrations for security.
+:::
 
-#### MetaMask Integration
-
-Connect to MetaMask for Ethereum-funded uploads:
+#### Uploading with Metamask
 
 ```tsx
 import { TurboFactory } from "@ardrive/turbo-sdk/web";
@@ -404,9 +407,7 @@ export default function MetaMaskUploader() {
 }
 ```
 
-#### Wander Wallet Integration (formerly ArConnect)
-
-Connect to Wander wallet for Arweave-funded uploads:
+#### Upload with Wander
 
 ```tsx
 import { TurboFactory, ArconnectSigner } from "@ardrive/turbo-sdk/web";
@@ -643,7 +644,7 @@ Here's a complete `package.json` example for a Vite + React + Turbo SDK project:
    - Always validate wallet connections before operations
    - Use secure wallet connection methods in production
 
-## Production Deployment
+## Production Deployment Checklist
 
 For production builds:
 

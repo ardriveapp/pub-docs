@@ -4,8 +4,9 @@
 
 This guide demonstrates how to integrate the `@ardrive/turbo-sdk` directly into vanilla HTML pages using CDN imports. No build tools, bundlers, or polyfills are required - just modern ES modules support in browsers.
 
-> [!NOTE]
-> Vanilla HTML implementation is the simplest way to get started with the Turbo SDK. It's perfect for prototyping, simple applications, or when you want to avoid build complexity.
+::: warning Note
+Vanilla HTML implementation is the simplest way to get started with the Turbo SDK. It's perfect for prototyping, simple applications, or when you want to avoid build complexity.
+:::
 
 ## Prerequisites
 
@@ -160,7 +161,9 @@ Create a basic HTML file with Turbo SDK integration:
 
 ## CDN Import Options
 
-> [!IMPORTANT] > **Use esm.sh for best compatibility**. The `unpkg.com` CDN has known issues with ES module exports for complex packages like Turbo SDK.
+::: warning Use esm.sh for best compatibility
+The `unpkg.com` CDN has known issues with ES module exports for complex packages like Turbo SDK.
+:::
 
 ### Latest Version (Recommended for Development)
 
@@ -189,13 +192,17 @@ import { TurboFactory } from "https://unpkg.com/@ardrive/turbo-sdk@1.20.0";
 
 ## Wallet Integration Examples
 
-> [!IMPORTANT] > **Security First**: Never expose private keys in browser applications! Always use browser wallet integrations.
+::: warning
+Never expose private keys in browser applications! Always use browser wallet integrations.
+:::
 
-### Wander Wallet Integration
+### Uploading with Wander
 
-> [!WARNING] > **Deprecation Notice**: The signature API used by ArConnect wallets is deprecated and will be removed. Visit [Wander wallet documentation](https://docs.wander.app/api/signature) for alternatives.
+::: warning Deprecation Notice
+The signature API used by ArConnect wallets is deprecated and will be removed. Visit [Wander wallet documentation](https://docs.wander.app/api/signature) for alternatives.
+:::
 
-Complete HTML page with Wander wallet (formerly ArConnect) integration:
+Complete HTML page with Wander wallet integration:
 
 ```html
 <!DOCTYPE html>
@@ -1021,12 +1028,45 @@ Optimize for production environments:
 
 ## Browser Compatibility
 
-| Browser | Minimum Version | ES Modules | CDN Import | Wallet Support |
-| ------- | --------------- | ---------- | ---------- | -------------- |
-| Chrome  | 61+             | ✅         | ✅         | ✅             |
-| Firefox | 60+             | ✅         | ✅         | ✅             |
-| Safari  | 10.1+           | ✅         | ✅         | ✅             |
-| Edge    | 16+             | ✅         | ✅         | ✅             |
+<div style="text-align: center">
+    <table class="inline-table">
+        <tr>
+            <th>Browser</th>
+            <th>Minimum Version</th>
+            <th>ES Modules</th>
+            <th>CDN Import</th>
+            <th>Wallet Support</th>
+        </tr>
+        <tr>
+            <th>Chrome</th>
+            <td>61+</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <th>Firefox</th>
+            <td>60+</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <th>Safari</th>
+            <td>10.1+</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <th>Edge</th>
+            <td>16+</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+    </table>
+</div>
 
 ## Troubleshooting Common Issues
 
