@@ -1,5 +1,9 @@
 # Using Turbo SDK with Next.js
 
+::: warning Firefox Compatibility
+Some compatibility issues have been reported with the Turbo SDK in Firefox browsers. At this time the below framework examples may not behave as expected in Firefox.
+:::
+
 ## Overview
 
 This guide demonstrates how to configure the `@ardrive/turbo-sdk` in a Next.js application with proper polyfills for client-side usage. Next.js uses webpack under the hood, which requires specific configuration to handle Node.js modules that the Turbo SDK depends on.
@@ -110,93 +114,6 @@ interface Window {
 ```
 
 ## Usage Examples
-
-### Basic Rate Fetching Component
-
-Create a client-side component that uses the Turbo SDK for rate information:
-
-```tsx
-"use client"; // Required for Next.js App Router
-
-import { TurboFactory } from "@ardrive/turbo-sdk/web";
-import { useEffect, useState } from "react";
-
-export default function TurboRates() {
-  const [turbo, setTurbo] = useState(null);
-  const [rates, setRates] = useState(null);
-  const [uploadCost, setUploadCost] = useState(null);
-
-  useEffect(() => {
-    // Initialize unauthenticated Turbo client
-    const initTurbo = async () => {
-      try {
-        const turboClient = TurboFactory.unauthenticated();
-        setTurbo(turboClient);
-
-        // Fetch current rates
-        const currentRates = await turboClient.getFiatRates();
-        setRates(currentRates);
-      } catch (error) {
-        console.error("Failed to initialize Turbo:", error);
-      }
-    };
-
-    initTurbo();
-  }, []);
-
-  const calculateUploadCost = async (event) => {
-    const file = event.target.files?.[0];
-    if (!file || !turbo) return;
-
-    try {
-      const cost = await turbo.getUploadCosts({
-        bytes: [file.size],
-      });
-      setUploadCost(cost[0]);
-    } catch (error) {
-      console.error("Error calculating cost:", error);
-    }
-  };
-
-  return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Turbo Upload Cost Calculator</h2>
-
-      {rates && (
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Current Rates (per GiB):</h3>
-          <pre className="bg-gray-100 p-2 rounded text-sm">
-            {JSON.stringify(rates.fiat, null, 2)}
-          </pre>
-        </div>
-      )}
-
-      <div className="mb-4">
-        <label htmlFor="file" className="block text-sm font-medium mb-2">
-          Select File to Calculate Upload Cost:
-        </label>
-        <input
-          type="file"
-          id="file"
-          onChange={calculateUploadCost}
-          className="block w-full text-sm border rounded-lg p-2"
-        />
-      </div>
-
-      {uploadCost && (
-        <div className="mt-4 p-3 bg-blue-100 rounded">
-          <p>
-            <strong>Upload Cost:</strong> {uploadCost.winc} winc
-          </p>
-          <p>
-            <strong>File Size:</strong> {uploadCost.adjustedBytes} bytes
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
-```
 
 ### Wallet Integration Examples
 

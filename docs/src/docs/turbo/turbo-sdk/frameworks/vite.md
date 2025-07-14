@@ -1,5 +1,9 @@
 # Using Turbo SDK with Vite
 
+::: warning Firefox Compatibility
+Some compatibility issues have been reported with the Turbo SDK in Firefox browsers. At this time the below framework examples may not behave as expected in Firefox.
+:::
+
 ## Overview
 
 This guide demonstrates how to configure the `@ardrive/turbo-sdk` in a Vite application with proper polyfills for client-side usage. Vite provides excellent support for modern JavaScript features and can be easily configured to work with the Turbo SDK through plugins.
@@ -124,102 +128,6 @@ interface Window {
 ```
 
 ## Usage Examples
-
-### Basic Rate Fetching Component
-
-Create a component that uses the Turbo SDK for rate information:
-
-```tsx
-import { TurboFactory } from "@ardrive/turbo-sdk/web";
-import { useEffect, useState } from "react";
-
-export default function TurboRates() {
-  const [turbo, setTurbo] = useState(null);
-  const [rates, setRates] = useState(null);
-  const [uploadCost, setUploadCost] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Initialize unauthenticated Turbo client
-    const initTurbo = async () => {
-      try {
-        const turboClient = TurboFactory.unauthenticated();
-        setTurbo(turboClient);
-
-        // Fetch current rates
-        const currentRates = await turboClient.getFiatRates();
-        setRates(currentRates);
-      } catch (error) {
-        console.error("Failed to initialize Turbo:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    initTurbo();
-  }, []);
-
-  const calculateUploadCost = async (event) => {
-    const file = event.target.files?.[0];
-    if (!file || !turbo) return;
-
-    try {
-      const cost = await turbo.getUploadCosts({
-        bytes: [file.size],
-      });
-      setUploadCost(cost[0]);
-    } catch (error) {
-      console.error("Error calculating cost:", error);
-    }
-  };
-
-  if (loading) {
-    return <div className="p-6">Loading Turbo SDK...</div>;
-  }
-
-  return (
-    <div className="p-6 max-w-2xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Turbo Upload Cost Calculator</h2>
-
-      {rates && (
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-2">
-            Current Rates (per GiB):
-          </h3>
-          <div className="bg-gray-100 p-4 rounded-lg">
-            <pre className="text-sm overflow-x-auto">
-              {JSON.stringify(rates.fiat, null, 2)}
-            </pre>
-          </div>
-        </div>
-      )}
-
-      <div className="mb-4">
-        <label htmlFor="file" className="block text-sm font-medium mb-2">
-          Select File to Calculate Upload Cost:
-        </label>
-        <input
-          type="file"
-          id="file"
-          onChange={calculateUploadCost}
-          className="block w-full text-sm border border-gray-300 rounded-lg p-2 cursor-pointer"
-        />
-      </div>
-
-      {uploadCost && (
-        <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <p>
-            <strong>Upload Cost:</strong> {uploadCost.winc} winc
-          </p>
-          <p>
-            <strong>File Size:</strong> {uploadCost.adjustedBytes} bytes
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
-```
 
 ### Wallet Integration Examples
 

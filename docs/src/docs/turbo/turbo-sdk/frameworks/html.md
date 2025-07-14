@@ -1,5 +1,9 @@
 # Using Turbo SDK with Vanilla HTML
 
+::: warning Firefox Compatibility
+Some compatibility issues have been reported with the Turbo SDK in Firefox browsers. At this time the below framework examples may not behave as expected in Firefox.
+:::
+
 ## Overview
 
 This guide demonstrates how to integrate the `@ardrive/turbo-sdk` directly into vanilla HTML pages using CDN imports. No build tools, bundlers, or polyfills are required - just modern ES modules support in browsers.
@@ -481,8 +485,6 @@ Complete HTML page with Wander wallet integration:
 ```
 
 ## Advanced Features
-
-### Cost Calculator
 
 Create a standalone cost calculator:
 
@@ -1026,7 +1028,7 @@ Optimize for production environments:
 - **Validate upload functionality** with small files first
 - **Monitor API rate limits** and implement backoff
 
-## Browser Compatibility
+<!-- ## Browser Compatibility
 
 <div style="text-align: center">
     <table class="inline-table">
@@ -1066,7 +1068,7 @@ Optimize for production environments:
             <td>✅</td>
         </tr>
     </table>
-</div>
+</div> -->
 
 ## Troubleshooting Common Issues
 
