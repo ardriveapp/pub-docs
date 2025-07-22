@@ -164,6 +164,14 @@ When purchasing Turbo Credits using cryptocurrencies, the purchased Credits can 
         <td></td>
         <td></td>
     </tr>
+    <tr>
+        <th>USDC</th>
+        <td></td>
+        <td>✅</td>
+        <td>✅</td>
+        <td></td>
+        <td></td>
+    </tr>
     </table>
 </div>
 
@@ -185,6 +193,6 @@ The [Turbo SDK](./turbo-sdk/index.md) and included [CLI](./turbo-sdk/index.md#cl
 
 ### Turbo API 
 
-Users can also send requests for a Stripe checkout session (purchasing credits with fiat) directly to the [Turbo Payment Service API](./api/payment.md#get-quote-for-credits). This will return a url for users to finish their purchase using Stripe and a valid credit/debit card.
+Users can also send requests for a Stripe checkout session (purchasing credits with fiat/USDC) directly to the [Turbo Payment Service API](./api/payment.md#get-quote-for-credits). This will return a url for users to finish their purchase using Stripe and a valid credit/debit card.
 
 
