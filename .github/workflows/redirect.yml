@@ -1,0 +1,97 @@
+name: Redirect to ArFS Documentation
+on:
+  push:
+    branches:
+      - redirect
+
+jobs:
+  redirect-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Create redirect HTML
+        run: |
+          mkdir -p dist
+          cat > dist/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Redirecting to ArFS Documentation</title>
+              <meta http-equiv="refresh" content="0; url=https://docs.ar.io/build/advanced/arfs">
+              <link rel="canonical" href="https://docs.ar.io/build/advanced/arfs">
+              <style>
+                  body {
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      height: 100vh;
+                      margin: 0;
+                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                      color: white;
+                  }
+                  .container {
+                      text-align: center;
+                      padding: 2rem;
+                      background: rgba(255, 255, 255, 0.1);
+                      border-radius: 10px;
+                      backdrop-filter: blur(10px);
+                      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                  }
+                  h1 {
+                      margin-bottom: 1rem;
+                      font-size: 2rem;
+                  }
+                  p {
+                      margin-bottom: 2rem;
+                      opacity: 0.9;
+                  }
+                  .spinner {
+                      border: 3px solid rgba(255, 255, 255, 0.3);
+                      border-radius: 50%;
+                      border-top: 3px solid white;
+                      width: 30px;
+                      height: 30px;
+                      animation: spin 1s linear infinite;
+                      margin: 0 auto;
+                  }
+                  @keyframes spin {
+                      0% { transform: rotate(0deg); }
+                      100% { transform: rotate(360deg); }
+                  }
+                  a {
+                      color: white;
+                      text-decoration: underline;
+                  }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <h1>Redirecting...</h1>
+                  <p>You are being redirected to the ArFS Documentation.</p>
+                  <div class="spinner"></div>
+                  <p><a href="https://docs.ar.io/build/advanced/arfs">Click here if you are not redirected automatically</a></p>
+              </div>
+              <script>
+                  // Immediate redirect as backup
+                  window.location.replace('https://docs.ar.io/build/advanced/arfs');
+              </script>
+          </body>
+          </html>
+          EOF
+
+      - name: Deploy redirect page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
+          publish_branch: gh-pages
